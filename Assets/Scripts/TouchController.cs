@@ -22,15 +22,23 @@ public class TilemapClicker : MonoBehaviour
     private GameObject heldPlant;
     private HashSet<Vector3Int> occupiedCells = new HashSet<Vector3Int>();
     private bool isDraggingPlant = false;
+    public TMPro.TextMeshProUGUI goldText;
 
     // Panning state
     private bool isPressing = false;
     private bool isPanning = false;
+    private int goldAmount = 100;
+    private int heldCost = 0;
     private Vector2 pressScreenPos;
     private Vector3 pressWorldPos;
     public float panThreshold = 10f;
     public float panSpeed = 1f;
 
+
+    private void Start()
+    {
+        goldText.text = goldAmount.ToString();
+    }
     void Update()
     {
         var pointer = Pointer.current;
@@ -203,7 +211,7 @@ public class TilemapClicker : MonoBehaviour
             placementUI.SetActive(true);
             iconFollower.target = heldPlant.transform;
         }
-
+        heldCost = prefab.GetComponent<PlantInfo>().cost;
         currentMode = GameMode.Building;
     }
     public void ConfirmPlacement()
@@ -217,6 +225,9 @@ public class TilemapClicker : MonoBehaviour
         {
             occupiedCells.Add(cellPos);
             heldPlant = null;
+            
+            goldAmount -= heldCost;
+            goldText.text = goldAmount.ToString();
             ExitBuildMode();
         }
         else
