@@ -142,7 +142,7 @@ public class TilemapClicker : MonoBehaviour
                 Vector3 currentWorldPos = ScreenToWorldOnGround(currentScreenPos); // Convert current pointer to world
                 Vector3 delta = pressWorldPos - currentWorldPos;                   // Calculate movement delta
                 cam.transform.position += delta * panSpeed;                        // Move camera by delta
-                pressWorldPos = currentWorldPos;                                   // Reset reference for continuous panning
+                pressWorldPos = ScreenToWorldOnGround(currentScreenPos);                                   // Reset reference for continuous panning
             }
         }
 
