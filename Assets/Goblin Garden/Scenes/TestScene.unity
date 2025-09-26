@@ -234,7 +234,7 @@ PrefabInstance:
     - target: {fileID: 4371252393576377346, guid: 9de543c027476b84ab5ffbfa248fd4e2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1899772532468856996, guid: c35e3af5007395442b09753694443f41, type: 3}
+      objectReference: {fileID: 345140677118188980, guid: f5d53745d4d2eb341939faa6dbfb9176, type: 3}
     - target: {fileID: 4371252393576377346, guid: 9de543c027476b84ab5ffbfa248fd4e2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
@@ -1497,6 +1497,7 @@ MonoBehaviour:
   plantPrefab: {fileID: 0}
   placementUI: {fileID: 741146028}
   iconFollower: {fileID: 741146030}
+  goldText: {fileID: 1898274274}
   panThreshold: 10
   panSpeed: 1
 --- !u!4 &1669829321

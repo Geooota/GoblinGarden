@@ -67,6 +67,23 @@ public class TilemapClicker : MonoBehaviour
             isPanning = false;
             pressScreenPos = pointer.position.ReadValue();
             pressWorldPos = ScreenToWorldOnGround(pressScreenPos);
+
+            Ray ray = cam.ScreenPointToRay(pressScreenPos);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                PlantInfo plant = hit.collider.GetComponent<PlantInfo>();
+                if (plant != null)
+                {
+                    if (plant.collectable == true)
+                    {
+                        goldAmount += plant.CollectCrop();
+                        goldText.text = goldAmount.ToString();
+                        isPressing = false;
+                        return;
+                    }
+
+                }
+            }
         }
 
         if (isPressing && pointer.press.isPressed)
@@ -224,10 +241,12 @@ public class TilemapClicker : MonoBehaviour
         if (!occupiedCells.Contains(cellPos))
         {
             occupiedCells.Add(cellPos);
+            heldPlant.GetComponent<PlantInfo>().BeginGrowing();
             heldPlant = null;
             
             goldAmount -= heldCost;
             goldText.text = goldAmount.ToString();
+
             ExitBuildMode();
         }
         else
