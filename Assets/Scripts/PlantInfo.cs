@@ -33,6 +33,7 @@ public class PlantInfo : MonoBehaviour
     {
         StartCoroutine(GrowRoutine(growthTime));
         UIPopUp.SetActive(false);
+        collectable = false;
         return yieldAmount;
     }
 

@@ -242,7 +242,7 @@ public class TilemapClicker : MonoBehaviour
         // Snap to grid
         Vector3Int cellPos = tilemap.WorldToCell(heldPlant.transform.position);
 
-        if (!occupiedCells.Contains(cellPos))
+        if (!occupiedCells.Contains(cellPos) && goldAmount >= heldCost)
         {
             occupiedCells.Add(cellPos);
             heldPlant.GetComponent<PlantInfo>().BeginGrowing();
