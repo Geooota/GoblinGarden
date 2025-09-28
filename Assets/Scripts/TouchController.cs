@@ -44,7 +44,7 @@ public class TilemapClicker : MonoBehaviour
         var pointer = Pointer.current;
         if (pointer == null) return;
 
-        
+
         switch (currentMode)
         {
             case GameMode.Normal:
@@ -74,14 +74,7 @@ public class TilemapClicker : MonoBehaviour
                 PlantInfo plant = hit.collider.GetComponent<PlantInfo>();
                 if (plant != null)
                 {
-                    if (plant.collectable == true)
-                    {
-                        goldAmount += plant.CollectCrop();
-                        goldText.text = goldAmount.ToString();
-                        isPressing = false;
-                        return;
-                    }
-
+                    CollectCrop(plant);
                 }
             }
         }
@@ -108,6 +101,17 @@ public class TilemapClicker : MonoBehaviour
             // No placement in normal mode
             isPressing = false;
             isPanning = false;
+        }
+    }
+
+    public void CollectCrop(PlantInfo plant)
+    {
+        if (plant.collectable == true)
+        {
+            goldAmount += plant.CollectCrop();
+            goldText.text = goldAmount.ToString();
+            isPressing = false;
+            return;
         }
     }
 
@@ -145,7 +149,7 @@ public class TilemapClicker : MonoBehaviour
                 Debug.Log("Found plant under thumb");
                 isDraggingPlant = true;
             }
-            else 
+            else
                 isDraggingPlant = false;
         }
 
@@ -243,7 +247,7 @@ public class TilemapClicker : MonoBehaviour
             occupiedCells.Add(cellPos);
             heldPlant.GetComponent<PlantInfo>().BeginGrowing();
             heldPlant = null;
-            
+
             goldAmount -= heldCost;
             goldText.text = goldAmount.ToString();
 

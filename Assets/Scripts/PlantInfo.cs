@@ -10,25 +10,35 @@ public class PlantInfo : MonoBehaviour
     public int yieldAmount;
     public bool collectable;
 
-        public void BeginGrowing()
-        {
-            StartCoroutine(GrowRoutine(growthTime));
-        }
+    public GameObject UIPopUp;
 
-        private IEnumerator GrowRoutine(float timeToGrow)
-        {
-            Debug.Log("GrowTimeStarted");
+    public void BeginGrowing()
+    {
+        StartCoroutine(GrowRoutine(growthTime));
+        UIPopUp.SetActive(false);
+    }
 
-            float startTime = Time.time;
-            yield return new WaitForSeconds(timeToGrow);
-            collectable = true;
-            Debug.Log($"Plant is now collectible after {Time.time - startTime} seconds!");
-        }
+    private IEnumerator GrowRoutine(float timeToGrow)
+    {
+        Debug.Log("GrowTimeStarted");
+
+        float startTime = Time.time;
+        yield return new WaitForSeconds(timeToGrow);
+        collectable = true;
+        UIPopUp.SetActive(true);
+        Debug.Log($"Plant is now collectible after {Time.time - startTime} seconds!");
+    }
 
     public int CollectCrop()
     {
         StartCoroutine(GrowRoutine(growthTime));
+        UIPopUp.SetActive(false);
         return yieldAmount;
+    }
+
+    public void DoCollectCrop()
+    {
+        CollectCrop();
     }
 
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3688795000848401309}
   - component: {fileID: 4700559488490064607}
+  - component: {fileID: 6692102640354186026}
   m_Layer: 0
   m_Name: Plant3Parent
   m_TagString: Untagged
@@ -50,6 +51,27 @@ MonoBehaviour:
   growthTime: 15
   yieldAmount: 15
   collectable: 0
+--- !u!65 &6692102640354186026
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338891114135743145}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7115614154119023647
 PrefabInstance:
   m_ObjectHideFlags: 0
