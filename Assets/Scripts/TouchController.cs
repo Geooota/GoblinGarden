@@ -20,7 +20,7 @@ public class TilemapClicker : MonoBehaviour
 
     private GameMode currentMode = GameMode.Normal;
     private GameObject heldPlant;
-    private HashSet<Vector3Int> occupiedCells = new HashSet<Vector3Int>();
+    private HashSet<Vector3Int> canPlaceCells = new HashSet<Vector3Int>();
     private bool isDraggingPlant = false;
     public TMPro.TextMeshProUGUI goldText;
 
@@ -241,9 +241,9 @@ public class TilemapClicker : MonoBehaviour
         // Snap to grid
         Vector3Int cellPos = tilemap.WorldToCell(heldPlant.transform.position);
 
-        if (!occupiedCells.Contains(cellPos) && goldAmount >= heldCost)
+        if (canPlaceCells.Contains(cellPos) && goldAmount >= heldCost)
         {
-            occupiedCells.Add(cellPos);
+            canPlaceCells.Add(cellPos);
             heldPlant.GetComponent<PlantInfo>().BeginGrowing();
             heldPlant = null;
 
@@ -254,7 +254,7 @@ public class TilemapClicker : MonoBehaviour
         }
         else
         {
-            Debug.Log("Cell occupied!");
+            Debug.Log("Unable to place here!");
         }
     }
 

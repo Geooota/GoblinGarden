@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4627363423409748417}
   - component: {fileID: 5666058786872029856}
-  - component: {fileID: 3360470137853893357}
   m_Layer: 0
   m_Name: Plant3
   m_TagString: Untagged
@@ -91,15 +90,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3360470137853893357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6641436035396841935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afe4edbea044d71458719b2a16c38f14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Billboard
