@@ -1921,7 +1921,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1355514636}
+      - m_Target: {fileID: 1355514638}
         m_TargetAssemblyTypeName: TilemapClicker, Assembly-CSharp
         m_MethodName: EnterBuildMode
         m_Mode: 2
@@ -2054,7 +2054,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1355514636}
+      - m_Target: {fileID: 1355514638}
         m_TargetAssemblyTypeName: TilemapClicker, Assembly-CSharp
         m_MethodName: ConfirmPlacement
         m_Mode: 1
@@ -2409,7 +2409,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1355514636}
+      - m_Target: {fileID: 1355514638}
         m_TargetAssemblyTypeName: TilemapClicker, Assembly-CSharp
         m_MethodName: EnterBuildMode
         m_Mode: 2
@@ -3861,7 +3861,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1355514636}
+      - m_Target: {fileID: 1355514638}
         m_TargetAssemblyTypeName: TilemapClicker, Assembly-CSharp
         m_MethodName: ExitBuildMode
         m_Mode: 1
@@ -4153,7 +4153,7 @@ PrefabInstance:
     - target: {fileID: 4371252393576377346, guid: 9de543c027476b84ab5ffbfa248fd4e2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1355514636}
+      objectReference: {fileID: 1355514638}
     - target: {fileID: 4371252393576377346, guid: 9de543c027476b84ab5ffbfa248fd4e2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: EnterBuildMode
@@ -5280,7 +5280,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1355514637}
-  - component: {fileID: 1355514636}
+  - component: {fileID: 1355514638}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -5288,26 +5288,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1355514636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1355514635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c1e2c865e87b8f4aac2096ce21c769e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TilemapClicker
-  cam: {fileID: 545174962}
-  tilemap: {fileID: 1176799400}
-  plantPrefab: {fileID: 6641436035396841935, guid: fe7b10a04071911449f04854f14a1006, type: 3}
-  placementUI: {fileID: 484410018}
-  iconFollower: {fileID: 484410020}
-  goldText: {fileID: 1192311828}
-  panThreshold: 10
-  panSpeed: 1
 --- !u!4 &1355514637
 Transform:
   m_ObjectHideFlags: 0
@@ -5323,6 +5303,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1355514638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355514635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c1e2c865e87b8f4aac2096ce21c769e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TilemapClicker
+  cam: {fileID: 545174962}
+  tilemap: {fileID: 1176799400}
+  plantPrefab: {fileID: 0}
+  placementUI: {fileID: 484410018}
+  iconFollower: {fileID: 484410020}
+  goldText: {fileID: 1192311828}
+  panThreshold: 10
+  panSpeed: 1
 --- !u!1 &1534785253
 GameObject:
   m_ObjectHideFlags: 0
