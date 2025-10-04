@@ -57,7 +57,7 @@ public class TilemapClicker : MonoBehaviour
     // Panning state
     private bool isPressing = false;
     private bool isPanning = false;
-    private int goldAmount = 100;
+    public int goldAmount = 100;
     private int heldCost = 0;
     private Vector2 pressScreenPos;
     private Vector3 pressWorldPos;

@@ -389,12 +389,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8219772317558561706}
         m_TargetAssemblyTypeName: PlotInfo, Assembly-CSharp
-        m_MethodName: BuildThisWateryPlot
-        m_Mode: 1
+        m_MethodName: BuildThisPlot
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -798,12 +798,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8219772317558561706}
         m_TargetAssemblyTypeName: PlotInfo, Assembly-CSharp
-        m_MethodName: BuildThisDirtyPlot
-        m_Mode: 1
+        m_MethodName: BuildThisPlot
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1248,12 +1248,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8219772317558561706}
         m_TargetAssemblyTypeName: PlotInfo, Assembly-CSharp
-        m_MethodName: BuildThisGoldenPlot
-        m_Mode: 1
+        m_MethodName: BuildThisPlot
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1381,12 +1381,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8219772317558561706}
         m_TargetAssemblyTypeName: PlotInfo, Assembly-CSharp
-        m_MethodName: BuildThisSpeedyPlot
-        m_Mode: 1
+        m_MethodName: BuildThisPlot
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

@@ -3,10 +3,12 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using System.Collections;
+using JetBrains.Annotations;
 
 public class PlotInfo : MonoBehaviour
 {
     private Tilemap tilemap;
+    private int multiplier;
     public enum PlotSize
     {
         Small, Medium, Large
@@ -52,28 +54,37 @@ public class PlotInfo : MonoBehaviour
             Debug.Log($"Cell at {pos}");
         }
     }
-    public void BuildThisDirtyPlot()
+    public void BuildThisPlot(int typeNum)
     {
-        TilemapClicker.Instance.BuildPlot(PlotType.Dirty, region);
+        int cost = DeterminePlotCost(PlotType.Dirty);
+        //use determinecost before switch, if gold amount isn't enough, return debug
+        if (cost > TilemapClicker.Instance.goldAmount)
+        {
+            Debug.Log("Not Enough Gold!");
+            return;
+        }
+
+        switch (typeNum)
+        {
+            case 1:
+                TilemapClicker.Instance.BuildPlot(PlotType.Dirty, region);
+                break;
+            case 2:
+                TilemapClicker.Instance.BuildPlot(PlotType.Watery, region);
+                break;
+            case 3:
+                TilemapClicker.Instance.BuildPlot(PlotType.Speedy, region);
+                break;
+            case 4:
+                TilemapClicker.Instance.BuildPlot(PlotType.Golden, region);
+                break;
+        }
+
+        TilemapClicker.Instance.goldAmount -= cost;
+        TilemapClicker.Instance.goldText.text = TilemapClicker.Instance.goldAmount.ToString();
+
         purchasePlotButton.SetActive(false);
-        purchasedPlot = true;
-    }
-    public void BuildThisWateryPlot()
-    {
-        TilemapClicker.Instance.BuildPlot(PlotType.Watery, region);
-        purchasePlotButton.SetActive(false);
-        purchasedPlot = true;
-    }
-    public void BuildThisSpeedyPlot()
-    {
-        TilemapClicker.Instance.BuildPlot(PlotType.Speedy, region);
-        purchasePlotButton.SetActive(false);
-        purchasedPlot = true;
-    }
-    public void BuildThisGoldenPlot()
-    {
-        TilemapClicker.Instance.BuildPlot(PlotType.Golden, region);
-        purchasePlotButton.SetActive(false);
+        plotUpgradePanel.SetActive(false);
         purchasedPlot = true;
     }
     public void MakeOptionsAppear()
@@ -87,6 +98,34 @@ public class PlotInfo : MonoBehaviour
             plotUpgradePanel.SetActive(true);
         }
     }
+    private int DeterminePlotCost(PlotType plotType)
+    {
+        ;
+        switch (thisPlotSize)
+        {
+            case PlotSize.Small:
+                multiplier = 1;
+                break;
+            case PlotSize.Medium:
+                multiplier = 2;
+                break;
+            case PlotSize.Large:
+                multiplier = 3;
+                break;
 
+
+        }
+        switch (plotType)
+        {
+            case PlotType.Watery:
+                return 150 * multiplier;
+            case PlotType.Speedy:
+                return 150 * multiplier;
+            case PlotType.Golden:
+                return 150 * multiplier;
+            default:
+                return 100 * multiplier;
+        }
+    }
 
 }
