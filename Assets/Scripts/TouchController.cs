@@ -14,13 +14,27 @@ public enum PlotType
 {
     Dirty,
     Speedy,
-    Watery
+    Watery,
+    Golden
 }
 
 
 
 public class TilemapClicker : MonoBehaviour
 {
+    public static TilemapClicker Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // ensure only one instance exists
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // optional: persists across scenes
+    }
     public class TileInfo
     {
         public bool isOccupied;
@@ -36,7 +50,7 @@ public class TilemapClicker : MonoBehaviour
     private GameMode currentMode = GameMode.Normal;
     private GameObject heldPlant;
     // Change hashset to track the type of plant and plot on each cell
-    private Dictionary<Vector3Int, TileInfo> tileInfos = new Dictionary<Vector3Int, TileInfo>();
+    public Dictionary<Vector3Int, TileInfo> tileInfos = new Dictionary<Vector3Int, TileInfo>();
     private bool isDraggingPlant = false;
     public TMPro.TextMeshProUGUI goldText;
 
@@ -91,6 +105,14 @@ public class TilemapClicker : MonoBehaviour
                 if (plant != null)
                 {
                     CollectCrop(plant);
+                }
+                else
+                {
+                    PlotInfo plot = hit.collider.GetComponent<PlotInfo>();
+                    if (plot != null)
+                    {
+                        plot.MakeOptionsAppear();
+                    }
                 }
             }
         }
@@ -268,6 +290,7 @@ public class TilemapClicker : MonoBehaviour
             {
                 tileInfos.GetValueOrDefault(cellPos).isOccupied = true;
                 heldPlant.GetComponent<PlantInfo>().BeginGrowing();
+                heldPlant.GetComponent<PlantInfo>().myCellPos = cellPos;
                 heldPlant = null;
 
                 goldAmount -= heldCost;
@@ -278,18 +301,22 @@ public class TilemapClicker : MonoBehaviour
         }
     }
 
-    public void BuildPlot(PlotType plotType, Vector3 location)
+    public void BuildPlot(PlotType plotType, BoundsInt plotArea)
     {
-        if (heldPlant != null) return; // can't build a plot while holding a plant
-        Vector3Int cellPos = tilemap.WorldToCell(location);
-        if (!tileInfos.ContainsKey(cellPos))
+        foreach (var pos in plotArea.allPositionsWithin)
         {
-            tileInfos[cellPos] = new TileInfo { isOccupied = false, plotType = plotType };
-            Debug.Log($"Built a {plotType} plot at {cellPos}");
-        }
-        else
-        {
-            Debug.Log("Plot already exists here!");
+            Debug.Log($"Cell at {pos}");
+            if (!tileInfos.ContainsKey(pos))
+            {
+                tileInfos[pos] = new TileInfo { isOccupied = false, plotType = plotType };
+                Debug.Log($"Built a {plotType} plot at {pos}");
+            }
+            else
+            {
+                tileInfos.Remove(pos);
+                tileInfos[pos] = new TileInfo { isOccupied = false, plotType = plotType };
+                Debug.Log($"Replaced a plot with a {plotType} plot at {pos}");
+            }
         }
     }
 
