@@ -10,8 +10,37 @@ public enum GameMode
     Building
 }
 
+public enum PlotType
+{
+    Dirty,
+    Speedy,
+    Watery,
+    Golden
+}
+
+
+
 public class TilemapClicker : MonoBehaviour
 {
+    public static TilemapClicker Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // ensure only one instance exists
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // optional: persists across scenes
+    }
+    public class TileInfo
+    {
+        public bool isOccupied;
+        public PlotType plotType;
+    }
+
     public Camera cam;
     public Tilemap tilemap;
     public GameObject plantPrefab;
@@ -20,14 +49,15 @@ public class TilemapClicker : MonoBehaviour
 
     private GameMode currentMode = GameMode.Normal;
     private GameObject heldPlant;
-    private HashSet<Vector3Int> occupiedCells = new HashSet<Vector3Int>();
+    // Change hashset to track the type of plant and plot on each cell
+    public Dictionary<Vector3Int, TileInfo> tileInfos = new Dictionary<Vector3Int, TileInfo>();
     private bool isDraggingPlant = false;
     public TMPro.TextMeshProUGUI goldText;
 
     // Panning state
     private bool isPressing = false;
     private bool isPanning = false;
-    private int goldAmount = 100;
+    public int goldAmount = 100;
     private int heldCost = 0;
     private Vector2 pressScreenPos;
     private Vector3 pressWorldPos;
@@ -75,6 +105,14 @@ public class TilemapClicker : MonoBehaviour
                 if (plant != null)
                 {
                     CollectCrop(plant);
+                }
+                else
+                {
+                    PlotInfo plot = hit.collider.GetComponent<PlotInfo>();
+                    if (plot != null)
+                    {
+                        plot.MakeOptionsAppear();
+                    }
                 }
             }
         }
@@ -132,8 +170,7 @@ public class TilemapClicker : MonoBehaviour
         // -------------------------
         if (pointer.press.wasPressedThisFrame)
         {
-            if (IsPointerOverUI())
-                return;
+
             // Start tracking a press
             isPressing = true;
 
@@ -242,27 +279,45 @@ public class TilemapClicker : MonoBehaviour
         // Snap to grid
         Vector3Int cellPos = tilemap.WorldToCell(heldPlant.transform.position);
 
-        if (!occupiedCells.Contains(cellPos) && goldAmount >= heldCost)
+        if (tileInfos.ContainsKey(cellPos) && goldAmount >= heldCost)
         {
-            occupiedCells.Add(cellPos);
-            heldPlant.GetComponent<PlantInfo>().BeginGrowing();
-            heldPlant = null;
+            if (tileInfos[cellPos].isOccupied)
+            {
+                Debug.Log("Tile is already occupied!");
+                return;
+            }
+            else
+            {
+                tileInfos.GetValueOrDefault(cellPos).isOccupied = true;
+                heldPlant.GetComponent<PlantInfo>().BeginGrowing();
+                heldPlant.GetComponent<PlantInfo>().myCellPos = cellPos;
+                heldPlant = null;
 
-            goldAmount -= heldCost;
-            goldText.text = goldAmount.ToString();
+                goldAmount -= heldCost;
+                goldText.text = goldAmount.ToString();
 
-            ExitBuildMode();
-        }
-        else
-        {
-            Debug.Log("Cell occupied!");
+                ExitBuildMode();
+            }
         }
     }
 
-    private bool IsPointerOverUI()
+    public void BuildPlot(PlotType plotType, BoundsInt plotArea)
     {
-        return EventSystem.current != null &&
-               EventSystem.current.IsPointerOverGameObject();
+        foreach (var pos in plotArea.allPositionsWithin)
+        {
+            Debug.Log($"Cell at {pos}");
+            if (!tileInfos.ContainsKey(pos))
+            {
+                tileInfos[pos] = new TileInfo { isOccupied = false, plotType = plotType };
+                Debug.Log($"Built a {plotType} plot at {pos}");
+            }
+            else
+            {
+                tileInfos.Remove(pos);
+                tileInfos[pos] = new TileInfo { isOccupied = false, plotType = plotType };
+                Debug.Log($"Replaced a plot with a {plotType} plot at {pos}");
+            }
+        }
     }
 
 }
