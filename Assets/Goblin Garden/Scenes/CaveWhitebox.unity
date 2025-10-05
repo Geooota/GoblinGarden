@@ -1874,7 +1874,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -176.38, y: -86.997}
+  m_AnchoredPosition: {x: -176.38281, y: -86.997}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &258750591
@@ -2362,7 +2362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -176.38, y: 2.4934}
+  m_AnchoredPosition: {x: -176.38281, y: 2.4934}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &405859722
@@ -2631,7 +2631,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484410018}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -3946,7 +3946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 231687227423092040, guid: 9de543c027476b84ab5ffbfa248fd4e2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -176.38
+      value: -176.38281
       objectReference: {fileID: 0}
     - target: {fileID: 231687227423092040, guid: 9de543c027476b84ab5ffbfa248fd4e2, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4647,7 +4647,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -135.20001, y: -24.900024}
+  m_AnchoredPosition: {x: -135.19531, y: -24.900024}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1192311828
@@ -5040,7 +5040,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -226.21002, y: -24.900024}
+  m_AnchoredPosition: {x: -226.21094, y: -24.900024}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1294464488
@@ -6712,6 +6712,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -167.286, z: 0}
+--- !u!1 &1681765602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1073544965794685264, guid: 44cffad43274d9040a5971ce97d0f73c, type: 3}
+  m_PrefabInstance: {fileID: 8603852023869456785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1724143295
 GameObject:
   m_ObjectHideFlags: 0
@@ -9249,10 +9254,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8219772317558561706, guid: 44cffad43274d9040a5971ce97d0f73c, type: 3}
+      propertyPath: plot
+      value: 
+      objectReference: {fileID: 1681765602}
+    - target: {fileID: 8219772317558561706, guid: 44cffad43274d9040a5971ce97d0f73c, type: 3}
+      propertyPath: dirtGolden
+      value: 
+      objectReference: {fileID: 2100000, guid: 393cdd499f256134eb021e86d5f8e6f9, type: 2}
+    - target: {fileID: 8219772317558561706, guid: 44cffad43274d9040a5971ce97d0f73c, type: 3}
+      propertyPath: dirtNormal
+      value: 
+      objectReference: {fileID: 2100000, guid: 58fdee33fa781324eb35a330c939cf80, type: 2}
+    - target: {fileID: 8219772317558561706, guid: 44cffad43274d9040a5971ce97d0f73c, type: 3}
+      propertyPath: dirtSpeedy
+      value: 
+      objectReference: {fileID: 2100000, guid: c5bfa7a96217f8140817868750876776, type: 2}
+    - target: {fileID: 8219772317558561706, guid: 44cffad43274d9040a5971ce97d0f73c, type: 3}
+      propertyPath: dirtWatery
+      value: 
+      objectReference: {fileID: 2100000, guid: bb3d05f4dd40aea4aa867ca15f08ab43, type: 2}
     - target: {fileID: 8483064437193614753, guid: 44cffad43274d9040a5971ce97d0f73c, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 545174962}
+    - target: {fileID: 8507931590447970853, guid: 44cffad43274d9040a5971ce97d0f73c, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507931590447970853, guid: 44cffad43274d9040a5971ce97d0f73c, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

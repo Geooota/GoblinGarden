@@ -19,8 +19,13 @@ public class PlotInfo : MonoBehaviour
     private Vector3Int min;
     private Vector3Int size;
     private BoundsInt region;
+    public GameObject plot;
     public GameObject purchasePlotButton;
     public GameObject plotUpgradePanel;
+    public Material dirtNormal;
+    public Material dirtWatery;
+    public Material dirtSpeedy;
+    public Material dirtGolden;
 
     private void Start()
     {
@@ -68,15 +73,19 @@ public class PlotInfo : MonoBehaviour
         {
             case 1:
                 TilemapClicker.Instance.BuildPlot(PlotType.Dirty, region);
+                plot.GetComponent<MeshRenderer>().material = dirtNormal;
                 break;
             case 2:
                 TilemapClicker.Instance.BuildPlot(PlotType.Watery, region);
+                plot.GetComponent<MeshRenderer>().material = dirtWatery;
                 break;
             case 3:
                 TilemapClicker.Instance.BuildPlot(PlotType.Speedy, region);
+                plot.GetComponent<MeshRenderer>().material = dirtSpeedy;
                 break;
             case 4:
                 TilemapClicker.Instance.BuildPlot(PlotType.Golden, region);
+                plot.GetComponent<MeshRenderer>().material = dirtGolden;
                 break;
         }
 
