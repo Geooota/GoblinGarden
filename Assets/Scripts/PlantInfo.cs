@@ -13,6 +13,16 @@ public class PlantInfo : MonoBehaviour
     public PlotType myPlotType;
 
     public GameObject UIPopUp;
+    public Sprite plantSprite0;
+    public Sprite plantSprite1;
+    public Sprite plantSprite2;
+    public Sprite plantSprite3;
+
+    private void Start()
+    {
+        UIPopUp.SetActive(false);
+        collectable = false;
+    }
 
     public void BeginGrowing()
     {
