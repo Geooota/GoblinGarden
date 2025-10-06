@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: 'Sock: 50'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3704,7 +3704,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: 'Trash: 50
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3998,7 +4000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1429021782966206064, guid: 9de543c027476b84ab5ffbfa248fd4e2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000030517578
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1429021782966206064, guid: 9de543c027476b84ab5ffbfa248fd4e2, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -4139,6 +4141,10 @@ PrefabInstance:
     - target: {fileID: 6185813641303379310, guid: 9de543c027476b84ab5ffbfa248fd4e2, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492767301140710444, guid: 9de543c027476b84ab5ffbfa248fd4e2, type: 3}
+      propertyPath: m_text
+      value: 'Knife: 50'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6866,6 +6872,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2107260901}
     m_Modifications:
+    - target: {fileID: 2381644615760612285, guid: 9bb564835973c674c898c721b800f8a4, type: 3}
+      propertyPath: m_text
+      value: 'Purchase
+
+        Plot: 100'
+      objectReference: {fileID: 0}
     - target: {fileID: 3868370614756060385, guid: 9bb564835973c674c898c721b800f8a4, type: 3}
       propertyPath: m_Camera
       value: 
@@ -8995,6 +9007,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2107260901}
     m_Modifications:
+    - target: {fileID: 2381644615760612285, guid: 9bb564835973c674c898c721b800f8a4, type: 3}
+      propertyPath: m_text
+      value: 'Purchase
+
+        Plot : 100'
+      objectReference: {fileID: 0}
     - target: {fileID: 3868370614756060385, guid: 9bb564835973c674c898c721b800f8a4, type: 3}
       propertyPath: m_Camera
       value: 
@@ -9043,6 +9061,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7827864146889382272, guid: 9bb564835973c674c898c721b800f8a4, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 58fdee33fa781324eb35a330c939cf80, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
