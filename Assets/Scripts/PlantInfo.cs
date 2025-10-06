@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class PlantInfo : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public string plantName;
     public int cost;
     public float growthTime; // in seconds
+    public float growthCycleTime; // in seconds
     public int yieldAmount;
     public bool collectable;
     public Vector3Int myCellPos;
@@ -18,11 +18,13 @@ public class PlantInfo : MonoBehaviour
     public Sprite plantSprite2;
     public Sprite plantSprite3;
 
-    private void Start()
-    {
-        UIPopUp.SetActive(false);
-        collectable = false;
-    }
+    /* Ignore
+    public float switchInterval = 45f; // seconds
+
+    private SpriteRenderer spriteRenderer;
+    private int switchState = 0;
+    private Coroutine switchCoroutine;
+    */
 
     public void BeginGrowing()
     {
@@ -63,4 +65,50 @@ public class PlantInfo : MonoBehaviour
         CollectCrop();
     }
 
+
+    /* Ignore
+    public void StartGrothCyle()
+    {
+        StartCoroutine(GrowRoutine(growthCycleTime));
+    }
+
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = plantSprite0;
+        switchCoroutine = StartCoroutine(SwitchSpriteRoutine());
+    }
+
+    private IEnumerator SwitchSpriteRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(switchInterval);
+            NextGrowthState();
+        }
+    }
+
+    public void NextGrowthState()
+    {
+        switchState++;
+        if (switchState > 3)
+            switchState = 3; // Stay at the last growth stage
+
+        switch (switchState)
+        {
+            case 0:
+                spriteRenderer.sprite = plantSprite0;
+                break;
+            case 1:
+                spriteRenderer.sprite = plantSprite1;
+                break;
+            case 2:
+                spriteRenderer.sprite = plantSprite2;
+                break;
+            case 3:
+                spriteRenderer.sprite = plantSprite3;
+                break;
+        }
+    }
+    */
 }
