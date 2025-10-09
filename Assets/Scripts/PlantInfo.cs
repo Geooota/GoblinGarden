@@ -18,13 +18,12 @@ public class PlantInfo : MonoBehaviour
     public Sprite plantSprite2;
     public Sprite plantSprite3;
 
-    /* Ignore
+    [Header("Grow Cycle")]
     public float switchInterval = 45f; // seconds
 
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
     private int switchState = 0;
     private Coroutine switchCoroutine;
-    */
 
     public void BeginGrowing()
     {
@@ -60,35 +59,29 @@ public class PlantInfo : MonoBehaviour
             return yieldAmount;
     }
 
-    public void DoCollectCrop()
-    {
-        CollectCrop();
-    }
 
 
-    /* Ignore
-    public void StartGrothCyle()
+    public void StartGrowthCycle()
     {
-        StartCoroutine(GrowRoutine(growthCycleTime));
+        StartCoroutine(SwitchSpriteRoutine());
     }
 
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        GetComponentInChildren<SpriteRenderer>();
         spriteRenderer.sprite = plantSprite0;
-        switchCoroutine = StartCoroutine(SwitchSpriteRoutine());
     }
 
     private IEnumerator SwitchSpriteRoutine()
     {
-        while (true)
+        while (switchState < 3)
         {
             yield return new WaitForSeconds(switchInterval);
             NextGrowthState();
         }
     }
 
-    public void NextGrowthState()
+    private void NextGrowthState()
     {
         switchState++;
         if (switchState > 3)
@@ -107,8 +100,8 @@ public class PlantInfo : MonoBehaviour
                 break;
             case 3:
                 spriteRenderer.sprite = plantSprite3;
+                BeginGrowing();
                 break;
         }
     }
-    */
 }

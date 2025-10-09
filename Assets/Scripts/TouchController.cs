@@ -289,7 +289,7 @@ public class TilemapClicker : MonoBehaviour
             else
             {
                 tileInfos.GetValueOrDefault(cellPos).isOccupied = true;
-                heldPlant.GetComponent<PlantInfo>().BeginGrowing();
+                heldPlant.GetComponent<PlantInfo>().StartGrowthCycle();
                 heldPlant.GetComponent<PlantInfo>().myCellPos = cellPos;
                 heldPlant = null;
 

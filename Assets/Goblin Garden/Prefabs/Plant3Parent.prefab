@@ -136,6 +136,8 @@ MonoBehaviour:
   plantSprite1: {fileID: 21300000, guid: e0bfc0d31b2810447877d1a5e467460a, type: 3}
   plantSprite2: {fileID: 21300000, guid: 663ef3fb42625214bb8073546b7724d0, type: 3}
   plantSprite3: {fileID: 21300000, guid: ede3d93669b7bd349bcd1171fb368228, type: 3}
+  switchInterval: 45
+  spriteRenderer: {fileID: 3179083034603126463}
 --- !u!65 &6692102640354186026
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -602,5 +604,10 @@ PrefabInstance:
 --- !u!4 &2488256228299945438 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4627363423409748417, guid: 1b7a992361d2a5c4aae954b2af43c828, type: 3}
+  m_PrefabInstance: {fileID: 7115614154119023647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &3179083034603126463 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5666058786872029856, guid: 1b7a992361d2a5c4aae954b2af43c828, type: 3}
   m_PrefabInstance: {fileID: 7115614154119023647}
   m_PrefabAsset: {fileID: 0}
