@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Sock: 50'
+  m_text: 'Sock: 7'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -771,23 +771,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135846901}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &172493725 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 336083066845472731, guid: ab19a36f1566aa14e9af354424e86b33, type: 3}
-  m_PrefabInstance: {fileID: 470410978919539626}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &172493728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172493725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 538142a0ccc606e4aaddf2616b519b50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TrashCompactor
 --- !u!1 &199533379
 GameObject:
   m_ObjectHideFlags: 0
@@ -3875,7 +3858,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Trash: 50
+  m_text: 'Trash: 10
 
 '
   m_isRightToLeft: 0
@@ -4319,7 +4302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7492767301140710444, guid: 9de543c027476b84ab5ffbfa248fd4e2, type: 3}
       propertyPath: m_text
-      value: 'Knife: 50'
+      value: 'Knife: 3'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9356,13 +9339,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8891478838159313833, guid: ab19a36f1566aa14e9af354424e86b33, type: 3}
+      propertyPath: touchController
+      value: 
+      objectReference: {fileID: 1355514638}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 336083066845472731, guid: ab19a36f1566aa14e9af354424e86b33, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 172493728}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab19a36f1566aa14e9af354424e86b33, type: 3}
 --- !u!4 &6410879456274236296 stripped
 Transform:
