@@ -212,7 +212,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fc128ef74e3018d44822deddae939d28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ede3d93669b7bd349bcd1171fb368228, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 3847712095983771150}
   - component: {fileID: 8736073975074482925}
   m_Layer: 0
-  m_Name: SockPlantPrefab
+  m_Name: PlantTrashbagPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -484,19 +484,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bad1e61300ef441abaad8a63d0848f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantInfo
-  plantName: Knife Block
-  cost: 50
+  plantName: Trash Bag
+  cost: 75
   growthTime: 1
   growthCycleTime: 0
-  yieldAmount: 15
+  yieldAmount: 25
   collectable: 0
   myCellPos: {x: 0, y: 0, z: 0}
   myPlotType: 0
   UIPopUp: {fileID: 5998475948935971804}
   plantSprite0: {fileID: 21300000, guid: b538dc35296a28142ad84f3e5c788da5, type: 3}
-  plantSprite1: {fileID: 21300000, guid: 8433737895e1cec40830608c6395cba7, type: 3}
-  plantSprite2: {fileID: 21300000, guid: c9b8774d802d34b43b636baf83b8ec37, type: 3}
-  plantSprite3: {fileID: 21300000, guid: d54c0f34c3458c743bc7a0624e63b74d, type: 3}
+  plantSprite1: {fileID: 21300000, guid: e0bfc0d31b2810447877d1a5e467460a, type: 3}
+  plantSprite2: {fileID: 21300000, guid: 663ef3fb42625214bb8073546b7724d0, type: 3}
+  plantSprite3: {fileID: 21300000, guid: ede3d93669b7bd349bcd1171fb368228, type: 3}
   switchInterval: 3
   spriteRenderer: {fileID: 3919092081848615776}
 --- !u!65 &8736073975074482925
