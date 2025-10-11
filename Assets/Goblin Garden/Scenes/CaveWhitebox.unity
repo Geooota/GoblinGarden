@@ -3176,10 +3176,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
   cam: {fileID: 545174962}
-  maxXCam: 60
-  minXCam: -30
-  maxZCam: 6
-  minZCam: -30
+  maxXCam: 22.5
+  minXCam: -36.5
+  maxZCam: 22.5
+  minZCam: -36.5
 --- !u!1 &578932697
 GameObject:
   m_ObjectHideFlags: 0
@@ -5480,6 +5480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1e2c865e87b8f4aac2096ce21c769e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TilemapClicker
+  plot: {fileID: 0}
   cam: {fileID: 545174962}
   tilemap: {fileID: 1176799400}
   plantPrefab: {fileID: 0}

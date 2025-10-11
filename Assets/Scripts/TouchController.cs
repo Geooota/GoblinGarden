@@ -24,6 +24,7 @@ public enum PlotType
 public class TilemapClicker : MonoBehaviour
 {
     public static TilemapClicker Instance { get; private set; }
+    public PlotInfo plot;
 
     private void Awake()
     {
@@ -74,6 +75,8 @@ public class TilemapClicker : MonoBehaviour
     {
         trashText.text = trashAmount.ToString();
         goldText.text = goldAmount.ToString();
+
+
     }
 
     void Update()
@@ -137,7 +140,15 @@ public class TilemapClicker : MonoBehaviour
 
                 else
                 {
-                    PlotInfo plot = hit.collider.GetComponent<PlotInfo>();
+                    if (plot != null)
+                    {
+                        if (!EventSystem.current.IsPointerOverGameObject())
+                        {
+                            plot.MakeOptionsDisappear();
+                        }
+                    }
+
+                    plot = hit.collider.GetComponent<PlotInfo>();
                     if (plot != null)
                     {
                         plot.MakeOptionsAppear();

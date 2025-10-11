@@ -61,6 +61,7 @@ public class PlotInfo : MonoBehaviour
             Debug.Log($"Cell at {pos}");
         }
     }
+
     public void BuildThisPlot(int typeNum)
     {
         int cost = DeterminePlotCost(PlotType.Dirty);
@@ -68,6 +69,7 @@ public class PlotInfo : MonoBehaviour
         if (cost > TilemapClicker.Instance.goldAmount)
         {
             Debug.Log("Not Enough Gold!");
+            plotUpgradePanel.SetActive(false);
             return;
         }
 
@@ -102,6 +104,7 @@ public class PlotInfo : MonoBehaviour
         plotUpgradePanel.SetActive(false);
         purchasedPlot = true;
     }
+
     public void MakeOptionsAppear()
     {
         if (!purchasedPlot)
@@ -113,9 +116,21 @@ public class PlotInfo : MonoBehaviour
             plotUpgradePanel.SetActive(true);
         }
     }
+
+    public void MakeOptionsDisappear()
+    {
+        if (!purchasedPlot)
+        {
+            purchasePlotButton.SetActive(false);
+        }
+        else
+        {
+            plotUpgradePanel.SetActive(false);
+        }
+    }
+
     private int DeterminePlotCost(PlotType plotType)
     {
-        ;
         switch (thisPlotSize)
         {
             case PlotSize.Small:
@@ -127,8 +142,6 @@ public class PlotInfo : MonoBehaviour
             case PlotSize.Large:
                 multiplier = 3;
                 break;
-
-
         }
         switch (plotType)
         {
@@ -160,7 +173,6 @@ public class PlotInfo : MonoBehaviour
                 }
             }
         }
-
     }
 
 }
