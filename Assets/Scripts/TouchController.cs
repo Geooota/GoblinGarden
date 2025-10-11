@@ -19,8 +19,6 @@ public enum PlotType
     Golden
 }
 
-
-
 public class TilemapClicker : MonoBehaviour
 {
     public static TilemapClicker Instance { get; private set; }
@@ -49,6 +47,8 @@ public class TilemapClicker : MonoBehaviour
     public GameObject plantPrefab;
     public GameObject placementUI;
     public UIIconFollower iconFollower;
+    public TrashCompactor trashCompactor;
+    public float compactTime = 0.3f;
 
     private GameMode currentMode = GameMode.Normal;
     private GameObject heldPlant;
@@ -114,7 +114,6 @@ public class TilemapClicker : MonoBehaviour
 
                 // when you detect the click on a plant
                 PlantInfo plant = hit.collider.GetComponent<PlantInfo>();
-                TrashCompactor trashCompactor = hit.collider.GetComponent<TrashCompactor>();
 
                 if (plant != null)
                 {
@@ -130,11 +129,11 @@ public class TilemapClicker : MonoBehaviour
                     return;
                 }
 
-                if (trashCompactor != null)
+                if (hit.collider.GetComponent<TrashCompactor>() != null)
                 {
-                    Debug.Log("Found Trash Compactor");
-                    StartCoroutine(compactTrash());
                     isPressing = false; // prevent panning etc.
+                    isHolding = true;
+                    StartCoroutine(compactTrash());
                     return;
                 }
 
@@ -151,7 +150,12 @@ public class TilemapClicker : MonoBehaviour
                     plot = hit.collider.GetComponent<PlotInfo>();
                     if (plot != null)
                     {
-                        plot.MakeOptionsAppear();
+                        if (plot.dry)
+                        {
+                            plot.Wet();
+                        }
+                        else
+                            plot.MakeOptionsAppear();
                     }
                 }
             }
@@ -367,14 +371,14 @@ public class TilemapClicker : MonoBehaviour
 
     private System.Collections.IEnumerator compactTrash()
     {
-        Debug.Log("Starting compact trash coroutine");
-        yield return new WaitForSeconds(0.2f); // Simulate delay for compacting
-        TrashCompactor trashCompactor = GetComponent<TrashCompactor>();
-        if (trashCompactor != null)
-        {
-            Debug.Log("Compacting Trash");
-            trashCompactor.CompactTrash();
-        }
+        Debug.Log("Compacting Trash");
+        trashCompactor.CompactTrash();
+        yield return new WaitForSeconds(compactTime); // Simulate delay for compacting
+        compactTime = Mathf.Max(0.8f * compactTime, 0.09f);
+        if (isHolding)
+            StartCoroutine(compactTrash());
+        else
+            compactTime = 0.2f;
     }
 
 }

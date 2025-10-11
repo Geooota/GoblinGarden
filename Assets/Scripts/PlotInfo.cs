@@ -26,6 +26,7 @@ public class PlotInfo : MonoBehaviour
     public Material dirtWatery;
     public Material dirtSpeedy;
     public Material dirtGolden;
+    public bool dry = false;
 
     private PlotType thisPlotType;
 
@@ -33,7 +34,7 @@ public class PlotInfo : MonoBehaviour
     {
         tilemap = FindFirstObjectByType<Tilemap>();
         Vector3Int cellPos = tilemap.WorldToCell(transform.position);          // Convert world position to tilemap cell
-
+        
 
         switch (thisPlotSize)
         {
@@ -72,6 +73,8 @@ public class PlotInfo : MonoBehaviour
             plotUpgradePanel.SetActive(false);
             return;
         }
+
+        StartCoroutine(DryOut());
 
         switch (typeNum)
         {
@@ -158,18 +161,35 @@ public class PlotInfo : MonoBehaviour
 
     private IEnumerator DryOut()
     {
-
-        yield return new WaitForSeconds(3f);
+        
+        yield return new WaitForSeconds(15f);
 
         if (thisPlotType != PlotType.Watery)
         {
+            dry = true;
             Debug.Log("All Dried Out!");
             foreach (var loc in region.allPositionsWithin)
             {
                 if (!TilemapClicker.Instance.tileInfos.ContainsKey(loc))
                 {
                     if (TilemapClicker.Instance.tileInfos[loc] != null)
-                        StartCoroutine(TilemapClicker.Instance.tileInfos[loc].plantInfo.DryOut());
+                        TilemapClicker.Instance.tileInfos[loc].plantInfo.DryOut();
+                }
+            }
+        }
+    }
+    public void Wet()
+    {
+        Debug.Log("You watereded it");
+        if (thisPlotType != PlotType.Watery)
+        {
+            dry = false;
+            foreach (var loc in region.allPositionsWithin)
+            {
+                if (!TilemapClicker.Instance.tileInfos.ContainsKey(loc))
+                {
+                    if (TilemapClicker.Instance.tileInfos[loc] != null)
+                        TilemapClicker.Instance.tileInfos[loc].plantInfo.Wet();
                 }
             }
         }

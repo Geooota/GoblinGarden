@@ -9,8 +9,12 @@ public class PlantInfo : MonoBehaviour
     public float growthCycleTime; // in seconds
     public int yieldAmount;
     public bool collectable;
+    public bool dry;
     public Vector3Int myCellPos;
     public PlotType myPlotType;
+    private float startTime;
+    private float timeLeft;
+    public bool wasCollectable;
 
     public GameObject UIPopUp;
     public Sprite plantSprite0;
@@ -23,7 +27,6 @@ public class PlantInfo : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
     private int switchState = 0;
-    private readonly Coroutine switchCoroutine;
 
     public void BeginGrowing()
     {
@@ -35,7 +38,7 @@ public class PlantInfo : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         Debug.Log("GrowTimeStarted");
-        float startTime = Time.time;
+        startTime = Time.time;
         myPlotType = TilemapClicker.Instance.tileInfos[myCellPos].plotType;
 
         if (myPlotType == PlotType.Speedy)
@@ -104,8 +107,32 @@ public class PlantInfo : MonoBehaviour
                 break;
         }
     }
-    public IEnumerator DryOut()
+    public void DryOut()
     {
-        yield break;
+        if (collectable)
+        {
+            wasCollectable = true;
+            collectable = false;
+            UIPopUp.SetActive(false);
+        }
+        else
+        {
+            timeLeft = Time.time - startTime;
+            StopCoroutine(GrowRoutine(growthTime));
+        }
+    }
+
+    public void Wet()
+    {
+        if (wasCollectable)
+        {
+            wasCollectable = false;
+            collectable = true;
+            UIPopUp.SetActive(true);
+        }
+        else
+        {
+            StartCoroutine(GrowRoutine(timeLeft));
+        }
     }
 }
