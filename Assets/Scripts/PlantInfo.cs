@@ -104,4 +104,8 @@ public class PlantInfo : MonoBehaviour
                 break;
         }
     }
+    public IEnumerator DryOut()
+    {
+        yield break;
+    }
 }

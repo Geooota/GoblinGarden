@@ -39,6 +39,7 @@ public class TilemapClicker : MonoBehaviour
     {
         public bool isOccupied;
         public PlotType plotType;
+        public PlantInfo plantInfo;
     }
 
     public Camera cam;
@@ -101,11 +102,23 @@ public class TilemapClicker : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(pressScreenPos);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                PlantInfo plant = hit.collider.GetComponent<PlantInfo>();
-                if (plant != null)
-                {
-                    CollectCrop(plant);
-                }
+
+                    // when you detect the click on a plant
+                    PlantInfo plant = hit.collider.GetComponent<PlantInfo>();
+                    if (plant != null)
+                    {
+                        var job = new Job(
+                        plant.gameObject,
+                        onComplete: () => CollectCrop(plant)
+                        );
+
+                        JohnController.Instance.EnqueueJob(job);
+
+
+                        isPressing = false; // prevent panning etc.
+                        return;
+                    }
+
                 else
                 {
                     PlotInfo plot = hit.collider.GetComponent<PlotInfo>();
@@ -288,9 +301,10 @@ public class TilemapClicker : MonoBehaviour
             }
             else
             {
-                tileInfos.GetValueOrDefault(cellPos).isOccupied = true;
-                heldPlant.GetComponent<PlantInfo>().StartGrowthCycle();
-                heldPlant.GetComponent<PlantInfo>().myCellPos = cellPos;
+                tileInfos[cellPos].isOccupied = true;
+                tileInfos[cellPos].plantInfo = heldPlant.GetComponent<PlantInfo>();
+                tileInfos[cellPos].plantInfo.StartGrowthCycle();
+                tileInfos[cellPos].plantInfo.myCellPos = cellPos;
                 heldPlant = null;
 
                 goldAmount -= heldCost;

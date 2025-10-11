@@ -1,9 +1,10 @@
+using JetBrains.Annotations;
+using System.Collections;
 using Unity.XR.Oculus.Input;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
-using System.Collections;
-using JetBrains.Annotations;
+using static UnityEditor.PlayerSettings;
 
 public class PlotInfo : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class PlotInfo : MonoBehaviour
     public Material dirtWatery;
     public Material dirtSpeedy;
     public Material dirtGolden;
+
+    private PlotType thisPlotType;
 
     private void Start()
     {
@@ -73,18 +76,22 @@ public class PlotInfo : MonoBehaviour
         {
             case 1:
                 TilemapClicker.Instance.BuildPlot(PlotType.Dirty, region);
+                thisPlotType = PlotType.Dirty;
                 dirtObject.GetComponent<MeshRenderer>().material = dirtNormal;
                 break;
             case 2:
                 TilemapClicker.Instance.BuildPlot(PlotType.Watery, region);
+                thisPlotType= PlotType.Watery;
                 dirtObject.GetComponent<MeshRenderer>().material = dirtWatery;
                 break;
             case 3:
                 TilemapClicker.Instance.BuildPlot(PlotType.Speedy, region);
+                thisPlotType= PlotType.Speedy;
                 dirtObject.GetComponent<MeshRenderer>().material = dirtSpeedy;
                 break;
             case 4:
                 TilemapClicker.Instance.BuildPlot(PlotType.Golden, region);
+                thisPlotType= PlotType.Golden;
                 dirtObject.GetComponent<MeshRenderer>().material = dirtGolden;
                 break;
         }
@@ -135,6 +142,26 @@ public class PlotInfo : MonoBehaviour
             default:
                 return 100 * multiplier;
         }
+    }
+
+    private IEnumerator DryOut()
+    {
+
+        yield return new WaitForSeconds(3f);
+
+        if (thisPlotType != PlotType.Watery)
+        {
+            Debug.Log("All Dried Out!");
+            foreach (var loc in region.allPositionsWithin)
+            {
+                if (!TilemapClicker.Instance.tileInfos.ContainsKey(loc))
+                {
+                    if (TilemapClicker.Instance.tileInfos[loc] != null)
+                        StartCoroutine(TilemapClicker.Instance.tileInfos[loc].plantInfo.DryOut());
+                }
+            }
+        }
+
     }
 
 }
