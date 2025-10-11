@@ -53,11 +53,13 @@ public class TilemapClicker : MonoBehaviour
     // Change hashset to track the type of plant and plot on each cell
     public Dictionary<Vector3Int, TileInfo> tileInfos = new Dictionary<Vector3Int, TileInfo>();
     private bool isDraggingPlant = false;
+    public TMPro.TextMeshProUGUI trashText;
     public TMPro.TextMeshProUGUI goldText;
 
     // Panning state
     private bool isPressing = false;
     private bool isPanning = false;
+    public int trashAmount = 10;
     public int goldAmount = 100;
     private int heldCost = 0;
     private Vector2 pressScreenPos;
@@ -68,8 +70,10 @@ public class TilemapClicker : MonoBehaviour
 
     private void Start()
     {
+        trashText.text = trashAmount.ToString();
         goldText.text = goldAmount.ToString();
     }
+
     void Update()
     {
         var pointer = Pointer.current;
@@ -119,6 +123,15 @@ public class TilemapClicker : MonoBehaviour
                     return;
                 }
 
+                TrashCompactor trashCompactor = hit.collider.GetComponent<TrashCompactor>();
+                if (trashCompactor != null)
+                {
+                    Debug.Log("Found Trash Compactor");
+                    trashCompactor.CompactTrash();
+                    isPressing = false; // prevent panning etc.
+                    return;
+                }
+
                 else
                 {
                     PlotInfo plot = hit.collider.GetComponent<PlotInfo>();
@@ -156,8 +169,8 @@ public class TilemapClicker : MonoBehaviour
     {
         if (plant.collectable == true)
         {
-            goldAmount += plant.CollectCrop();
-            goldText.text = goldAmount.ToString();
+            trashAmount += plant.CollectCrop();
+            trashText.text = trashAmount.ToString();
             isPressing = false;
             return;
         }
@@ -287,7 +300,7 @@ public class TilemapClicker : MonoBehaviour
         // Snap to grid
         Vector3Int cellPos = tilemap.WorldToCell(heldPlant.transform.position);
 
-        if (tileInfos.ContainsKey(cellPos) && goldAmount >= heldCost)
+        if (tileInfos.ContainsKey(cellPos) && trashAmount >= heldCost)
         {
             if (tileInfos[cellPos].isOccupied)
             {
@@ -302,8 +315,8 @@ public class TilemapClicker : MonoBehaviour
                 tileInfos[cellPos].plantInfo.myCellPos = cellPos;
                 heldPlant = null;
 
-                goldAmount -= heldCost;
-                goldText.text = goldAmount.ToString();
+                trashAmount -= heldCost;
+                trashText.text = trashAmount.ToString();
 
                 ExitBuildMode();
             }

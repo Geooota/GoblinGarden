@@ -485,10 +485,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantInfo
   plantName: Trash Bag
-  cost: 75
+  cost: 10
   growthTime: 1
   growthCycleTime: 0
-  yieldAmount: 25
+  yieldAmount: 4
   collectable: 0
   myCellPos: {x: 0, y: 0, z: 0}
   myPlotType: 0

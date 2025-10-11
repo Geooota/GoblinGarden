@@ -485,10 +485,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantInfo
   plantName: Knife Block
-  cost: 50
+  cost: 7
   growthTime: 1
   growthCycleTime: 0
-  yieldAmount: 15
+  yieldAmount: 2
   collectable: 0
   myCellPos: {x: 0, y: 0, z: 0}
   myPlotType: 0
