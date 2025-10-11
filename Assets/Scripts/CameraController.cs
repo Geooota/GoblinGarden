@@ -8,6 +8,11 @@ public class CameraController : MonoBehaviour
     private float minZoom = 2f;
     private float maxZoom = 10f;
 
+    public float maxXCam = 22.5f;
+    public float minXCam = -36.5f;
+    public float maxZCam = 23f;
+    public float minZCam = -36.5f;
+
     private float targetZoom;
 
     void Start()
@@ -20,6 +25,9 @@ public class CameraController : MonoBehaviour
         HandleMouseZoom();
         HandleTouchZoom();
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * zoomSpeed);
+
+        ResetCameraSmoothly();
+
     }
     private void HandleMouseZoom()
     {
@@ -63,4 +71,17 @@ public class CameraController : MonoBehaviour
             }
         }
     }
+    private void ResetCameraSmoothly()
+    {
+        Vector3 camPos = cam.transform.position;
+
+        float targetX = Mathf.Clamp(camPos.x, minXCam, maxXCam);
+        float targetZ = Mathf.Clamp(camPos.z, minZCam, maxZCam);
+
+        Vector3 targetPos = new Vector3(targetX, camPos.y, targetZ);
+
+        cam.transform.position = Vector3.Lerp(camPos, targetPos, Time.deltaTime * 5f);
+    }
+
+
 }

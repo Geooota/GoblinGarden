@@ -2977,7 +2977,7 @@ Transform:
   m_GameObject: {fileID: 545174960}
   serializedVersion: 2
   m_LocalRotation: {x: 0.42660013, y: 0.33944437, z: -0.17670354, w: 0.8194912}
-  m_LocalPosition: {x: -6.95, y: 10.07, z: -0.22}
+  m_LocalPosition: {x: -22.54, y: 10.07, z: 5.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3040,6 +3040,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
   cam: {fileID: 545174962}
+  maxXCam: 60
+  minXCam: -30
+  maxZCam: 6
+  minZCam: -30
 --- !u!1 &578932697
 GameObject:
   m_ObjectHideFlags: 0

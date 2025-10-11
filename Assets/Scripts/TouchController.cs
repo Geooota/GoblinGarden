@@ -140,10 +140,7 @@ public class TilemapClicker : MonoBehaviour
 
             if (isPanning)
             {
-                Vector3 currentWorldPos = ScreenToWorldOnGround(currentScreenPos);
-                Vector3 delta = pressWorldPos - currentWorldPos;
-                cam.transform.position += delta * panSpeed;
-                pressWorldPos = ScreenToWorldOnGround(currentScreenPos);
+                CameraPanning(currentScreenPos);
             }
         }
 
@@ -218,10 +215,7 @@ public class TilemapClicker : MonoBehaviour
             else
             {
                 // If not over the heldPlant, assume the player wants to pan the camera
-                Vector3 currentWorldPos = ScreenToWorldOnGround(currentScreenPos); // Convert current pointer to world
-                Vector3 delta = pressWorldPos - currentWorldPos;                   // Calculate movement delta
-                cam.transform.position += delta * panSpeed;                        // Move camera by delta
-                pressWorldPos = ScreenToWorldOnGround(currentScreenPos);                                   // Reset reference for continuous panning
+                CameraPanning(currentScreenPos);
             }
         }
 
@@ -333,5 +327,14 @@ public class TilemapClicker : MonoBehaviour
             }
         }
     }
+
+    public void CameraPanning(Vector2 scPos)
+    {
+        Vector3 currentWorldPos = ScreenToWorldOnGround(scPos);             // Convert current pointer to world
+        Vector3 delta = pressWorldPos - currentWorldPos;                    // Calculate movement delta
+        cam.transform.position += delta * panSpeed;                         // Move camera by delta
+        pressWorldPos = ScreenToWorldOnGround(scPos);                       // Reset reference for continuous panning
+    }
+
 
 }
