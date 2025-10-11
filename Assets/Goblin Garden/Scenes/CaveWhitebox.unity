@@ -5487,7 +5487,7 @@ MonoBehaviour:
   iconFollower: {fileID: 484410020}
   trashText: {fileID: 1192311828}
   goldText: {fileID: 199533381}
-  trashAmount: 10
+  trashAmount: 1000
   goldAmount: 200
   panThreshold: 10
   panSpeed: 1

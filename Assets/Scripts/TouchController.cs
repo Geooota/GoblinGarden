@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -59,6 +60,7 @@ public class TilemapClicker : MonoBehaviour
     // Panning state
     private bool isPressing = false;
     private bool isPanning = false;
+    private bool isHolding = false;
     public int trashAmount = 10;
     public int goldAmount = 100;
     private int heldCost = 0;
@@ -109,6 +111,8 @@ public class TilemapClicker : MonoBehaviour
 
                 // when you detect the click on a plant
                 PlantInfo plant = hit.collider.GetComponent<PlantInfo>();
+                TrashCompactor trashCompactor = hit.collider.GetComponent<TrashCompactor>();
+
                 if (plant != null)
                 {
                     // this is how we queue work for John now
@@ -123,11 +127,10 @@ public class TilemapClicker : MonoBehaviour
                     return;
                 }
 
-                TrashCompactor trashCompactor = hit.collider.GetComponent<TrashCompactor>();
                 if (trashCompactor != null)
                 {
                     Debug.Log("Found Trash Compactor");
-                    trashCompactor.CompactTrash();
+                    StartCoroutine(compactTrash());
                     isPressing = false; // prevent panning etc.
                     return;
                 }
@@ -162,6 +165,7 @@ public class TilemapClicker : MonoBehaviour
             // No placement in normal mode
             isPressing = false;
             isPanning = false;
+            isHolding = false;
         }
     }
 
@@ -350,5 +354,16 @@ public class TilemapClicker : MonoBehaviour
         pressWorldPos = ScreenToWorldOnGround(scPos);                       // Reset reference for continuous panning
     }
 
+    private System.Collections.IEnumerator compactTrash()
+    {
+        Debug.Log("Starting compact trash coroutine");
+        yield return new WaitForSeconds(0.2f); // Simulate delay for compacting
+        TrashCompactor trashCompactor = GetComponent<TrashCompactor>();
+        if (trashCompactor != null)
+        {
+            Debug.Log("Compacting Trash");
+            trashCompactor.CompactTrash();
+        }
+    }
 
 }
