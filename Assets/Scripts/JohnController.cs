@@ -11,8 +11,8 @@ public class JohnController : MonoBehaviour
     private float moveSpeed = 3f;
     private float stoppingDistance = 2f;
 
-    
-    private SpriteRenderer spriteRenderer;
+
+    public SpriteRenderer spriteRenderer;
     private Sprite idleSprite;
     private Sprite workingSprite;
     private float workSpriteDuration = 0.4f;
@@ -59,7 +59,7 @@ public class JohnController : MonoBehaviour
         {
             Vector3 direction = (dest - transform.position).normalized;
 
-            // Determine sprite flip robustly for isometric camera (45°)
+            // Determine sprite flip robustly for isometric camera (45ï¿½)
             // If movement is generally toward right-down, face right, else left
             if (direction.x + direction.y > 0)
                 spriteRenderer.flipX = false; // facing bottom-right
@@ -98,7 +98,7 @@ public class Job
         this.target = target;
         this.onComplete = onComplete;
     }
-    
+
     public static Job ForPosition(Vector3 pos, Action onComplete)
     {
         var j = new Job(null, onComplete);

@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class CameraController : MonoBehaviour
 {
     public Camera cam;
-    private float zoomSpeed = 2f;
+    private float zoomSpeed = 5f;
     private float minZoom = 2f;
     private float maxZoom = 10f;
 
@@ -38,7 +38,7 @@ public class CameraController : MonoBehaviour
 
         if (Mathf.Abs(scroll) > 0.01f)
         {
-            targetZoom -= scroll * 5f;
+            targetZoom -= scroll * 2f;
             targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
         }
     }

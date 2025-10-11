@@ -4,7 +4,6 @@ using Unity.XR.Oculus.Input;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
 
 public class PlotInfo : MonoBehaviour
 {
@@ -81,17 +80,17 @@ public class PlotInfo : MonoBehaviour
                 break;
             case 2:
                 TilemapClicker.Instance.BuildPlot(PlotType.Watery, region);
-                thisPlotType= PlotType.Watery;
+                thisPlotType = PlotType.Watery;
                 dirtObject.GetComponent<MeshRenderer>().material = dirtWatery;
                 break;
             case 3:
                 TilemapClicker.Instance.BuildPlot(PlotType.Speedy, region);
-                thisPlotType= PlotType.Speedy;
+                thisPlotType = PlotType.Speedy;
                 dirtObject.GetComponent<MeshRenderer>().material = dirtSpeedy;
                 break;
             case 4:
                 TilemapClicker.Instance.BuildPlot(PlotType.Golden, region);
-                thisPlotType= PlotType.Golden;
+                thisPlotType = PlotType.Golden;
                 dirtObject.GetComponent<MeshRenderer>().material = dirtGolden;
                 break;
         }

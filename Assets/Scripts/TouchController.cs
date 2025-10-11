@@ -103,21 +103,21 @@ public class TilemapClicker : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
 
-                    // when you detect the click on a plant
-                    PlantInfo plant = hit.collider.GetComponent<PlantInfo>();
-                    if (plant != null)
-                    {
+                // when you detect the click on a plant
+                PlantInfo plant = hit.collider.GetComponent<PlantInfo>();
+                if (plant != null)
+                {
                     // this is how we queue work for John now
-                        var job = new Job(
-                        plant.gameObject,
-                        onComplete: () => CollectCrop(plant)
-                        );
+                    var job = new Job(
+                    plant.gameObject,
+                    onComplete: () => CollectCrop(plant)
+                    );
 
-                        JohnController.Instance.EnqueueJob(job);
+                    JohnController.Instance.EnqueueJob(job);
                     // End how to enqueue jobs
-                        isPressing = false; // prevent panning etc.
-                        return;
-                    }
+                    isPressing = false; // prevent panning etc.
+                    return;
+                }
 
                 else
                 {
@@ -279,6 +279,7 @@ public class TilemapClicker : MonoBehaviour
         heldCost = prefab.GetComponent<PlantInfo>().cost;
         currentMode = GameMode.Building;
     }
+
     public void ConfirmPlacement()
     {
         if (heldPlant == null) return;

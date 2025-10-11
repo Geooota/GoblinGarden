@@ -23,7 +23,7 @@ public class PlantInfo : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
     private int switchState = 0;
-    private Coroutine switchCoroutine;
+    private readonly Coroutine switchCoroutine;
 
     public void BeginGrowing()
     {
