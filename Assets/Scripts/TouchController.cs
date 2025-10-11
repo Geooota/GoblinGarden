@@ -107,14 +107,14 @@ public class TilemapClicker : MonoBehaviour
                     PlantInfo plant = hit.collider.GetComponent<PlantInfo>();
                     if (plant != null)
                     {
+                    // this is how we queue work for John now
                         var job = new Job(
                         plant.gameObject,
                         onComplete: () => CollectCrop(plant)
                         );
 
                         JohnController.Instance.EnqueueJob(job);
-
-
+                    // End how to enqueue jobs
                         isPressing = false; // prevent panning etc.
                         return;
                     }

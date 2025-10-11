@@ -8,15 +8,14 @@ public class JohnController : MonoBehaviour
 {
     public static JohnController Instance { get; private set; }
 
-    [Header ("Movement")]
-    [SerializeField] private float moveSpeed = 3f;
-    [SerializeField] private float stoppingDistance = 2f;
+    private float moveSpeed = 3f;
+    private float stoppingDistance = 2f;
 
-    [Header ("Visuals")]
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Sprite idleSprite;
-    [SerializeField] private Sprite workingSprite;
-    [SerializeField] private float workSpriteDuration = 0.4f;
+    
+    private SpriteRenderer spriteRenderer;
+    private Sprite idleSprite;
+    private Sprite workingSprite;
+    private float workSpriteDuration = 0.4f;
 
     private Queue<Job> jobQueue = new Queue<Job>();
     private bool processing = false;
@@ -99,7 +98,7 @@ public class Job
         this.target = target;
         this.onComplete = onComplete;
     }
-
+    
     public static Job ForPosition(Vector3 pos, Action onComplete)
     {
         var j = new Job(null, onComplete);
