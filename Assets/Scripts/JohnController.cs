@@ -68,11 +68,10 @@ public class JohnController : MonoBehaviour
                 spriteRenderer.flipX = true;  // facing top-left
 
             transform.position += direction * moveSpeed * Time.deltaTime;
+            if (spriteRenderer != null && walkingSprite != null)
+                spriteRenderer.sprite = walkingSprite;
             yield return null;
         }
-
-        if (spriteRenderer != null && walkingSprite != null && Vector3.Distance(transform.position, dest) <= stoppingDistance)
-            spriteRenderer.sprite = walkingSprite;
 
         // --- "Work" phase: swap sprite briefly ---
         if (spriteRenderer != null && workingSprite != null)

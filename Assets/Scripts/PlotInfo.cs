@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using System.Collections;
+using Unity.VisualScripting;
 using Unity.XR.Oculus.Input;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -22,6 +23,7 @@ public class PlotInfo : MonoBehaviour
     public GameObject dirtObject;
     public GameObject purchasePlotButton;
     public GameObject plotUpgradePanel;
+    public GameObject rocks;
     public Material dirtNormal;
     public Material dirtWatery;
     public Material dirtSpeedy;
@@ -34,7 +36,7 @@ public class PlotInfo : MonoBehaviour
     {
         tilemap = FindFirstObjectByType<Tilemap>();
         Vector3Int cellPos = tilemap.WorldToCell(transform.position);          // Convert world position to tilemap cell
-        
+
 
         switch (thisPlotSize)
         {
@@ -74,7 +76,7 @@ public class PlotInfo : MonoBehaviour
             return;
         }
 
-        StartCoroutine(DryOut());
+        // StartCoroutine(DryOut());
 
         switch (typeNum)
         {
@@ -105,6 +107,7 @@ public class PlotInfo : MonoBehaviour
 
         purchasePlotButton.SetActive(false);
         plotUpgradePanel.SetActive(false);
+        rocks.SetActive(false);
         purchasedPlot = true;
     }
 
@@ -161,7 +164,7 @@ public class PlotInfo : MonoBehaviour
 
     private IEnumerator DryOut()
     {
-        
+
         yield return new WaitForSeconds(15f);
 
         if (thisPlotType != PlotType.Watery)
