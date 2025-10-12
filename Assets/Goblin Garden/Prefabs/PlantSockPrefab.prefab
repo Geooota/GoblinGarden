@@ -499,6 +499,18 @@ MonoBehaviour:
   plantSprite1: {fileID: 21300000, guid: 8433737895e1cec40830608c6395cba7, type: 3}
   plantSprite2: {fileID: 21300000, guid: c9b8774d802d34b43b636baf83b8ec37, type: 3}
   plantSprite3: {fileID: 21300000, guid: d54c0f34c3458c743bc7a0624e63b74d, type: 3}
+  trashSounds:
+  - {fileID: 8300000, guid: 6d2fc79baac24aa4499b1377d5ba0fc0, type: 3}
+  - {fileID: 8300000, guid: d960af0ef05be3b47bfb5fa8412aa19a, type: 3}
+  - {fileID: 8300000, guid: c77826a095f2a4e43a50a189432852e7, type: 3}
+  - {fileID: 8300000, guid: 11016ca9fa521bd4c85c9079b797e2ad, type: 3}
+  - {fileID: 8300000, guid: 4f1ef708c226b8d41a83e211f6f930ae, type: 3}
+  - {fileID: 8300000, guid: dc99483f022870c49b03ed24e7757a00, type: 3}
+  - {fileID: 8300000, guid: ecc64c46af8ffc6418b005bea4f48653, type: 3}
+  - {fileID: 8300000, guid: a72fbc87c8dbdf143a574c1882c6c908, type: 3}
+  - {fileID: 8300000, guid: 3a747efabb81c6a4db1323820ae546f7, type: 3}
+  - {fileID: 8300000, guid: 5e3a865694f9a4e45b64adc122e41151, type: 3}
+  - {fileID: 8300000, guid: a0dc1b700a874a5469be19364cacb571, type: 3}
   switchInterval: 3
   spriteRenderer: {fileID: 3919092081848615776}
 --- !u!65 &8736073975074482925

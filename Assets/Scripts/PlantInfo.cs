@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlantInfo : MonoBehaviour
 {
@@ -22,11 +23,21 @@ public class PlantInfo : MonoBehaviour
     public Sprite plantSprite2;
     public Sprite plantSprite3;
 
+    public AudioClip[] trashSounds;
+    private AudioSource audioSource;
+
     [Header("Grow Cycle")]
     public float switchInterval = 45f; // seconds
 
     public SpriteRenderer spriteRenderer;
     private int switchState = 0;
+
+    private void Start()
+    {
+        GetComponentInChildren<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        spriteRenderer.sprite = plantSprite0;
+    }
 
     public void BeginGrowing()
     {
@@ -55,6 +66,7 @@ public class PlantInfo : MonoBehaviour
     {
         UIPopUp.SetActive(false);
         collectable = false;
+        PlayRandomHarvestSound();
         StartCoroutine(GrowRoutine(growthTime));
         if (myPlotType == PlotType.Golden)
             return Mathf.RoundToInt(yieldAmount * 1.3f);
@@ -67,12 +79,6 @@ public class PlantInfo : MonoBehaviour
     public void StartGrowthCycle()
     {
         StartCoroutine(SwitchSpriteRoutine());
-    }
-
-    private void Start()
-    {
-        GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.sprite = plantSprite0;
     }
 
     private IEnumerator SwitchSpriteRoutine()
@@ -134,5 +140,17 @@ public class PlantInfo : MonoBehaviour
         {
             StartCoroutine(GrowRoutine(timeLeft));
         }
+    }
+
+    public void PlayRandomHarvestSound()
+    {
+        if (trashSounds.Length == 0)
+        {
+            Debug.LogWarning("No audio clips assigned to the array!");
+            return;
+        }
+
+        int randomIndex = Random.Range(0, trashSounds.Length);
+        audioSource.PlayOneShot(trashSounds[randomIndex]);
     }
 }

@@ -28,6 +28,7 @@ public class PlotInfo : MonoBehaviour
     public Material dirtWatery;
     public Material dirtSpeedy;
     public Material dirtGolden;
+    public AudioClip destroyRocksSound;
     public bool dry = false;
 
     private PlotType thisPlotType;
@@ -84,6 +85,8 @@ public class PlotInfo : MonoBehaviour
                 TilemapClicker.Instance.BuildPlot(PlotType.Dirty, region);
                 thisPlotType = PlotType.Dirty;
                 dirtObject.GetComponent<MeshRenderer>().material = dirtNormal;
+                rocks.SetActive(false);
+                AudioSource.PlayClipAtPoint(destroyRocksSound, Camera.main.transform.position);
                 break;
             case 2:
                 TilemapClicker.Instance.BuildPlot(PlotType.Watery, region);
@@ -107,7 +110,6 @@ public class PlotInfo : MonoBehaviour
 
         purchasePlotButton.SetActive(false);
         plotUpgradePanel.SetActive(false);
-        rocks.SetActive(false);
         purchasedPlot = true;
     }
 

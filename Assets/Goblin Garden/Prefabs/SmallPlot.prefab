@@ -136,6 +136,7 @@ MonoBehaviour:
   dirtWatery: {fileID: 2100000, guid: bb3d05f4dd40aea4aa867ca15f08ab43, type: 2}
   dirtSpeedy: {fileID: 2100000, guid: c5bfa7a96217f8140817868750876776, type: 2}
   dirtGolden: {fileID: 2100000, guid: 393cdd499f256134eb021e86d5f8e6f9, type: 2}
+  destroyRocksSound: {fileID: 8300000, guid: 23c9da6b2ce31454da6af8ce4c1ce23a, type: 3}
   dry: 0
 --- !u!1 &1261216354916936221
 GameObject:

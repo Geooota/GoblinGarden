@@ -46,6 +46,7 @@ public class TilemapClicker : MonoBehaviour
     public Tilemap tilemap;
     public GameObject plantPrefab;
     public GameObject placementUI;
+    public AudioClip plantSound;
     public UIIconFollower iconFollower;
     public TrashCompactor trashCompactor;
     public float compactTime = 0.3f;
@@ -333,6 +334,8 @@ public class TilemapClicker : MonoBehaviour
                 tileInfos[cellPos].plantInfo.StartGrowthCycle();
                 tileInfos[cellPos].plantInfo.myCellPos = cellPos;
                 heldPlant = null;
+
+                AudioSource.PlayClipAtPoint(plantSound, Camera.main.transform.position);
 
                 trashAmount -= heldCost;
                 trashText.text = trashAmount.ToString();
