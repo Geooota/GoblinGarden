@@ -13,8 +13,9 @@ public class JohnController : MonoBehaviour
 
 
     public SpriteRenderer spriteRenderer;
-    private Sprite idleSprite;
-    private Sprite workingSprite;
+    public Sprite idleSprite;
+    public Sprite workingSprite;
+    public Sprite walkingSprite;
     private float workSpriteDuration = 0.4f;
 
     private Queue<Job> jobQueue = new Queue<Job>();
@@ -69,6 +70,9 @@ public class JohnController : MonoBehaviour
             transform.position += direction * moveSpeed * Time.deltaTime;
             yield return null;
         }
+
+        if (spriteRenderer != null && walkingSprite != null && Vector3.Distance(transform.position, dest) <= stoppingDistance)
+            spriteRenderer.sprite = walkingSprite;
 
         // --- "Work" phase: swap sprite briefly ---
         if (spriteRenderer != null && workingSprite != null)
