@@ -5906,6 +5906,7 @@ MonoBehaviour:
   placementUI: {fileID: 484410018}
   iconFollower: {fileID: 484410020}
   trashCompactor: {fileID: 470410978919539627}
+  compactTime: 0.3
   trashText: {fileID: 1192311828}
   goldText: {fileID: 199533381}
   trashAmount: 1000
@@ -5964,6 +5965,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1689396414216052808, guid: 4dc520cd09034db4faecf1d354e10485, type: 3}
+      propertyPath: walkingSprite
+      value: 
+      objectReference: {fileID: -374699833, guid: ec833d8457e68604487e5f7d96538a26, type: 3}
+    - target: {fileID: 1689396414216052808, guid: 4dc520cd09034db4faecf1d354e10485, type: 3}
+      propertyPath: workingSprite
+      value: 
+      objectReference: {fileID: -838597485, guid: e37c22931b145f347ba995da9f9d5336, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8065,7 +8074,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1893694457}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -9777,6 +9786,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5181956140172991468, guid: ab19a36f1566aa14e9af354424e86b33, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 336083066845472731, guid: ab19a36f1566aa14e9af354424e86b33, type: 3}
       propertyPath: m_Name
       value: SM_TrashCompactor
@@ -9838,6 +9851,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8891478838159313833, guid: ab19a36f1566aa14e9af354424e86b33, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891478838159313833, guid: ab19a36f1566aa14e9af354424e86b33, type: 3}
       propertyPath: touchController
       value: 
       objectReference: {fileID: 1355514638}
@@ -9852,7 +9869,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 470410978919539626}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 538142a0ccc606e4aaddf2616b519b50, type: 3}
   m_Name: 
@@ -9995,6 +10012,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5145553785575707125, guid: 9bb564835973c674c898c721b800f8a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6161985744423281867, guid: 9bb564835973c674c898c721b800f8a4, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7827864146889382272, guid: 9bb564835973c674c898c721b800f8a4, type: 3}

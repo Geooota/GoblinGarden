@@ -490,10 +490,12 @@ MonoBehaviour:
   growthCycleTime: 0
   yieldAmount: 2
   collectable: 0
+  dry: 0
   myCellPos: {x: 0, y: 0, z: 0}
   myPlotType: 0
+  wasCollectable: 0
   UIPopUp: {fileID: 5998475948935971804}
-  plantSprite0: {fileID: 21300000, guid: b538dc35296a28142ad84f3e5c788da5, type: 3}
+  plantSprite0: {fileID: 21300000, guid: 2cf7bce037bd994468a2b9de628c8b17, type: 3}
   plantSprite1: {fileID: 21300000, guid: 8433737895e1cec40830608c6395cba7, type: 3}
   plantSprite2: {fileID: 21300000, guid: c9b8774d802d34b43b636baf83b8ec37, type: 3}
   plantSprite3: {fileID: 21300000, guid: d54c0f34c3458c743bc7a0624e63b74d, type: 3}
