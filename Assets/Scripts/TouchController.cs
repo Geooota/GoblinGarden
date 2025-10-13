@@ -1,6 +1,7 @@
-using System.Collections.Generic;
 using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
@@ -50,6 +51,7 @@ public class TilemapClicker : MonoBehaviour
     public UIIconFollower iconFollower;
     public TrashCompactor trashCompactor;
     public float compactTime = 0.3f;
+    public AudioClip[] clickSound;
 
     private GameMode currentMode = GameMode.Normal;
     private GameObject heldPlant;
@@ -242,8 +244,13 @@ public class TilemapClicker : MonoBehaviour
             if (isDraggingPlant)
             {
                 // Move the heldPlant to follow the pointer, snapping to the tilemap grid
-
-                heldPlant.transform.position = spawnPos;                     // Update heldPlant position
+                if (heldPlant.transform.position != spawnPos)
+                {
+                    heldPlant.transform.position = spawnPos;                     // Update heldPlant position
+                    int randomIndex = Random.Range(0, clickSound.Length);
+                    AudioSource.PlayClipAtPoint(clickSound[randomIndex], Camera.main.transform.position);
+                }
+                
             }
             else
             {
