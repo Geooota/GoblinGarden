@@ -59,11 +59,6 @@ public class PlotInfo : MonoBehaviour
                 region = new BoundsInt(min, size);
                 break;
         }
-
-        foreach (var pos in region.allPositionsWithin)
-        {
-            Debug.Log($"Cell at {pos}");
-        }
     }
 
     public void BuildThisPlot(int typeNum)
@@ -77,7 +72,7 @@ public class PlotInfo : MonoBehaviour
             return;
         }
 
-        // StartCoroutine(DryOut());
+        StartCoroutine(DryOut());
 
         switch (typeNum)
         {
@@ -167,17 +162,17 @@ public class PlotInfo : MonoBehaviour
     private IEnumerator DryOut()
     {
 
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(5f);
 
         if (thisPlotType != PlotType.Watery)
         {
             dry = true;
-            Debug.Log("All Dried Out!");
+            Debug.LogError("All Dried Out!");
             foreach (var loc in region.allPositionsWithin)
             {
-                if (!TilemapClicker.Instance.tileInfos.ContainsKey(loc))
+                if (TilemapClicker.Instance.tileInfos.ContainsKey(loc))
                 {
-                    if (TilemapClicker.Instance.tileInfos[loc] != null)
+                    if (TilemapClicker.Instance.tileInfos[loc].plantInfo != null)
                         TilemapClicker.Instance.tileInfos[loc].plantInfo.DryOut();
                 }
             }
@@ -185,19 +180,18 @@ public class PlotInfo : MonoBehaviour
     }
     public void Wet()
     {
-        Debug.Log("You watereded it");
-        if (thisPlotType != PlotType.Watery)
+        Debug.Log("You watered it");
+
+        dry = false;
+        foreach (var loc in region.allPositionsWithin)
         {
-            dry = false;
-            foreach (var loc in region.allPositionsWithin)
+            if (TilemapClicker.Instance.tileInfos.ContainsKey(loc))
             {
-                if (!TilemapClicker.Instance.tileInfos.ContainsKey(loc))
-                {
-                    if (TilemapClicker.Instance.tileInfos[loc] != null)
-                        TilemapClicker.Instance.tileInfos[loc].plantInfo.Wet();
-                }
+                if (TilemapClicker.Instance.tileInfos[loc].plantInfo != null)
+                    TilemapClicker.Instance.tileInfos[loc].plantInfo.Wet();
             }
         }
+        StartCoroutine(DryOut());
     }
 
 }

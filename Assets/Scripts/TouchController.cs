@@ -244,7 +244,7 @@ public class TilemapClicker : MonoBehaviour
             if (isDraggingPlant)
             {
                 // Move the heldPlant to follow the pointer, snapping to the tilemap grid
-                if (heldPlant.transform.position != spawnPos)
+                if (heldPlant.transform.position != spawnPos && tileInfos.ContainsKey(cellPos))
                 {
                     heldPlant.transform.position = spawnPos;                     // Update heldPlant position
                     int randomIndex = Random.Range(0, clickSound.Length);

@@ -17,6 +17,9 @@ public class PlantInfo : MonoBehaviour
     private float timeLeft;
     public bool wasCollectable;
 
+    private Coroutine growRoutine;
+    private Coroutine spriteRoutine;
+
     public GameObject UIPopUp;
     public Sprite plantSprite0;
     public Sprite plantSprite1;
@@ -41,7 +44,7 @@ public class PlantInfo : MonoBehaviour
 
     public void BeginGrowing()
     {
-        StartCoroutine(GrowRoutine(growthTime));
+        growRoutine = StartCoroutine(GrowRoutine(growthTime));
         UIPopUp.SetActive(false);
     }
 
@@ -78,7 +81,7 @@ public class PlantInfo : MonoBehaviour
 
     public void StartGrowthCycle()
     {
-        StartCoroutine(SwitchSpriteRoutine());
+        spriteRoutine = StartCoroutine(SwitchSpriteRoutine());
     }
 
     private IEnumerator SwitchSpriteRoutine()
@@ -115,16 +118,23 @@ public class PlantInfo : MonoBehaviour
     }
     public void DryOut()
     {
+        Debug.Log($"Plant " + this + " dried");
         if (collectable)
         {
+
             wasCollectable = true;
             collectable = false;
             UIPopUp.SetActive(false);
         }
-        else
+        else if (switchState == 3)
         {
             timeLeft = Time.time - startTime;
-            StopCoroutine(GrowRoutine(growthTime));
+            StopCoroutine(growRoutine);
+        }
+        else
+        {
+            Debug.Log("Sprite Routine Stopped");
+            StopCoroutine(spriteRoutine);
         }
     }
 
@@ -136,9 +146,13 @@ public class PlantInfo : MonoBehaviour
             collectable = true;
             UIPopUp.SetActive(true);
         }
+        else if (timeLeft != 0)
+        {
+            growRoutine = StartCoroutine(GrowRoutine(timeLeft));
+        }
         else
         {
-            StartCoroutine(GrowRoutine(timeLeft));
+            spriteRoutine = StartCoroutine(SwitchSpriteRoutine());
         }
     }
 
