@@ -20,7 +20,7 @@ public class PlotInfo : MonoBehaviour
     private Vector3Int min;
     private Vector3Int size;
     private BoundsInt region;
-    public GameObject dirtObject;
+    public MeshRenderer dirtObject;
     public GameObject purchasePlotButton;
     public GameObject plotUpgradePanel;
     public GameObject rocks;
@@ -28,8 +28,12 @@ public class PlotInfo : MonoBehaviour
     public Material dirtWatery;
     public Material dirtSpeedy;
     public Material dirtGolden;
+    public Material woodMat;
+    private Material waterMat;
     public AudioClip destroyRocksSound;
     public bool dry = false;
+
+    private Material[] mats;
 
     private PlotType thisPlotType;
 
@@ -37,7 +41,11 @@ public class PlotInfo : MonoBehaviour
     {
         tilemap = FindFirstObjectByType<Tilemap>();
         Vector3Int cellPos = tilemap.WorldToCell(transform.position);          // Convert world position to tilemap cell
-
+        mats = dirtObject.materials;
+        mats[1] = woodMat;
+        mats[2] = dirtNormal;
+        waterMat = mats[0];
+        dirtObject.materials = mats;
 
         switch (thisPlotSize)
         {
@@ -74,29 +82,31 @@ public class PlotInfo : MonoBehaviour
 
         StartCoroutine(DryOut());
 
+        Material[] mats = dirtObject.materials;
+
         switch (typeNum)
         {
             case 1:
                 TilemapClicker.Instance.BuildPlot(PlotType.Dirty, region);
                 thisPlotType = PlotType.Dirty;
-                dirtObject.GetComponent<MeshRenderer>().material = dirtNormal;
+                mats[2] = dirtNormal;
                 rocks.SetActive(false);
                 AudioSource.PlayClipAtPoint(destroyRocksSound, Camera.main.transform.position);
                 break;
             case 2:
                 TilemapClicker.Instance.BuildPlot(PlotType.Watery, region);
                 thisPlotType = PlotType.Watery;
-                dirtObject.GetComponent<MeshRenderer>().material = dirtWatery;
+                mats[2] = dirtWatery;
                 break;
             case 3:
                 TilemapClicker.Instance.BuildPlot(PlotType.Speedy, region);
                 thisPlotType = PlotType.Speedy;
-                dirtObject.GetComponent<MeshRenderer>().material = dirtSpeedy;
+                mats[2] = dirtSpeedy;
                 break;
             case 4:
                 TilemapClicker.Instance.BuildPlot(PlotType.Golden, region);
                 thisPlotType = PlotType.Golden;
-                dirtObject.GetComponent<MeshRenderer>().material = dirtGolden;
+                mats[2] = dirtGolden;
                 break;
         }
 
@@ -106,6 +116,7 @@ public class PlotInfo : MonoBehaviour
         purchasePlotButton.SetActive(false);
         plotUpgradePanel.SetActive(false);
         purchasedPlot = true;
+        dirtObject.materials = mats;
     }
 
     public void MakeOptionsAppear()
@@ -161,12 +172,16 @@ public class PlotInfo : MonoBehaviour
 
     private IEnumerator DryOut()
     {
-
-        yield return new WaitForSeconds(5f);
+        Debug.LogError("Starting Dryout");
+        yield return new WaitForSeconds(30f);
 
         if (thisPlotType != PlotType.Watery)
         {
             dry = true;
+
+            mats[0] = dirtNormal;
+            dirtObject.materials = mats;
+
             Debug.LogError("All Dried Out!");
             foreach (var loc in region.allPositionsWithin)
             {
@@ -177,10 +192,14 @@ public class PlotInfo : MonoBehaviour
                 }
             }
         }
+        else StartCoroutine(DryOut());
     }
     public void Wet()
     {
         Debug.Log("You watered it");
+
+        mats[0] = waterMat;
+        dirtObject.materials = mats;
 
         dry = false;
         foreach (var loc in region.allPositionsWithin)
