@@ -10614,7 +10614,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5181956140172991468, guid: ab19a36f1566aa14e9af354424e86b33, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 336083066845472731, guid: ab19a36f1566aa14e9af354424e86b33, type: 3}
       propertyPath: m_Name
@@ -10678,7 +10678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8891478838159313833, guid: ab19a36f1566aa14e9af354424e86b33, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8891478838159313833, guid: ab19a36f1566aa14e9af354424e86b33, type: 3}
       propertyPath: touchController
@@ -10695,7 +10695,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 470410978919539626}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 538142a0ccc606e4aaddf2616b519b50, type: 3}
   m_Name: 
