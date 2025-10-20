@@ -138,6 +138,7 @@ MonoBehaviour:
   dirtGolden: {fileID: 2100000, guid: 393cdd499f256134eb021e86d5f8e6f9, type: 2}
   woodMat: {fileID: 2100000, guid: 77ad9d5d54377304788e3340766ec82c, type: 2}
   destroyRocksSound: {fileID: 8300000, guid: 23c9da6b2ce31454da6af8ce4c1ce23a, type: 3}
+  WaterSound: {fileID: 8300000, guid: d2121416a18836a4cbf71319f2e56611, type: 3}
   dry: 0
 --- !u!1 &1261216354916936221
 GameObject:

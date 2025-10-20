@@ -201,6 +201,7 @@ public class PlotInfo : MonoBehaviour
 
         mats[0] = waterMat;
         dirtObject.materials = mats;
+        AudioSource.PlayClipAtPoint(WaterSound, Camera.main.transform.position);
 
         dry = false;
         foreach (var loc in region.allPositionsWithin)

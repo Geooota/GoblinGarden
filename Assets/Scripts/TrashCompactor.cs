@@ -6,6 +6,7 @@ public class TrashCompactor : MonoBehaviour
     private int trashAmount = 0;
     private int goldAmount = 0;
     public TilemapClicker touchController;
+    public AudioClip compactSound;
 
     private void Start()
     {
@@ -28,6 +29,7 @@ public class TrashCompactor : MonoBehaviour
             touchController.goldAmount = goldAmount;
             touchController.trashText.text = trashAmount.ToString();
             touchController.goldText.text = goldAmount.ToString();
+            AudioSource.PlayClipAtPoint(compactSound, Camera.main.transform.position);
         }
     }
 }

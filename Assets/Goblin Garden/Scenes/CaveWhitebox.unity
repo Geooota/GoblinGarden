@@ -10718,6 +10718,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8891478838159313833, guid: ab19a36f1566aa14e9af354424e86b33, type: 3}
+      propertyPath: compactSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 62fd108f1c610ad46953e6869b564127, type: 3}
+    - target: {fileID: 8891478838159313833, guid: ab19a36f1566aa14e9af354424e86b33, type: 3}
       propertyPath: touchController
       value: 
       objectReference: {fileID: 1355514638}
