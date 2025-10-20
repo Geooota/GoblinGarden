@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -52,6 +53,9 @@ public class TilemapClicker : MonoBehaviour
     public TrashCompactor trashCompactor;
     public float compactTime = 0.3f;
     public AudioClip[] clickSound;
+    public GameObject trashTarget;
+    public List<Sprite> harvestingSprites;
+    public List<Sprite> wateringSprites;
 
     private GameMode currentMode = GameMode.Normal;
     private GameObject heldPlant;
@@ -70,16 +74,14 @@ public class TilemapClicker : MonoBehaviour
     private int heldCost = 0;
     private Vector2 pressScreenPos;
     private Vector3 pressWorldPos;
-    public float panThreshold = 10f;
-    public float panSpeed = 1f;
+    private float panThreshold = 10f;
+    private float panSpeed = 1f;
 
 
     private void Start()
     {
         trashText.text = trashAmount.ToString();
         goldText.text = goldAmount.ToString();
-
-
     }
 
     void Update()
@@ -123,7 +125,8 @@ public class TilemapClicker : MonoBehaviour
                     // this is how we queue work for John now
                     var job = new Job(
                     plant.gameObject,
-                    onComplete: () => CollectCrop(plant)
+                    onComplete: () => CollectCrop(plant),
+                    harvestingSprites
                     );
 
                     JohnController.Instance.EnqueueJob(job);
@@ -136,7 +139,17 @@ public class TilemapClicker : MonoBehaviour
                 {
                     isPressing = false; // prevent panning etc.
                     isHolding = true;
-                    StartCoroutine(compactTrash());
+                    if (Vector3.Distance(JohnController.Instance.gameObject.transform.position, trashTarget.transform.position) > 1)
+                    {
+                        Debug.Log(Vector3.Distance(JohnController.Instance.gameObject.transform.position, trashTarget.transform.position));
+                        var takeOutTrash = new Job(trashTarget);
+                        JohnController.Instance.EnqueueJob(takeOutTrash);
+                    }
+                    else
+                    {
+                        Debug.Log(Vector3.Distance(JohnController.Instance.gameObject.transform.position, trashTarget.transform.position));
+                        StartCoroutine(compactTrash());
+                    }
                     return;
                 }
 
@@ -155,7 +168,13 @@ public class TilemapClicker : MonoBehaviour
                     {
                         if (plot.dry)
                         {
-                            plot.Wet();
+                            var watering = new Job(
+                            plot.gameObject,
+                            onComplete: () => plot.Wet(),
+                            wateringSprites
+                            );
+                            JohnController.Instance.EnqueueJob(watering);
+
                         }
                         else
                             plot.MakeOptionsAppear();

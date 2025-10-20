@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 using static UnityEngine.GraphicsBuffer;
 
 public class JohnController : MonoBehaviour
@@ -9,14 +10,12 @@ public class JohnController : MonoBehaviour
     public static JohnController Instance { get; private set; }
 
     private float moveSpeed = 3f;
-    private float stoppingDistance = 2f;
+    public float stoppingDistance = 2f;
 
 
     public SpriteRenderer spriteRenderer;
     public Sprite idleSprite;
-    public Sprite workingSprite;
     public Sprite walkingSprite;
-    private float workSpriteDuration = 0.4f;
 
     private Queue<Job> jobQueue = new Queue<Job>();
     private bool processing = false;
@@ -55,32 +54,33 @@ public class JohnController : MonoBehaviour
     {
         // --- Move towards the target ---
         Vector3 dest = job.target != null ? job.target.transform.position : job.manualTargetPosition;
-        dest.y = transform.position.y;
+        dest.y = transform.position.y; // lock Y
+
         while (Vector3.Distance(transform.position, dest) > stoppingDistance)
         {
             Vector3 direction = (dest - transform.position).normalized;
 
-            // Determine sprite flip robustly for isometric camera (45�)
-            // If movement is generally toward right-down, face right, else left
-            if (direction.x + direction.y > 0)
-                spriteRenderer.flipX = false; // facing bottom-right
-            else
-                spriteRenderer.flipX = true;  // facing top-left
+            spriteRenderer.flipX = (direction.x + direction.y <= 0);
 
             transform.position += direction * moveSpeed * Time.deltaTime;
+
             if (spriteRenderer != null && walkingSprite != null)
                 spriteRenderer.sprite = walkingSprite;
             yield return null;
         }
 
-        // --- "Work" phase: swap sprite briefly ---
-        if (spriteRenderer != null && workingSprite != null)
+        // --- Work animation phase ---
+        if (job.workSprites != null && job.workSprites.Count > 0)
         {
-            spriteRenderer.sprite = workingSprite;
-            yield return new WaitForSeconds(workSpriteDuration);
-            spriteRenderer.sprite = idleSprite;
-        }
+            float frameDuration = 0.4f / job.workSprites.Count;
 
+            foreach (Sprite frame in job.workSprites)
+            {
+                spriteRenderer.sprite = frame;
+                yield return new WaitForSeconds(frameDuration);
+            }
+        }
+        spriteRenderer.sprite = idleSprite;
         // --- Perform the actual game action ---
         job.onComplete?.Invoke();
 
@@ -95,18 +95,21 @@ public class Job
     public GameObject target;
     public Vector3 manualTargetPosition;
     public Action onComplete;
+    public List<Sprite> workSprites;
 
-    public Job(GameObject target, Action onComplete)
+    public Job(GameObject target, Action onComplete = null, List<Sprite> workSprites = null)
     {
         this.target = target;
-        this.onComplete = onComplete;
+        if (onComplete != null)
+            this.onComplete = onComplete;
+        if (workSprites != null)
+            this.workSprites = workSprites;
     }
 
-    public static Job ForPosition(Vector3 pos, Action onComplete)
+    public static Job ForPosition(Vector3 pos, Action onComplete, List<Sprite> workSprites = null)
     {
-        var j = new Job(null, onComplete);
+        var j = new Job(null, onComplete, workSprites);
         j.manualTargetPosition = pos;
         return j;
     }
 }
-
