@@ -31,6 +31,7 @@ public class PlotInfo : MonoBehaviour
     public Material woodMat;
     private Material waterMat;
     public AudioClip destroyRocksSound;
+    public AudioClip WaterSound;
     public bool dry = false;
 
     private Material[] mats;
