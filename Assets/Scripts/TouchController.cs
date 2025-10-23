@@ -40,7 +40,7 @@ public class TilemapClicker : MonoBehaviour
     public class TileInfo
     {
         public bool isOccupied;
-        public PlotType plotType;
+        public PlotInfo plotInfo;
         public PlantInfo plantInfo;
     }
 
@@ -357,7 +357,10 @@ public class TilemapClicker : MonoBehaviour
             {
                 tileInfos[cellPos].isOccupied = true;
                 tileInfos[cellPos].plantInfo = heldPlant.GetComponent<PlantInfo>();
-                tileInfos[cellPos].plantInfo.StartGrowthCycle();
+                if (!tileInfos[cellPos].plotInfo.dry)
+                    tileInfos[cellPos].plantInfo.StartGrowthCycle();
+                tileInfos[cellPos].plantInfo.myPlot = tileInfos[cellPos].plotInfo;
+                tileInfos[cellPos].plantInfo.myPlotType = tileInfos[cellPos].plotInfo.thisPlotType;
                 tileInfos[cellPos].plantInfo.myCellPos = cellPos;
                 heldPlant = null;
 
@@ -371,21 +374,25 @@ public class TilemapClicker : MonoBehaviour
         }
     }
 
-    public void BuildPlot(PlotType plotType, BoundsInt plotArea)
+    public void BuildPlot(PlotInfo plotinfo, BoundsInt plotArea)
     {
         foreach (var pos in plotArea.allPositionsWithin)
         {
             Debug.Log($"Cell at {pos}");
             if (!tileInfos.ContainsKey(pos))
             {
-                tileInfos[pos] = new TileInfo { isOccupied = false, plotType = plotType };
-                Debug.Log($"Built a {plotType} plot at {pos}");
+                tileInfos[pos] = new TileInfo { isOccupied = false, plotInfo = plotinfo };
+                Debug.Log($"Built a {plotinfo.thisPlotType} plot at {pos}");
             }
             else
             {
-                tileInfos.Remove(pos);
-                tileInfos[pos] = new TileInfo { isOccupied = false, plotType = plotType };
-                Debug.Log($"Replaced a plot with a {plotType} plot at {pos}");
+                tileInfos[pos].plotInfo = plotinfo;
+                foreach (var loc in plotinfo.region.allPositionsWithin)
+                {
+                    if (tileInfos[loc].plantInfo != null)
+                        tileInfos[loc].plantInfo.myPlotType = plotinfo.thisPlotType;
+                }
+                Debug.Log($"Replaced a plot with a {plotinfo.thisPlotType} plot at {pos}");
             }
         }
     }

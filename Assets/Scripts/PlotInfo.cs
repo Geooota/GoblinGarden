@@ -19,7 +19,7 @@ public class PlotInfo : MonoBehaviour
     public PlotSize thisPlotSize;
     private Vector3Int min;
     private Vector3Int size;
-    private BoundsInt region;
+    public BoundsInt region;
     public MeshRenderer dirtObject;
     public GameObject purchasePlotButton;
     public GameObject plotUpgradePanel;
@@ -36,7 +36,7 @@ public class PlotInfo : MonoBehaviour
 
     private Material[] mats;
 
-    private PlotType thisPlotType;
+    public PlotType thisPlotType;
 
     private void Start()
     {
@@ -83,29 +83,27 @@ public class PlotInfo : MonoBehaviour
 
         StartCoroutine(DryOut());
 
-        Material[] mats = dirtObject.materials;
+        mats = dirtObject.materials;
+
+        TilemapClicker.Instance.BuildPlot(this, region);
 
         switch (typeNum)
         {
             case 1:
-                TilemapClicker.Instance.BuildPlot(PlotType.Dirty, region);
                 thisPlotType = PlotType.Dirty;
                 mats[2] = dirtNormal;
                 rocks.SetActive(false);
                 AudioSource.PlayClipAtPoint(destroyRocksSound, Camera.main.transform.position);
                 break;
             case 2:
-                TilemapClicker.Instance.BuildPlot(PlotType.Watery, region);
                 thisPlotType = PlotType.Watery;
                 mats[2] = dirtWatery;
                 break;
             case 3:
-                TilemapClicker.Instance.BuildPlot(PlotType.Speedy, region);
                 thisPlotType = PlotType.Speedy;
                 mats[2] = dirtSpeedy;
                 break;
             case 4:
-                TilemapClicker.Instance.BuildPlot(PlotType.Golden, region);
                 thisPlotType = PlotType.Golden;
                 mats[2] = dirtGolden;
                 break;

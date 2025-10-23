@@ -12,6 +12,7 @@ public class PlantInfo : MonoBehaviour
     public bool collectable;
     public bool dry;
     public Vector3Int myCellPos;
+    public PlotInfo myPlot; 
     public PlotType myPlotType;
     private float startTime;
     private float timeLeft;
@@ -53,7 +54,6 @@ public class PlantInfo : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         Debug.Log("GrowTimeStarted");
         startTime = Time.time;
-        myPlotType = TilemapClicker.Instance.tileInfos[myCellPos].plotType;
 
         if (myPlotType == PlotType.Speedy)
             yield return new WaitForSeconds(timeToGrow * 0.7f);
@@ -133,7 +133,7 @@ public class PlantInfo : MonoBehaviour
         else
         {
             Debug.Log("Sprite Routine Stopped");
-            StopCoroutine(spriteRoutine);
+            StopAllCoroutines();
         }
     }
 
