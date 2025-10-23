@@ -12,10 +12,11 @@ public class JohnController : MonoBehaviour
     private float moveSpeed = 3f;
     public float stoppingDistance = 2f;
 
-
+    public Coroutine walking;
     public SpriteRenderer spriteRenderer;
     public Sprite idleSprite;
-    public Sprite walkingSprite;
+    public List<Sprite> walkingSprite;
+    private int index = 0;
 
     private Queue<Job> jobQueue = new Queue<Job>();
     private bool processing = false;
@@ -50,11 +51,23 @@ public class JohnController : MonoBehaviour
         processing = false;
     }
 
+    private IEnumerator WalkingAnimation()
+    {
+        while (true)
+        {
+            spriteRenderer.sprite = walkingSprite[index];
+            index = (index + 1) % walkingSprite.Count;
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
     private IEnumerator ExecuteJob(Job job)
     {
         // --- Move towards the target ---
         Vector3 dest = job.target != null ? job.target.transform.position : job.manualTargetPosition;
         dest.y = transform.position.y; // lock Y
+
+        walking = StartCoroutine(WalkingAnimation());
 
         while (Vector3.Distance(transform.position, dest) > stoppingDistance)
         {
@@ -64,10 +77,10 @@ public class JohnController : MonoBehaviour
 
             transform.position += direction * moveSpeed * Time.deltaTime;
 
-            if (spriteRenderer != null && walkingSprite != null)
-                spriteRenderer.sprite = walkingSprite;
             yield return null;
         }
+
+        StopCoroutine(walking);
 
         // --- Work animation phase ---
         if (job.workSprites != null && job.workSprites.Count > 0)
