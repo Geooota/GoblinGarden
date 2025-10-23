@@ -121,7 +121,6 @@ public class PlantInfo : MonoBehaviour
         Debug.Log($"Plant " + this + " dried");
         if (collectable)
         {
-
             wasCollectable = true;
             collectable = false;
             UIPopUp.SetActive(false);
@@ -129,7 +128,7 @@ public class PlantInfo : MonoBehaviour
         else if (switchState == 3)
         {
             timeLeft = Time.time - startTime;
-            StopCoroutine(growRoutine);
+            StopAllCoroutines();
         }
         else
         {
