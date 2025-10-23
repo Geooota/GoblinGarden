@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,7 +6,12 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject shopMenu;
+    public GameObject trashMenu;
+    public GameObject goldMenu;
     private bool isShopOpen = false;
+    private bool isTrashOpen = false;
+    private bool isGoldOpen = false;
+    
 
     public void StartGame()
     {
@@ -26,5 +32,32 @@ public class MainMenu : MonoBehaviour
             isShopOpen = true;
         }
     }
-}
 
+    public void ToggleTrashMenu()
+    {
+        if (isTrashOpen)
+        {
+            trashMenu.SetActive(false);
+            isTrashOpen = false;
+        }
+        else
+        {
+            trashMenu.SetActive(true);
+            isTrashOpen = true;
+        }
+    }
+
+    public void ToggleGoldMenu()
+    {
+        if (isGoldOpen)
+        {
+            goldMenu.SetActive(false);
+            isGoldOpen = false;
+        }
+        else
+        {
+            goldMenu.SetActive(true);
+            isGoldOpen = true;
+        }
+    }
+}
