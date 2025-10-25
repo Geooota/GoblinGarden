@@ -5752,6 +5752,7 @@ GameObject:
   - component: {fileID: 545174961}
   - component: {fileID: 545174964}
   - component: {fileID: 545174965}
+  - component: {fileID: 545174966}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5894,6 +5895,52 @@ MonoBehaviour:
   minXCam: -36.5
   maxZCam: 22.5
   minZCam: -36.5
+--- !u!114 &545174966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545174960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b00e5e57d68a3544a70530af92f2642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShake
+  shakeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.5700353
+      outSlope: 1.5700353
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.17558967
+      value: 0.27568197
+      inSlope: -1.0317197
+      outSlope: -1.0317197
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.070005186
+    - serializedVersion: 3
+      time: 0.9560802
+      value: 0.0037700431
+      inSlope: -0.34838593
+      outSlope: -0.34838593
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  shakeDuration: 0.5
 --- !u!1 &557521183
 GameObject:
   m_ObjectHideFlags: 0
@@ -11585,7 +11632,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1442500046
 RectTransform:
   m_ObjectHideFlags: 0
