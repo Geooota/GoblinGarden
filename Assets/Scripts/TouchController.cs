@@ -113,6 +113,12 @@ public class TilemapClicker : MonoBehaviour
             pressScreenPos = pointer.position.ReadValue();
             pressWorldPos = ScreenToWorldOnGround(pressScreenPos);
 
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                isPressing = false;
+                return;
+            }
+
             Ray ray = cam.ScreenPointToRay(pressScreenPos);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
