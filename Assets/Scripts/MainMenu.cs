@@ -25,15 +25,11 @@ public class MainMenu : MonoBehaviour
         {
             shopMenu.SetActive(false);
             isShopOpen = false;
-
-            Time.timeScale = 1f;
         }
         else
         {
             shopMenu.SetActive(true);
             isShopOpen = true;
-
-            Time.timeScale = 0f;
         }
     }
 
