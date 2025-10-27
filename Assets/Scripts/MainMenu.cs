@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
     private bool isShopOpen = false;
     private bool isTrashOpen = false;
     private bool isGoldOpen = false;
-    
+
 
     public void StartGame()
     {
@@ -25,11 +25,15 @@ public class MainMenu : MonoBehaviour
         {
             shopMenu.SetActive(false);
             isShopOpen = false;
+
+            Time.timeScale = 1f;
         }
         else
         {
             shopMenu.SetActive(true);
             isShopOpen = true;
+
+            Time.timeScale = 0f;
         }
     }
 

@@ -27,7 +27,7 @@ public class TrashCompactor : MonoBehaviour
         trashAmount = touchController.trashAmount;
         goldAmount = touchController.goldAmount;
 
-        if (trashAmount >= 10)
+        if (trashAmount >= 5)
         {
             Debug.Log("Trash Compacted");
             trashAmount -= 5;
