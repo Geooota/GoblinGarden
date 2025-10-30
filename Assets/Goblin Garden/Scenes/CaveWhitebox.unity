@@ -678,6 +678,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8219772317558561706, guid: 44cffad43274d9040a5971ce97d0f73c, type: 3}
+      propertyPath: woodMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e7160ef1ad0dff4ca1a10f806d20e7a, type: 2}
     - target: {fileID: 8692241105616950174, guid: 44cffad43274d9040a5971ce97d0f73c, type: 3}
       propertyPath: m_SizeDelta.y
       value: 125
@@ -3346,7 +3350,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d4b557b2579ec634fb7309804e38889a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
