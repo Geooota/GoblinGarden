@@ -33,6 +33,7 @@ public class PlotInfo : MonoBehaviour
     public AudioClip destroyRocksSound;
     public AudioClip WaterSound;
     public bool dry = false;
+    public int cost;
 
     private Material[] mats;
 
@@ -41,12 +42,16 @@ public class PlotInfo : MonoBehaviour
     private void Start()
     {
         tilemap = FindFirstObjectByType<Tilemap>();
-        Vector3Int cellPos = tilemap.WorldToCell(transform.position);          // Convert world position to tilemap cell
         mats = dirtObject.materials;
         mats[1] = woodMat;
         mats[2] = dirtNormal;
         waterMat = mats[0];
         dirtObject.materials = mats;
+    }
+
+    public void BuildThisPlot(int typeNum)
+    {
+        Vector3Int cellPos = tilemap.WorldToCell(transform.position);          // Convert world position to tilemap cell
 
         switch (thisPlotSize)
         {
@@ -68,10 +73,7 @@ public class PlotInfo : MonoBehaviour
                 region = new BoundsInt(min, size);
                 break;
         }
-    }
 
-    public void BuildThisPlot(int typeNum)
-    {
         int cost = DeterminePlotCost(PlotType.Dirty);
         //use determinecost before switch, if gold amount isn't enough, return debug
         if (cost > TilemapClicker.Instance.goldAmount)
@@ -92,7 +94,8 @@ public class PlotInfo : MonoBehaviour
             case 1:
                 thisPlotType = PlotType.Dirty;
                 mats[2] = dirtNormal;
-                rocks.SetActive(false);
+                if (rocks != null)
+                    rocks.SetActive(false);
                 AudioSource.PlayClipAtPoint(destroyRocksSound, Camera.main.transform.position);
                 break;
             case 2:
