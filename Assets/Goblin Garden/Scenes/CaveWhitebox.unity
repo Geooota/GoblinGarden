@@ -14400,6 +14400,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4213559665362515419, guid: 43c294a2cebb27d4381583e9a6d96061, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d823e98004a9b524fb1c94bbcdd43248, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14473,6 +14477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_GolbinHouse
       objectReference: {fileID: 0}
+    - target: {fileID: 3113665164901978984, guid: c35e3af5007395442b09753694443f41, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7cbd1dc866320d34eb9df6c24d7bb3b7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
