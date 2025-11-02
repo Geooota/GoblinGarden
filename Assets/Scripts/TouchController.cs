@@ -55,6 +55,7 @@ public class TilemapClicker : MonoBehaviour
     public GameObject deconstructUI;
     public AudioClip plantSound;
     public UIIconFollower iconFollower;
+    public UIIconFollower decIconFollower;
     public TrashCompactor trashCompactor;
     public float compactTime = 0.3f;
     public AudioClip[] clickSound;
@@ -350,16 +351,16 @@ public class TilemapClicker : MonoBehaviour
 
                 if (plant != null)
                 {
-                    placementUI.SetActive(true);
-                    iconFollower.target = plant.transform;
+                    deconstructUI.SetActive(true);
+                    decIconFollower.target = plant.transform;
                 }
                 else
                 {
                     plot = hit.collider.GetComponent<PlotInfo>();
                     if (plot != null)
                     {
-                        placementUI.SetActive(true);
-                        iconFollower.target = plant.transform;
+                        deconstructUI.SetActive(true);
+                        decIconFollower.target = plot.transform;
                     }
                 }
             }
@@ -455,6 +456,13 @@ public class TilemapClicker : MonoBehaviour
     {
         ExitBuildMode();
         currentMode = GameMode.Deconstructing;
+    }
+
+    public void ExitDeconstructMode()
+    {
+        ExitBuildMode();
+        currentMode = GameMode.Deconstructing;
+        deconstructUI.SetActive(false);
     }
 
     public void ConfirmPlacement()
