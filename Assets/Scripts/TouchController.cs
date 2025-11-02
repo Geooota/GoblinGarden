@@ -2,6 +2,7 @@ using NUnit.Framework;
 using NUnit.Framework.Internal;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
@@ -12,7 +13,8 @@ using static PlotInfo;
 public enum GameMode
 {
     Normal,
-    Building
+    Building,
+    Deconstructing
 }
 
 public enum PlotType
@@ -50,6 +52,7 @@ public class TilemapClicker : MonoBehaviour
     public Tilemap tilemap;
     public GameObject plantPrefab;
     public GameObject placementUI;
+    public GameObject deconstructUI;
     public AudioClip plantSound;
     public UIIconFollower iconFollower;
     public TrashCompactor trashCompactor;
@@ -90,7 +93,7 @@ public class TilemapClicker : MonoBehaviour
 
     void Update()
     {
-        var pointer = Pointer.current;
+        var pointer = UnityEngine.InputSystem.Pointer.current;
         if (pointer == null) return;
 
 
@@ -102,13 +105,16 @@ public class TilemapClicker : MonoBehaviour
             case GameMode.Building:
                 HandleBuildingInput(pointer);
                 break;
+            case GameMode.Deconstructing:
+                HandleDeconstructInput(pointer);
+                break;
         }
     }
 
     // -------------------------
     // NORMAL MODE (panning only)
     // -------------------------
-    private void HandleNormalInput(Pointer pointer)
+    private void HandleNormalInput(UnityEngine.InputSystem.Pointer pointer)
     {
         if (pointer.press.wasPressedThisFrame)
         {
@@ -230,7 +236,7 @@ public class TilemapClicker : MonoBehaviour
     // -------------------------
     // BUILDING MODE
     // -------------------------
-    private void HandleBuildingInput(Pointer pointer)
+    private void HandleBuildingInput(UnityEngine.InputSystem.Pointer pointer)
     {
         // Get the current pointer/finger position on the screen
         Vector2 currentScreenPos = pointer.position.ReadValue();
@@ -290,6 +296,81 @@ public class TilemapClicker : MonoBehaviour
                 // If not over the heldPlant, assume the player wants to pan the camera
                 CameraPanning(currentScreenPos);
             }
+        }
+
+        // -------------------------
+        // Release press/finger
+        // -------------------------
+        if (pointer.press.wasReleasedThisFrame)
+        {
+            // Stop tracking the press
+            isPressing = false;
+        }
+    }
+
+    // -------------------------
+    // DECONSTRUCT MODE
+    // -------------------------
+
+    private void HandleDeconstructInput(UnityEngine.InputSystem.Pointer pointer)
+    {
+        // Get the current pointer/finger position on the screen
+        Vector2 currentScreenPos = pointer.position.ReadValue();
+
+        Vector3 worldPos = ScreenToWorldOnGround(currentScreenPos); // Convert pointer to world space
+        Vector3Int cellPos = tilemap.WorldToCell(worldPos);          // Convert world position to tilemap cell
+        Vector3 spawnPos = tilemap.GetCellCenterWorld(cellPos);      // Get center of that cell
+
+        // -------------------------
+        // Detect initial press
+        // -------------------------
+        if (pointer.press.wasPressedThisFrame)
+        {
+            // Start tracking a press
+            isPressing = true;
+
+            // Store the initial screen position of the press
+            pressScreenPos = currentScreenPos;
+
+            // Convert the screen position to a world position on the ground plane (y=0)
+            pressWorldPos = ScreenToWorldOnGround(pressScreenPos);
+
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                isPressing = false;
+                return;
+            }
+
+            Ray ray = cam.ScreenPointToRay(pressScreenPos);
+
+            // when you detect the click on a plant
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                PlantInfo plant = hit.collider.GetComponent<PlantInfo>();
+
+                if (plant != null)
+                {
+                    placementUI.SetActive(true);
+                    iconFollower.target = plant.transform;
+                }
+                else
+                {
+                    plot = hit.collider.GetComponent<PlotInfo>();
+                    if (plot != null)
+                    {
+                        placementUI.SetActive(true);
+                        iconFollower.target = plant.transform;
+                    }
+                }
+            }
+        }
+
+        // -------------------------
+        // While the press/finger is held
+        // -------------------------
+        if (isPressing && pointer.press.isPressed)
+        {
+            CameraPanning(currentScreenPos);
         }
 
         // -------------------------
@@ -368,6 +449,12 @@ public class TilemapClicker : MonoBehaviour
             Debug.LogWarning("no Cost on item found");
         }
             currentMode = GameMode.Building;
+    }
+
+    public void EnterDeconstructMode()
+    {
+        ExitBuildMode();
+        currentMode = GameMode.Deconstructing;
     }
 
     public void ConfirmPlacement()
