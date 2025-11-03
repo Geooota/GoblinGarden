@@ -598,9 +598,9 @@ public class TilemapClicker : MonoBehaviour
                 {
                     if (tileInfos[pos].plantInfo != null)
                     {
-                        GetGoldOrTrash(false, (int)Mathf.Round((tileInfos[pos].plantInfo.cost / 2)));
-                        tileInfos.Remove(pos);
+                        GetGoldOrTrash(false, (int)Mathf.Round(tileInfos[pos].plantInfo.cost / 2));
                         Destroy(tileInfos[pos].plantInfo.gameObject);
+                        tileInfos.Remove(pos);
                     }
                 }
                 tileInfos.Remove(pos);
