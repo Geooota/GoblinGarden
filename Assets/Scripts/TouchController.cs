@@ -73,6 +73,7 @@ public class TilemapClicker : MonoBehaviour
     private List<GameObject> dirtyTiles = new List<GameObject>();
     private bool canPlace;
     public AudioClip plotSound;
+    public AudioClip destructSound;
 
 
     public GameObject deconstructOnButton;
@@ -587,6 +588,7 @@ public class TilemapClicker : MonoBehaviour
         {
             GetGoldOrTrash(false, (int)Mathf.Round((plant.cost / 2)));
             tileInfos[plant.GetComponent<PlantInfo>().myCellPos].isOccupied = false;
+            AudioSource.PlayClipAtPoint(destructSound, Camera.main.transform.position);
             Destroy(plant.gameObject);
         }
         else if (plot != null) 
@@ -605,11 +607,13 @@ public class TilemapClicker : MonoBehaviour
                 tileInfos.Remove(pos);
             }
             GetGoldOrTrash(true, (int)Mathf.Round((plot.cost / 2)));
+            AudioSource.PlayClipAtPoint(destructSound, Camera.main.transform.position);
             Destroy(plot.gameObject);
         }
         else
         {
             tileInfos.Remove(tilemap.WorldToCell(decIconFollower.target.transform.position));
+            AudioSource.PlayClipAtPoint(destructSound, Camera.main.transform.position);
             Destroy(decIconFollower.target.gameObject);
         }
     }
