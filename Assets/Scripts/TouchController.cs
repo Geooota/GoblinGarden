@@ -669,7 +669,7 @@ public class TilemapClicker : MonoBehaviour
                 tileInfos[cellPos] = new TileInfo { isOccupied = true, plotInfo = null };
                 AudioSource.PlayClipAtPoint(heldPlant.GetComponent<DecorativeScript>().soundOfDecoration, Camera.main.transform.position);
                 heldPlant = null;
-                GetGoldOrTrash(true, heldCost);
+                GetGoldOrTrash(true, -heldCost);
                 ExitBuildMode();
             }  
         }
