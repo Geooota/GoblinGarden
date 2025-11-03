@@ -10,7 +10,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 using static PlotInfo;
-using static UnityEditor.PlayerSettings;
 using Color = UnityEngine.Color;
 
 public enum GameMode
