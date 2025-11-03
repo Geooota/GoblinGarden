@@ -572,7 +572,7 @@ public class TilemapClicker : MonoBehaviour
         deconstructOffButton.SetActive(false);
         deconstructOnButton.SetActive(true);
         ExitBuildMode();
-        currentMode = GameMode.Deconstructing;
+        currentMode = GameMode.Normal;
         deconstructUI.SetActive(false);
     }
 
