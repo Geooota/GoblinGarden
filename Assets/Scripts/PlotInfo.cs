@@ -74,7 +74,7 @@ public class PlotInfo : MonoBehaviour
                 break;
         }
 
-        int cost = DeterminePlotCost(PlotType.Dirty);
+        cost = DeterminePlotCost(PlotType.Dirty);
         //use determinecost before switch, if gold amount isn't enough, return debug
         if (cost > TilemapClicker.Instance.goldAmount)
         {
@@ -112,8 +112,7 @@ public class PlotInfo : MonoBehaviour
                 break;
         }
 
-        TilemapClicker.Instance.goldAmount -= cost;
-        TilemapClicker.Instance.goldText.text = TilemapClicker.Instance.goldAmount.ToString();
+        TilemapClicker.Instance.GetGoldOrTrash(true,(-cost));
 
         purchasePlotButton.SetActive(false);
         plotUpgradePanel.SetActive(false);

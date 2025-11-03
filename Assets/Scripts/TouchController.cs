@@ -29,6 +29,7 @@ public class TilemapClicker : MonoBehaviour
 {
     public static TilemapClicker Instance { get; private set; }
     public PlotInfo plot;
+    public PlantInfo plant;
 
     private void Awake()
     {
@@ -347,7 +348,7 @@ public class TilemapClicker : MonoBehaviour
             // when you detect the click on a plant
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                PlantInfo plant = hit.collider.GetComponent<PlantInfo>();
+                plant = hit.collider.GetComponent<PlantInfo>();
 
                 if (plant != null)
                 {
@@ -463,6 +464,43 @@ public class TilemapClicker : MonoBehaviour
         ExitBuildMode();
         currentMode = GameMode.Deconstructing;
         deconstructUI.SetActive(false);
+    }
+
+    public void CancelDeconstruct()
+    {
+        deconstructUI.SetActive(false);
+    }
+
+    public void ConfirmDeconstruct()
+    {
+        deconstructUI.SetActive(false);
+        if (plant != null)
+        {
+            GetGoldOrTrash(false, (int)Mathf.Round((plant.cost / 2)));
+
+            Destroy(plant.gameObject);
+        }
+        else if (plot != null) 
+        {
+            
+            foreach (var pos in plot.region.allPositionsWithin)
+            {
+                if (tileInfos.ContainsKey(pos))
+                {
+                    if (tileInfos[pos].plantInfo != null)
+                    {
+                        GetGoldOrTrash(false, (int)Mathf.Round((tileInfos[pos].plantInfo.cost / 2)));
+                        Destroy(tileInfos[pos].plantInfo.gameObject);
+                    }
+                }
+                tileInfos.Remove(pos);
+            }
+            GetGoldOrTrash(true, (int)Mathf.Round((plot.cost / 2)));
+            Destroy(plot.gameObject);
+
+        }
+            
+        
     }
 
     public void ConfirmPlacement()
@@ -582,6 +620,21 @@ public class TilemapClicker : MonoBehaviour
         Vector3 delta = pressWorldPos - currentWorldPos;                    // Calculate movement delta
         cam.transform.position += delta * panSpeed;                         // Move camera by delta
         pressWorldPos = ScreenToWorldOnGround(scPos);                       // Reset reference for continuous panning
+    }
+
+    public void GetGoldOrTrash(bool isGold, int amount)
+    {
+        if (isGold)
+        {
+            goldAmount += amount;
+            goldText.text = goldAmount.ToString();
+        }
+        else
+        {
+            trashAmount += amount;
+            trashText.text = trashAmount.ToString();
+        }
+
     }
 
     private System.Collections.IEnumerator compactTrash()
