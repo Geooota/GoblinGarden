@@ -10,7 +10,7 @@ public class JohnController : MonoBehaviour
     public static JohnController Instance { get; private set; }
 
     private float moveSpeed = 3f;
-    public float stoppingDistance = 2f;
+    public float stoppingDistance = 1f;
 
     public Coroutine walking;
     public SpriteRenderer spriteRenderer;
