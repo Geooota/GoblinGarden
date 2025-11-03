@@ -32,6 +32,7 @@ public class TilemapClicker : MonoBehaviour
 {
     public static TilemapClicker Instance { get; private set; }
     public PlotInfo plot;
+    public PlotInfo johnsPlot;
     public PlantInfo plant;
 
     private void Awake()
@@ -179,34 +180,42 @@ public class TilemapClicker : MonoBehaviour
                     }
                     return;
                 }
-
                 else
                 {
-                    if (plot != null)
+                    if (johnsPlot != null)
                     {
                         if (!EventSystem.current.IsPointerOverGameObject())
                         {
-                            plot.MakeOptionsDisappear();
+                            johnsPlot.MakeOptionsDisappear();
                         }
                     }
 
-                    plot = hit.collider.GetComponent<PlotInfo>();
-                    if (plot != null)
+                    johnsPlot = hit.collider.GetComponent<PlotInfo>();
+                    if (johnsPlot != null)
                     {
-                        if (plot.dry)
+                        PlotInfo clickedPlot = johnsPlot;
+
+                        if (clickedPlot.dry)
                         {
                             var watering = new Job(
-                            plot.gameObject,
-                            onComplete: () => plot.Wet(),
-                            wateringSprites
+                                clickedPlot.gameObject,
+                                onComplete: () =>
+                                {
+                                    if (clickedPlot != null)
+                                        clickedPlot.Wet();
+                                },
+                                wateringSprites
                             );
-                            JohnController.Instance.EnqueueJob(watering);
 
+                            JohnController.Instance.EnqueueJob(watering);
                         }
                         else
-                            plot.MakeOptionsAppear();
+                        {
+                            clickedPlot.MakeOptionsAppear();
+                        }
                     }
                 }
+
             }
         }
 
