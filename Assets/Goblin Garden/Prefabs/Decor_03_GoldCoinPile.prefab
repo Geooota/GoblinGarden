@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DecorativeScript
   cost: 25
+  soundOfDecoration: {fileID: 8300000, guid: 668e5f15e8f056b4a8f34511dc62f4cd, type: 3}
 --- !u!65 &7429091649935674382
 BoxCollider:
   m_ObjectHideFlags: 0
