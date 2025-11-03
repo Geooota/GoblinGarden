@@ -72,6 +72,8 @@ public class TilemapClicker : MonoBehaviour
     public GameObject gridTile;
     private List<GameObject> dirtyTiles = new List<GameObject>();
     private bool canPlace;
+    public AudioClip plotSound;
+
 
     public GameObject deconstructOnButton;
     public GameObject deconstructOffButton;
@@ -655,6 +657,7 @@ public class TilemapClicker : MonoBehaviour
                 if (!canPlace)
                     return;
                 heldPlant.GetComponent<PlotInfo>().BuildThisPlot(1);
+                AudioSource.PlayClipAtPoint(plotSound, Camera.main.transform.position);
                 heldPlant = null;
                 GetGoldOrTrash(true, -heldCost);
                 ExitBuildMode();
@@ -665,6 +668,7 @@ public class TilemapClicker : MonoBehaviour
             if (goldAmount >= heldCost)
             {
                 tileInfos[cellPos] = new TileInfo { isOccupied = true, plotInfo = null };
+                AudioSource.PlayClipAtPoint(heldPlant.GetComponent<DecorativeScript>().soundOfDecoration, Camera.main.transform.position);
                 heldPlant = null;
                 GetGoldOrTrash(true, heldCost);
                 ExitBuildMode();
