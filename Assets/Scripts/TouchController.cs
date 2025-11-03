@@ -8,7 +8,10 @@ using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 using static PlotInfo;
+using static UnityEditor.PlayerSettings;
+using Color = UnityEngine.Color;
 
 public enum GameMode
 {
@@ -65,6 +68,12 @@ public class TilemapClicker : MonoBehaviour
     public List<Sprite> wateringSprites;
     public bool isGoldCost;
     public bool isPlanting;
+    public GameObject gridTile;
+    private List<GameObject> dirtyTiles = new List<GameObject>();
+    private bool canPlace;
+
+    public GameObject deconstructOnButton;
+    public GameObject deconstructOffButton;
 
     private GameMode currentMode = GameMode.Normal;
     private GameObject heldPlant;
@@ -276,21 +285,57 @@ public class TilemapClicker : MonoBehaviour
         // -------------------------
         if (isPressing && pointer.press.isPressed)
         {
-            // Check if the press is over the heldPlant
+            if (heldPlant.transform.position == spawnPos)
+                return;
+                // Check if the press is over the heldPlant
             if (isDraggingPlant)
             {
                 if(isPlanting)
                 {
-                    if (heldPlant.transform.position != spawnPos && tileInfos.ContainsKey(cellPos))
+                    if (heldPlant.transform.position != spawnPos)
                     {
                         heldPlant.transform.position = spawnPos;                     // Update heldPlant position
                         int randomIndex = Random.Range(0, clickSound.Length);
                         AudioSource.PlayClipAtPoint(clickSound[randomIndex], Camera.main.transform.position);
+                        placeIndicatorTiles(new BoundsInt(tilemap.WorldToCell(spawnPos), new Vector3Int(1, 1, 1)), true);
                     }
                 }
-                else if (heldPlant.transform.position != spawnPos && !tileInfos.ContainsKey(cellPos))
+                else if (heldPlant.GetComponent<PlotInfo>() != null)
                 {
                     heldPlant.transform.position = spawnPos;
+
+                    Vector3Int min;
+                    Vector3Int size;
+                    BoundsInt region;
+
+                    switch (heldPlant.GetComponent<PlotInfo>().thisPlotSize)
+                    {
+                        case PlotSize.Medium:
+                            min = cellPos + new Vector3Int(-2, -2, 0);
+                            size = new Vector3Int(5, 5, 1);
+                            region = new BoundsInt(min, size);
+                            break;
+
+                        case PlotSize.Large:
+                            min = cellPos + new Vector3Int(-3, -3, 0);
+                            size = new Vector3Int(7, 7, 1);
+                            region = new BoundsInt(min, size);
+                            break;
+
+                        default:
+                            min = cellPos + new Vector3Int(-1, -1, 0);
+                            size = new Vector3Int(3, 3, 1);
+                            region = new BoundsInt(min, size);
+                            break;
+                    }
+
+
+                    placeIndicatorTiles(region, false);
+                }
+                else
+                {
+                    heldPlant.transform.position = spawnPos;
+                    placeIndicatorTiles(new BoundsInt(tilemap.WorldToCell(spawnPos), new Vector3Int(1, 1, 1)), false);
                 }
             }
             else
@@ -363,6 +408,15 @@ public class TilemapClicker : MonoBehaviour
                         deconstructUI.SetActive(true);
                         decIconFollower.target = plot.transform;
                     }
+                    else 
+                    {
+                        DecorativeScript decoration = hit.collider.GetComponent<DecorativeScript>();
+                        if (decoration != null)
+                        {
+                            deconstructUI.SetActive(true);
+                            decIconFollower.target = hit.collider.transform;
+                        }
+                    }
                 }
             }
         }
@@ -410,6 +464,13 @@ public class TilemapClicker : MonoBehaviour
         placementUI.SetActive(false);
         currentMode = GameMode.Normal;
         plantPrefab = null;
+        if (dirtyTiles != null)
+        {
+            foreach (var thing in dirtyTiles)
+            {
+                Destroy(thing);
+            }
+        }
     }
 
     // Call this from UI when player selects a plant to build
@@ -431,36 +492,73 @@ public class TilemapClicker : MonoBehaviour
             // Show placement UI & attach to ghost
             placementUI.SetActive(true);
             iconFollower.target = heldPlant.transform;
-        }
-        if (prefab.GetComponent<PlantInfo>() != null)
-        {
-            heldCost = prefab.GetComponent<PlantInfo>().cost;
-            isGoldCost = false;
-            isPlanting = true;
-        }
+            if (prefab.GetComponent<PlantInfo>() != null)
+            {
+                heldCost = prefab.GetComponent<PlantInfo>().cost;
+                isGoldCost = false;
+                isPlanting = true;
+                placeIndicatorTiles(new BoundsInt(cellPos, new Vector3Int(1, 1, 1)), true);
+            }
 
-        else if (prefab.GetComponent<PlotInfo>() != null)
-        {
-            heldCost = prefab.GetComponent<PlotInfo>().cost;
-            isGoldCost = true;
-            isPlanting = false;
+            else if (prefab.GetComponent<PlotInfo>() != null)
+            {
+                heldCost = prefab.GetComponent<PlotInfo>().cost;
+                isGoldCost = true;
+                isPlanting = false;
+                heldPlant.transform.position = spawnPos;
+
+                Vector3Int min;
+                Vector3Int size;
+                BoundsInt region;
+
+                switch (heldPlant.GetComponent<PlotInfo>().thisPlotSize)
+                {
+                    case PlotSize.Medium:
+                        min = cellPos + new Vector3Int(-2, -2, 0);
+                        size = new Vector3Int(5, 5, 1);
+                        region = new BoundsInt(min, size);
+                        break;
+
+                    case PlotSize.Large:
+                        min = cellPos + new Vector3Int(-3, -3, 0);
+                        size = new Vector3Int(7, 7, 1);
+                        region = new BoundsInt(min, size);
+                        break;
+
+                    default:
+                        min = cellPos + new Vector3Int(-1, -1, 0);
+                        size = new Vector3Int(3, 3, 1);
+                        region = new BoundsInt(min, size);
+                        break;
+                }
+
+
+                placeIndicatorTiles(region, false);
+            }
+            else
+            {
+                isPlanting = false;
+                Debug.LogWarning("no Cost on item found");
+                placeIndicatorTiles(new BoundsInt(cellPos, new Vector3Int(1, 1, 1)), false);
+                heldCost = heldPlant.GetComponent<DecorativeScript>().cost;
+            }
         }
-        else 
-        {
-            isPlanting = false;
-            Debug.LogWarning("no Cost on item found");
-        }
+        
             currentMode = GameMode.Building;
     }
 
     public void EnterDeconstructMode()
     {
+        deconstructOnButton.SetActive(false);
+        deconstructOffButton.SetActive(true);
         ExitBuildMode();
         currentMode = GameMode.Deconstructing;
     }
 
     public void ExitDeconstructMode()
     {
+        deconstructOffButton.SetActive(false);
+        deconstructOnButton.SetActive(true);
         ExitBuildMode();
         currentMode = GameMode.Deconstructing;
         deconstructUI.SetActive(false);
@@ -477,12 +575,11 @@ public class TilemapClicker : MonoBehaviour
         if (plant != null)
         {
             GetGoldOrTrash(false, (int)Mathf.Round((plant.cost / 2)));
-
+            tileInfos[plant.GetComponent<PlantInfo>().myCellPos].isOccupied = false;
             Destroy(plant.gameObject);
         }
         else if (plot != null) 
         {
-            
             foreach (var pos in plot.region.allPositionsWithin)
             {
                 if (tileInfos.ContainsKey(pos))
@@ -490,6 +587,7 @@ public class TilemapClicker : MonoBehaviour
                     if (tileInfos[pos].plantInfo != null)
                     {
                         GetGoldOrTrash(false, (int)Mathf.Round((tileInfos[pos].plantInfo.cost / 2)));
+                        tileInfos.Remove(pos);
                         Destroy(tileInfos[pos].plantInfo.gameObject);
                     }
                 }
@@ -497,10 +595,12 @@ public class TilemapClicker : MonoBehaviour
             }
             GetGoldOrTrash(true, (int)Mathf.Round((plot.cost / 2)));
             Destroy(plot.gameObject);
-
         }
-            
-        
+        else
+        {
+            tileInfos.Remove(tilemap.WorldToCell(decIconFollower.target.transform.position));
+            Destroy(decIconFollower.target.gameObject);
+        }
     }
 
     public void ConfirmPlacement()
@@ -512,7 +612,7 @@ public class TilemapClicker : MonoBehaviour
 
         if (isPlanting)
         {
-            if (tileInfos.ContainsKey(cellPos) && trashAmount >= heldCost)
+            if (canPlace && trashAmount >= heldCost)
             {
                 if (tileInfos[cellPos].isOccupied)
                 {
@@ -543,51 +643,23 @@ public class TilemapClicker : MonoBehaviour
         {
             if (goldAmount >= heldCost)
             {
-                Vector3Int min;
-                Vector3Int size;
-                BoundsInt region;
-                switch (heldPlant.GetComponent<PlotInfo>().thisPlotSize)
-                {
-                    case PlotSize.Medium:
-                        min = cellPos + new Vector3Int(-2, -2, 0);
-                        size = new Vector3Int(5, 5, 1);
-                        region = new BoundsInt(min, size);
-                        break;
-
-                    case PlotSize.Large:
-                        min = cellPos + new Vector3Int(-3, -3, 0);
-                        size = new Vector3Int(7, 7, 1);
-                        region = new BoundsInt(min, size);
-                        break;
-
-                    default:
-                        min = cellPos + new Vector3Int(-1, -1, 0);
-                        size = new Vector3Int(3, 3, 1);
-                        region = new BoundsInt(min, size);
-                        break;
-                }
-
-                foreach (var pos in region.allPositionsWithin)
-                {
-                    if(tileInfos.ContainsKey(cellPos))
-                    {
-                        Debug.Log("A tile is already occupied!");
-                        return;
-                    }
-                }
+                if (!canPlace)
+                    return;
                 heldPlant.GetComponent<PlotInfo>().BuildThisPlot(1);
                 heldPlant = null;
-                goldAmount -= heldCost;
-                goldText.text = goldAmount.ToString();
+                GetGoldOrTrash(true, -heldCost);
                 ExitBuildMode();
-
-
-
-
-
-
             }
-
+        }
+        else if (heldPlant.GetComponent<DecorativeScript>() != null)
+        {
+            if (goldAmount >= heldCost)
+            {
+                tileInfos[cellPos] = new TileInfo { isOccupied = true, plotInfo = null };
+                heldPlant = null;
+                GetGoldOrTrash(true, heldCost);
+                ExitBuildMode();
+            }  
         }
     }
 
@@ -649,4 +721,53 @@ public class TilemapClicker : MonoBehaviour
             compactTime = 0.2f;
     }
 
+    private void placeIndicatorTiles(BoundsInt checkArea, bool forPlant)
+    {
+        canPlace = true;
+        if (dirtyTiles != null)
+        {
+            foreach (var thing in dirtyTiles)
+            {
+                Destroy(thing);
+            }
+        }
+        if (checkArea == null)
+            return;
+        foreach (var pos in checkArea.allPositionsWithin)
+        {
+            Debug.Log("did work");
+            GameObject obj = Instantiate(gridTile, tilemap.GetCellCenterWorld(pos) + new Vector3(0,0.25f,0),Quaternion.identity);
+            dirtyTiles.Add(obj);
+            Renderer rend = obj.GetComponent<Renderer>();
+            if (forPlant)
+            {
+                if (tileInfos.TryGetValue(pos, out var info))
+                {
+                    if (info.isOccupied)
+                    {
+                        rend.material.color = Color.red;
+                        canPlace = false;
+                    }
+                    else
+                        rend.material.color = Color.green;
+                }
+                else
+                {
+                    rend.material.color = Color.red;
+                }
+            }
+            else
+            {
+                if (tileInfos.ContainsKey(pos))
+                {
+                    rend.material.color = Color.red;
+                    canPlace = false;
+                }
+                else
+                {
+                    rend.material.color = Color.green;
+                }
+            }
+        }
+    }
 }

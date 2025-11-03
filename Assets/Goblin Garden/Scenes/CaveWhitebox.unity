@@ -1752,7 +1752,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1355514638}
         m_TargetAssemblyTypeName: TilemapClicker, Assembly-CSharp
-        m_MethodName: ConfirmPlacement
+        m_MethodName: ConfirmDeconstruct
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4899,10 +4899,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1355514638}
+        m_TargetAssemblyTypeName: TilemapClicker, Assembly-CSharp
+        m_MethodName: ExitBuildMode
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4911,10 +4911,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1355514638}
+        m_TargetAssemblyTypeName: TilemapClicker, Assembly-CSharp
+        m_MethodName: ExitDeconstructMode
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7082,6 +7082,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d171fae617247cb49a57fd7e52a16400, type: 3}
   isGoldCost: 0
   isPlanting: 0
+  gridTile: {fileID: 8521156101261456267, guid: af15d0035bc29c04f9c36fcea79a6697, type: 3}
+  deconstructOnButton: {fileID: 734751630}
+  deconstructOffButton: {fileID: 2042086161}
   trashText: {fileID: 1192311828}
   goldText: {fileID: 199533381}
   trashAmount: 100
@@ -9467,7 +9470,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1355514638}
         m_TargetAssemblyTypeName: TilemapClicker, Assembly-CSharp
-        m_MethodName: ExitBuildMode
+        m_MethodName: CancelDeconstruct
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11791,7 +11794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2042086162
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11857,7 +11860,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1355514638}
         m_TargetAssemblyTypeName: TilemapClicker, Assembly-CSharp
-        m_MethodName: EnterDeconstructMode
+        m_MethodName: ExitDeconstructMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -79,5 +79,50 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5bced776321f34346b85fdda70066b8d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5499075528774534303}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5bced776321f34346b85fdda70066b8d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7076293547389259932}
   m_SourcePrefab: {fileID: 100100000, guid: 5bced776321f34346b85fdda70066b8d, type: 3}
+--- !u!1 &7173120020780494398 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5bced776321f34346b85fdda70066b8d, type: 3}
+  m_PrefabInstance: {fileID: 8020175872387453807}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5499075528774534303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7173120020780494398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86aff5705a1501344899dba87e030b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DecorativeScript
+  cost: 25
+--- !u!65 &7076293547389259932
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7173120020780494398}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1693006, y: 0.29671082, z: 0.23363785}
+  m_Center: {x: 0.0053307773, y: 0.0881749, z: 0.011025786}
