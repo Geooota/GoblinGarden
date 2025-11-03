@@ -657,7 +657,6 @@ public class TilemapClicker : MonoBehaviour
                 if (!canPlace)
                     return;
                 heldPlant.GetComponent<PlotInfo>().BuildThisPlot(1);
-                AudioSource.PlayClipAtPoint(plotSound, Camera.main.transform.position);
                 heldPlant = null;
                 GetGoldOrTrash(true, -heldCost);
                 ExitBuildMode();
