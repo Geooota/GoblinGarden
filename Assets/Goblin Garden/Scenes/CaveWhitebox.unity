@@ -7084,6 +7084,8 @@ MonoBehaviour:
   isGoldCost: 0
   isPlanting: 0
   gridTile: {fileID: 8521156101261456267, guid: af15d0035bc29c04f9c36fcea79a6697, type: 3}
+  plotSound: {fileID: 0}
+  destructSound: {fileID: 8300000, guid: 23c9da6b2ce31454da6af8ce4c1ce23a, type: 3}
   deconstructOnButton: {fileID: 734751630}
   deconstructOffButton: {fileID: 2042086161}
   trashText: {fileID: 1192311828}
