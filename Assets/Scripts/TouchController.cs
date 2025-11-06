@@ -50,6 +50,13 @@ public class TilemapClicker : MonoBehaviour
         public bool isOccupied;
         public PlotInfo plotInfo;
         public PlantInfo plantInfo;
+
+        public TileInfo()
+        {
+            isOccupied = false;
+            plotInfo = null;
+            plantInfo = null;
+        }
     }
 
     public Camera cam;
