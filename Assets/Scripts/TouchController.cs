@@ -279,6 +279,13 @@ public class TilemapClicker : MonoBehaviour
         // -------------------------
         if (pointer.press.wasPressedThisFrame)
         {
+
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                isPressing = false;
+                return;
+            }
+
             // Start tracking a press
             isPressing = true;
 

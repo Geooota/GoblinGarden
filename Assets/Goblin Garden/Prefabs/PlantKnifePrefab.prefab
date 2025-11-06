@@ -354,6 +354,7 @@ MonoBehaviour:
   collectable: 0
   dry: 0
   myCellPos: {x: 0, y: 0, z: 0}
+  myPlot: {fileID: 0}
   myPlotType: 0
   wasCollectable: 0
   UIPopUp: {fileID: 5998475948935971804}
