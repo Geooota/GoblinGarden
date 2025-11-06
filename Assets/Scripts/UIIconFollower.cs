@@ -6,6 +6,7 @@ public class UIIconFollower : MonoBehaviour
     public Vector3 offset;     // Extra offset if needed
     private Camera mainCam;
     private RectTransform rectTransform;
+    public bool isPlot;
 
     void Awake()
     {
@@ -17,8 +18,14 @@ public class UIIconFollower : MonoBehaviour
     {
         if (target == null) return;
 
+
+
         // Convert world position to screen position
         Vector3 screenPos = mainCam.WorldToScreenPoint(target.position + offset);
+        if (isPlot)
+        {
+            screenPos.y -= 100;
+        }
 
         // Hide if behind camera
         if (screenPos.z < 0)

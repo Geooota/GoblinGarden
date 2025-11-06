@@ -288,14 +288,20 @@ public class TilemapClicker : MonoBehaviour
             // Convert the screen position to a world position on the ground plane (y=0)
             pressWorldPos = ScreenToWorldOnGround(pressScreenPos);
 
-            // instead of raycasting, find if the screen pos is the same as the heldPlant transform
-            if (spawnPos == heldPlant.transform.position)
+            Ray ray = cam.ScreenPointToRay(pressScreenPos);
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                Debug.Log("Found plant under thumb");
-                isDraggingPlant = true;
+                Debug.Log(hit.collider.gameObject);
+                if (hit.collider.gameObject.name == "GridSquare(Clone)")
+                {
+                    isDraggingPlant = true;
+                }
+                else
+                {
+                    isDraggingPlant = false;
+                }
             }
-            else
-                isDraggingPlant = false;
+
         }
 
         // -------------------------
@@ -489,6 +495,7 @@ public class TilemapClicker : MonoBehaviour
                 Destroy(thing);
             }
         }
+        iconFollower.isPlot = false;
     }
 
     // Call this from UI when player selects a plant to build
@@ -550,7 +557,7 @@ public class TilemapClicker : MonoBehaviour
                         break;
                 }
 
-
+                iconFollower.isPlot = true;
                 placeIndicatorTiles(region, false);
             }
             else

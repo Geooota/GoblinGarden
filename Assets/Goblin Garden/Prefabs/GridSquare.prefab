@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5658577398276077401}
   - component: {fileID: 5036816476475531374}
   - component: {fileID: 6569157171223185383}
+  - component: {fileID: 9067095345525278683}
   m_Layer: 0
   m_Name: GridSquare
   m_TagString: Untagged
@@ -112,3 +113,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &9067095345525278683
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8521156101261456267}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 2.794192, z: 10}
+  m_Center: {x: 0, y: -0.13311356, z: 0}
