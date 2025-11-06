@@ -22,6 +22,7 @@ public class PlantInfo : MonoBehaviour
     private Coroutine spriteRoutine;
 
     public GameObject UIPopUp;
+    public GameObject spriteHolder;
     public Sprite plantSprite0;
     public Sprite plantSprite1;
     public Sprite plantSprite2;
@@ -113,6 +114,7 @@ public class PlantInfo : MonoBehaviour
             case 3:
                 spriteRenderer.sprite = plantSprite3;
                 BeginGrowing();
+                AnimSprite();
                 break;
         }
     }
@@ -165,5 +167,12 @@ public class PlantInfo : MonoBehaviour
 
         int randomIndex = Random.Range(0, trashSounds.Length);
         audioSource.PlayOneShot(trashSounds[randomIndex]);
+    }
+
+    private float animRotation;
+    private float animHeight;
+    public IEnumerator AnimSprite()
+    {
+        yield return null;
     }
 }
