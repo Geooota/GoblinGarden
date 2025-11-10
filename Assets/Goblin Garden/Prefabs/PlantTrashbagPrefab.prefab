@@ -347,16 +347,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantInfo
   plantName: Trash Bag
-  cost: 10
-  growthTime: 3
-  growthCycleTime: 5
-  yieldAmount: 4
+  cost: 50
+  growthTime: 30
+  growthCycleTime: 50
+  yieldAmount: 30
   collectable: 0
   dry: 0
   myCellPos: {x: 0, y: 0, z: 0}
+  myPlot: {fileID: 0}
   myPlotType: 0
   wasCollectable: 0
   UIPopUp: {fileID: 5998475948935971804}
+  spriteHolder: {fileID: 0}
   plantSprite0: {fileID: 21300000, guid: 2cf7bce037bd994468a2b9de628c8b17, type: 3}
   plantSprite1: {fileID: 21300000, guid: e0bfc0d31b2810447877d1a5e467460a, type: 3}
   plantSprite2: {fileID: 21300000, guid: 663ef3fb42625214bb8073546b7724d0, type: 3}
@@ -369,7 +371,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3a747efabb81c6a4db1323820ae546f7, type: 3}
   - {fileID: 8300000, guid: 5e3a865694f9a4e45b64adc122e41151, type: 3}
   - {fileID: 8300000, guid: a0dc1b700a874a5469be19364cacb571, type: 3}
-  switchInterval: 3
+  switchInterval: 30
   spriteRenderer: {fileID: 3919092081848615776}
 --- !u!65 &8736073975074482925
 BoxCollider:
