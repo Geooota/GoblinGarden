@@ -112,7 +112,7 @@ public class PlotInfo : MonoBehaviour
                 break;
         }
 
-        TilemapClicker.Instance.GetGoldOrTrash(true,(-cost));
+        TilemapClicker.Instance.GetGoldOrTrash(true, (-cost));
 
         purchasePlotButton.SetActive(false);
         plotUpgradePanel.SetActive(false);
@@ -174,7 +174,7 @@ public class PlotInfo : MonoBehaviour
     private IEnumerator DryOut()
     {
         Debug.LogError("Starting Dryout");
-        yield return new WaitForSeconds(30f);
+        yield return new WaitForSeconds(50f);
 
         if (thisPlotType != PlotType.Watery)
         {
