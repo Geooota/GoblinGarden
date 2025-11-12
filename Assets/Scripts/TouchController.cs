@@ -303,6 +303,10 @@ public class TilemapClicker : MonoBehaviour
                 {
                     isDraggingPlant = true;
                 }
+                else if (hit.collider.gameObject == heldPlant)
+                {
+                    isDraggingPlant = true;
+                }
                 else
                 {
                     isDraggingPlant = false;
