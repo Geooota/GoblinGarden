@@ -27,6 +27,7 @@ public class EnemyInfo : MonoBehaviour
     public void Start()
     {
         moveSpeed = initialMoveSpeed;
+        StartCoroutine(Attack());
     }
 
     private IEnumerator WalkingAnimation()
