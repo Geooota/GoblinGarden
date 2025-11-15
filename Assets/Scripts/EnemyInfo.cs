@@ -9,13 +9,14 @@ public class EnemyInfo : MonoBehaviour
     [Header("Enemy Stats")]
     public float health;
     public float moveSpeed;
-    public float attackSpeed;
+    public float attackDelay;
     public float maxHealth;
     public float attackDamage;
 
 
     public SpriteRenderer spriteRenderer;
     public List<Sprite> walkingSprite;
+    public List<Sprite> attackSprites;
     public Sprite idleSprite;
     private int index = 0;
     private Coroutine walking;
@@ -35,7 +36,7 @@ public class EnemyInfo : MonoBehaviour
     private IEnumerator Attack()
     {
         // --- Move towards the target ---
-        Vector3 dest = job.target != null ? job.target.transform.position : job.manualTargetPosition;
+        Vector3 dest = compactorTransform.position;
         dest.y = transform.position.y;
 
         walking = StartCoroutine(WalkingAnimation());
@@ -54,19 +55,22 @@ public class EnemyInfo : MonoBehaviour
         StopCoroutine(walking);
 
         // --- Work animation phase ---
-        if (job.workSprites != null && job.workSprites.Count > 0)
+        if (attackSprites != null && attackSprites.Count > 0)
         {
-            float frameDuration = 0.4f / job.workSprites.Count;
-
-            foreach (Sprite frame in job.workSprites)
+            while (health > 0)
             {
-                spriteRenderer.sprite = frame;
-                yield return new WaitForSeconds(frameDuration);
+                float frameDuration = 0.4f / attackSprites.Count;
+
+                foreach (Sprite frame in attackSprites)
+                {
+                    spriteRenderer.sprite = frame;
+                    yield return new WaitForSeconds(frameDuration);
+                }
+                yield return attackDelay;
             }
+            
         }
         spriteRenderer.sprite = idleSprite;
-        // --- Perform the actual game action ---
-        job.onComplete?.Invoke();
 
         // tiny buffer between jobs
         yield return new WaitForSeconds(0.05f);
