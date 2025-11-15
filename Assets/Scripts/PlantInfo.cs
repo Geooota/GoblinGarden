@@ -12,7 +12,7 @@ public class PlantInfo : MonoBehaviour
     public bool collectable;
     public bool dry;
     public Vector3Int myCellPos;
-    public PlotInfo myPlot; 
+    public PlotInfo myPlot;
     public PlotType myPlotType;
     private float startTime;
     private float timeLeft;
@@ -28,6 +28,7 @@ public class PlantInfo : MonoBehaviour
     public Sprite plantSprite2;
     public Sprite plantSprite3;
 
+    [Header("Audio")]
     public AudioClip[] trashSounds;
     private AudioSource audioSource;
 
@@ -36,6 +37,13 @@ public class PlantInfo : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
     private int switchState = 0;
+
+    [Header("Attack")]
+    public float attackDamage;
+    public float attackDelay;
+    public float attackRange;
+    public int bulletpierce;
+    public GameObject bulletPrefab;
 
     private void Start()
     {
@@ -78,8 +86,6 @@ public class PlantInfo : MonoBehaviour
             return yieldAmount;
     }
 
-
-
     public void StartGrowthCycle()
     {
         spriteRoutine = StartCoroutine(SwitchSpriteRoutine());
@@ -114,10 +120,10 @@ public class PlantInfo : MonoBehaviour
             case 3:
                 spriteRenderer.sprite = plantSprite3;
                 BeginGrowing();
-                AnimSprite();
                 break;
         }
     }
+
     public void DryOut()
     {
         Debug.Log($"Plant " + this + " dried");
@@ -167,12 +173,5 @@ public class PlantInfo : MonoBehaviour
 
         int randomIndex = Random.Range(0, trashSounds.Length);
         audioSource.PlayOneShot(trashSounds[randomIndex]);
-    }
-
-    private float animRotation;
-    private float animHeight;
-    public IEnumerator AnimSprite()
-    {
-        yield return null;
     }
 }
