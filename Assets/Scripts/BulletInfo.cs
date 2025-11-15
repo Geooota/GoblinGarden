@@ -62,7 +62,8 @@ public class BulletInfo : MonoBehaviour
                         EnemyInfo nearbyEnemy = hitCollider.GetComponent<EnemyInfo>();
                         if (nearbyEnemy != null)
                         {
-                            nearbyEnemy.health -= damage;
+                            nearbyEnemy.PoisonTimer = 5;
+                            nearbyEnemy.Poison();
                         }
                     }
                     Destroy(gameObject);

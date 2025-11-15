@@ -8,12 +8,13 @@ public class EnemyInfo : MonoBehaviour
 {
     [Header("Enemy Stats")]
     public float health;
-    public float moveSpeed;
+    private float moveSpeed;
+    public float initialMoveSpeed;
     public float attackDelay;
     public float maxHealth;
     public float attackDamage;
 
-
+    public int PoisonTimer = 5;
     public SpriteRenderer spriteRenderer;
     public List<Sprite> walkingSprite;
     public List<Sprite> attackSprites;
@@ -23,6 +24,11 @@ public class EnemyInfo : MonoBehaviour
     public float stoppingDistance = 1f;
     public Transform compactorTransform;
 
+    public void Start()
+    {
+        moveSpeed = initialMoveSpeed;
+    }
+
     private IEnumerator WalkingAnimation()
     {
         while (true)
@@ -31,6 +37,17 @@ public class EnemyInfo : MonoBehaviour
             index = (index + 1) % walkingSprite.Count;
             yield return new WaitForSeconds(0.2f);
         }
+    }
+
+    public IEnumerator Poison()
+    {
+        moveSpeed *= 0.6f;
+        while (PoisonTimer > 0)
+        {
+            PoisonTimer--;
+            yield return new WaitForSeconds(1f);
+        }
+        moveSpeed = initialMoveSpeed;
     }
 
     private IEnumerator Attack()
