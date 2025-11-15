@@ -16,7 +16,8 @@ public enum GameMode
 {
     Normal,
     Building,
-    Deconstructing
+    Deconstructing,
+    Defending
 }
 
 public enum PlotType
@@ -128,6 +129,9 @@ public class TilemapClicker : MonoBehaviour
                 break;
             case GameMode.Deconstructing:
                 HandleDeconstructInput(pointer);
+                break;
+            case GameMode.Defending:
+                HandleDefendingInput(pointer);
                 break;
         }
     }
@@ -474,6 +478,35 @@ public class TilemapClicker : MonoBehaviour
         }
     }
 
+    // -------------------------
+    // DEFENDING MODE
+    // -------------------------
+
+    private void HandleDefendingInput(UnityEngine.InputSystem.Pointer pointer)
+    {
+        if (isPressing && pointer.press.isPressed)
+        {
+            Vector2 currentScreenPos = pointer.position.ReadValue();
+            float distance = Vector2.Distance(currentScreenPos, pressScreenPos);
+
+            if (!isPanning && distance > panThreshold)
+                isPanning = true;
+
+            if (isPanning)
+            {
+                CameraPanning(currentScreenPos);
+            }
+        }
+
+        if (pointer.press.wasReleasedThisFrame)
+        {
+            // No placement in normal mode
+            isPressing = false;
+            isPanning = false;
+            isHolding = false;
+        }
+    }
+
 
     // -------------------------
     // HELPERS
@@ -589,6 +622,19 @@ public class TilemapClicker : MonoBehaviour
         deconstructOffButton.SetActive(true);
         ExitBuildMode();
         currentMode = GameMode.Deconstructing;
+    }
+
+    public void EnterDefenseMode()
+    {
+        ExitBuildMode();
+        ExitDeconstructMode();
+
+
+        //Disable UI
+    }
+    public void ExitDefenseMode()
+    {
+        //Enable UI
     }
 
     public void ExitDeconstructMode()
