@@ -38,13 +38,6 @@ public class PlantInfo : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     private int switchState = 0;
 
-    [Header("Attack")]
-    public float attackDamage;
-    public float attackDelay;
-    public float attackRange;
-    public int bulletpierce;
-    public GameObject bulletPrefab;
-
     private void Start()
     {
         GetComponentInChildren<SpriteRenderer>();
