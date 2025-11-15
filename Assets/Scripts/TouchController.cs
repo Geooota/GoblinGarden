@@ -328,10 +328,10 @@ public class TilemapClicker : MonoBehaviour
         {
             if (heldPlant.transform.position == spawnPos)
                 return;
-                // Check if the press is over the heldPlant
+            // Check if the press is over the heldPlant
             if (isDraggingPlant)
             {
-                if(isPlanting)
+                if (isPlanting)
                 {
                     if (heldPlant.transform.position != spawnPos)
                     {
@@ -449,7 +449,7 @@ public class TilemapClicker : MonoBehaviour
                         deconstructUI.SetActive(true);
                         decIconFollower.target = plot.transform;
                     }
-                    else 
+                    else
                     {
                         DecorativeScript decoration = hit.collider.GetComponent<DecorativeScript>();
                         if (decoration != null)
@@ -486,7 +486,7 @@ public class TilemapClicker : MonoBehaviour
 
     private void HandleDefendingInput(UnityEngine.InputSystem.Pointer pointer)
     {
-        
+
         if (isPressing && pointer.press.isPressed)
         {
             Vector2 currentScreenPos = pointer.position.ReadValue();
@@ -509,7 +509,6 @@ public class TilemapClicker : MonoBehaviour
             isHolding = false;
         }
     }
-
 
     // -------------------------
     // HELPERS
@@ -615,8 +614,8 @@ public class TilemapClicker : MonoBehaviour
                 heldCost = heldPlant.GetComponent<DecorativeScript>().cost;
             }
         }
-        
-            currentMode = GameMode.Building;
+
+        currentMode = GameMode.Building;
     }
 
     public void EnterDeconstructMode()
@@ -647,7 +646,10 @@ public class TilemapClicker : MonoBehaviour
 
         //Disable UI
         UItoDisable.SetActive(false);
+
+        TowerDefenseManager.Instance.Wave();
     }
+
     public void ExitDefenseMode()
     {
         currentMode = GameMode.Normal;
@@ -680,7 +682,7 @@ public class TilemapClicker : MonoBehaviour
             AudioSource.PlayClipAtPoint(destructSound, Camera.main.transform.position);
             Destroy(plant.gameObject);
         }
-        else if (plot != null) 
+        else if (plot != null)
         {
             foreach (var pos in plot.region.allPositionsWithin)
             {
@@ -764,7 +766,7 @@ public class TilemapClicker : MonoBehaviour
                 heldPlant = null;
                 GetGoldOrTrash(true, -heldCost);
                 ExitBuildMode();
-            }  
+            }
         }
     }
 
@@ -811,7 +813,6 @@ public class TilemapClicker : MonoBehaviour
             trashAmount += amount;
             trashText.text = trashAmount.ToString();
         }
-
     }
 
     private System.Collections.IEnumerator compactTrash()
@@ -841,7 +842,7 @@ public class TilemapClicker : MonoBehaviour
         foreach (var pos in checkArea.allPositionsWithin)
         {
             Debug.Log("did work");
-            GameObject obj = Instantiate(gridTile, tilemap.GetCellCenterWorld(pos) + new Vector3(0,0.25f,0),Quaternion.identity);
+            GameObject obj = Instantiate(gridTile, tilemap.GetCellCenterWorld(pos) + new Vector3(0, 0.25f, 0), Quaternion.identity);
             dirtyTiles.Add(obj);
             Renderer rend = obj.GetComponent<Renderer>();
             if (forPlant)

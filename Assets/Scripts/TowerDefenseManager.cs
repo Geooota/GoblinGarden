@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TowerDefenseManager : MonoBehaviour
 {
+    public static TowerDefenseManager Instance { get; private set; }
+
     [Header("Enemies")]
     public Object kingPrefab;
     public Object knightPrefab;
@@ -75,5 +77,14 @@ public class TowerDefenseManager : MonoBehaviour
         SpawnEnemy();
     }
 
+    public void Win()
+    {
+        waveNumber++;
+        Debug.Log("You win!");
+    }
 
+    public void Lose()
+    {
+        Debug.Log("You lose...");
+    }
 }
