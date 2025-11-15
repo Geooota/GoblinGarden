@@ -81,6 +81,8 @@ public class TilemapClicker : MonoBehaviour
     private bool canPlace;
     public AudioClip plotSound;
     public AudioClip destructSound;
+    public GameObject UItoDisable;
+    public GameObject HouseRef;
 
 
     public GameObject deconstructOnButton;
@@ -484,6 +486,7 @@ public class TilemapClicker : MonoBehaviour
 
     private void HandleDefendingInput(UnityEngine.InputSystem.Pointer pointer)
     {
+        
         if (isPressing && pointer.press.isPressed)
         {
             Vector2 currentScreenPos = pointer.position.ReadValue();
@@ -626,15 +629,31 @@ public class TilemapClicker : MonoBehaviour
 
     public void EnterDefenseMode()
     {
+        //Gamemode
+
+        currentMode = GameMode.Defending;
         ExitBuildMode();
         ExitDeconstructMode();
 
+        var goingHome = new Job(
+        HouseRef,
+        onComplete: () =>
+        {
+
+        }
+        );
+
+        JohnController.Instance.EnqueueJob(goingHome);
 
         //Disable UI
+        UItoDisable.SetActive(false);
     }
     public void ExitDefenseMode()
     {
+        currentMode = GameMode.Normal;
+
         //Enable UI
+        UItoDisable.SetActive(true);
     }
 
     public void ExitDeconstructMode()

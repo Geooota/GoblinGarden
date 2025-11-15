@@ -2392,6 +2392,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61e9206061135854f8cef3134d6632d3, type: 3}
+--- !u!1 &361184180 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1899772532468856996, guid: c35e3af5007395442b09753694443f41, type: 3}
+  m_PrefabInstance: {fileID: 7436647343891587710}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &367842364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4b4660468f3212843b60f09123912fe2, type: 3}
@@ -10806,6 +10811,8 @@ MonoBehaviour:
   gridTile: {fileID: 8521156101261456267, guid: af15d0035bc29c04f9c36fcea79a6697, type: 3}
   plotSound: {fileID: 0}
   destructSound: {fileID: 8300000, guid: 23c9da6b2ce31454da6af8ce4c1ce23a, type: 3}
+  UItoDisable: {fileID: 1648659806}
+  HouseRef: {fileID: 361184180}
   deconstructOnButton: {fileID: 734751630}
   deconstructOffButton: {fileID: 2042086161}
   trashText: {fileID: 1192311828}
