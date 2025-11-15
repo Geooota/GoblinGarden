@@ -10748,6 +10748,7 @@ GameObject:
   - component: {fileID: 1355514637}
   - component: {fileID: 1355514638}
   - component: {fileID: 1355514639}
+  - component: {fileID: 1355514640}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -10916,6 +10917,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1355514640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355514635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31eb9c5430131f844b15861b530753f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDefenseManager
+  kingPrefab: {fileID: 0}
+  knightPrefab: {fileID: 0}
+  roguePrefab: {fileID: 0}
+  peasantPrefab: {fileID: 0}
+  spawningCredits: 10
+  waveNumber: 1
+  enemyTypes: 0
+  goal: {fileID: 361184180}
+  goalMaxHealth: 0
+  goalCurrentHealth: 0
 --- !u!1001 &1365359288
 PrefabInstance:
   m_ObjectHideFlags: 0

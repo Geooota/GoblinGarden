@@ -14,7 +14,7 @@ public class TowerDefenseManager : MonoBehaviour
     public int enemyTypes;
 
     [Header("Compactor")]
-    public Object goalPrefab;
+    public GameObject goal;
     public int goalMaxHealth;
     public float goalCurrentHealth;
 
