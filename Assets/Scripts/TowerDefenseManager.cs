@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerDefenseManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class TowerDefenseManager : MonoBehaviour
     public int spawningCredits = 10;
     public int waveNumber = 1;
     public int enemyTypes;
+    public List<Transform> spawnPoints;
 
     [Header("Compactor")]
     public GameObject goal;
@@ -70,7 +72,7 @@ public class TowerDefenseManager : MonoBehaviour
 
         if (spawningCredits >= cost)
         {
-            Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+            Instantiate(prefabToSpawn, spawnPoints[Random.Range(0, spawnPoints.Count)].position, Quaternion.identity);
             spawningCredits -= cost;
         }
 
