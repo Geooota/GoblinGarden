@@ -16,7 +16,7 @@ public class TowerDefenseManager : MonoBehaviour
     [Header("Compactor")]
     public Object goalPrefab;
     public int goalMaxHealth;
-    public int goalCurrentHealth;
+    public float goalCurrentHealth;
 
     public void Wave()
     {
@@ -81,10 +81,12 @@ public class TowerDefenseManager : MonoBehaviour
     {
         waveNumber++;
         Debug.Log("You win!");
+        TilemapClicker.Instance.ExitDefenseMode();
     }
 
     public void Lose()
     {
         Debug.Log("You lose...");
+        TilemapClicker.Instance.ExitDefenseMode();
     }
 }

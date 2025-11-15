@@ -57,7 +57,7 @@ public class EnemyInfo : MonoBehaviour
         // --- Work animation phase ---
         if (attackSprites != null && attackSprites.Count > 0)
         {
-            while (health > 0)
+            while (health > 0 && TowerDefenseManager.Instance.goalCurrentHealth > 0)
             {
                 float frameDuration = 0.4f / attackSprites.Count;
 
@@ -66,6 +66,11 @@ public class EnemyInfo : MonoBehaviour
                     spriteRenderer.sprite = frame;
                     yield return new WaitForSeconds(frameDuration);
                 }
+
+                TowerDefenseManager.Instance.goalCurrentHealth -= attackDamage;
+                if (TowerDefenseManager.Instance.goalCurrentHealth < 0)
+                    TowerDefenseManager.Instance.Lose();
+
                 yield return attackDelay;
             }
             

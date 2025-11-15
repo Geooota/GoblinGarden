@@ -629,7 +629,6 @@ public class TilemapClicker : MonoBehaviour
     public void EnterDefenseMode()
     {
         //Gamemode
-
         currentMode = GameMode.Defending;
         ExitBuildMode();
         ExitDeconstructMode();
@@ -638,7 +637,6 @@ public class TilemapClicker : MonoBehaviour
         HouseRef,
         onComplete: () =>
         {
-
         }
         );
 
