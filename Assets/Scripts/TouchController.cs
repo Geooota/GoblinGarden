@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using NUnit.Framework.Internal;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection;
@@ -83,6 +84,7 @@ public class TilemapClicker : MonoBehaviour
     public AudioClip destructSound;
     public GameObject UItoDisable;
     public GameObject HouseRef;
+    public TMPro.TextMeshProUGUI uiTimer;
 
 
     public GameObject deconstructOnButton;
@@ -643,7 +645,7 @@ public class TilemapClicker : MonoBehaviour
         JohnController.Instance.EnqueueJob(goingHome);
 
         //Disable UI
-        //UItoDisable.SetActive(false);
+        UItoDisable.SetActive(false);
 
         TowerDefenseManager.Instance.Wave();
     }
@@ -653,7 +655,7 @@ public class TilemapClicker : MonoBehaviour
         currentMode = GameMode.Normal;
 
         // Begin Timer Before next wave
-
+        StartCoroutine(TimerTillNextWave());
 
         //Enable UI
         UItoDisable.SetActive(true);
@@ -816,7 +818,7 @@ public class TilemapClicker : MonoBehaviour
         }
     }
 
-    private System.Collections.IEnumerator compactTrash()
+    private IEnumerator compactTrash()
     {
         Debug.Log("Compacting Trash");
         trashCompactor.CompactTrash();
@@ -877,4 +879,28 @@ public class TilemapClicker : MonoBehaviour
             }
         }
     }
+
+    public IEnumerator TimerTillNextWave()
+    {
+        float remaining = 30f;
+
+        Debug.Log("did run timer");
+
+        while (remaining > 0f)
+        {
+            remaining -= Time.deltaTime;
+
+            UpdateUITimer(Mathf.Max(remaining, 0f));
+
+            yield return null; // wait one frame
+        }
+
+        EnterDefenseMode();
+    }
+
+    public void UpdateUITimer(float i)
+    {
+        uiTimer.SetText(i.ToString());
+    }
+
 }

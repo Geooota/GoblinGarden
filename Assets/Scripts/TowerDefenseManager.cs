@@ -40,7 +40,7 @@ public class TowerDefenseManager : MonoBehaviour
 
     public void Start()
     {
-        TilemapClicker.Instance.EnterDefenseMode();
+        StartCoroutine(TilemapClicker.Instance.TimerTillNextWave());
     }
 
     public void Update()
@@ -126,6 +126,7 @@ public class TowerDefenseManager : MonoBehaviour
     public void Win()
     {
         waveNumber++;
+        TilemapClicker.Instance.GetGoldOrTrash(true, (waveNumber ^ 2 + 10));
         Debug.Log("You win!");
         TilemapClicker.Instance.ExitDefenseMode();
     }
