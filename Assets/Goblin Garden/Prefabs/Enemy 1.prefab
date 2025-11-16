@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2192615490288453853}
   - component: {fileID: 6658358698359627355}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,23 +67,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e39483cab33344dba575fb15619d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyInfo
-  health: 3
-  initialMoveSpeed: 2
-  attackDelay: 2
-  maxHealth: 3
+  health: 4
+  initialMoveSpeed: 4
+  attackDelay: 1
+  maxHealth: 4
   attackDamage: 4
   PoisonTimer: 5
   spriteRenderer: {fileID: 6580458861689929347}
   walkingSprite:
-  - {fileID: 21300000, guid: e4111d66680b80644a446b724ae7774c, type: 3}
-  - {fileID: 21300000, guid: 332bd746f4dcb2d488b7e82e654b4f0d, type: 3}
-  - {fileID: 21300000, guid: 4f6b9785e144fee4c9f7d30560cdca43, type: 3}
-  - {fileID: 21300000, guid: 5703db3cbff79dd4197c7c6ea54de252, type: 3}
-  - {fileID: 21300000, guid: e66f0c9abe9f84143824337ee7cf5b08, type: 3}
+  - {fileID: 21300000, guid: e932e4f48e29fc34784dc3837d18b790, type: 3}
+  - {fileID: 21300000, guid: 267d2b8c7c1d3f041ba7755f0cad4524, type: 3}
+  - {fileID: 21300000, guid: feb4f480dac528c4cb6e087d91a4bbe9, type: 3}
+  - {fileID: 21300000, guid: a788694ac83f2c54b9b94d168cd686e8, type: 3}
   attackSprites:
-  - {fileID: 21300000, guid: 4f6b9785e144fee4c9f7d30560cdca43, type: 3}
-  - {fileID: 21300000, guid: e4111d66680b80644a446b724ae7774c, type: 3}
-  idleSprite: {fileID: 21300000, guid: e4111d66680b80644a446b724ae7774c, type: 3}
+  - {fileID: 21300000, guid: e932e4f48e29fc34784dc3837d18b790, type: 3}
+  - {fileID: 21300000, guid: feb4f480dac528c4cb6e087d91a4bbe9, type: 3}
+  idleSprite: {fileID: 21300000, guid: e932e4f48e29fc34784dc3837d18b790, type: 3}
   stoppingDistance: 1
   compactorTransform: {fileID: 0}
 --- !u!1 &1811849819646621526
@@ -165,7 +164,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e4111d66680b80644a446b724ae7774c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 514cfe50c8aa0ed4bbc7595047dab48d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

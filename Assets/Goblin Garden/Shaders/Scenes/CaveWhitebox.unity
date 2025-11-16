@@ -11296,9 +11296,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefenseManager
   waveTimer: 0
   waveDuration: 0
-  kingPrefab: {fileID: 1281569195687454261, guid: 3bffc12bcc8489f43a121236361a0f1d, type: 3}
-  knightPrefab: {fileID: 1281569195687454261, guid: 3bffc12bcc8489f43a121236361a0f1d, type: 3}
-  roguePrefab: {fileID: 1281569195687454261, guid: 3bffc12bcc8489f43a121236361a0f1d, type: 3}
+  kingPrefab: {fileID: 1281569195687454261, guid: 7f1d4cf8cd74cc342b9521aba4a4debd, type: 3}
+  knightPrefab: {fileID: 1281569195687454261, guid: 3239af1c2da914b4289491eb182a36c6, type: 3}
+  roguePrefab: {fileID: 1281569195687454261, guid: dacf342668c41f7478349eb8ee81cc13, type: 3}
   peasantPrefab: {fileID: 1281569195687454261, guid: 3bffc12bcc8489f43a121236361a0f1d, type: 3}
   spawningCredits: 10
   waveNumber: 1
