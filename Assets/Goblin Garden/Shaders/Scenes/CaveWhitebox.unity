@@ -11338,7 +11338,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -11452,6 +11452,8 @@ MonoBehaviour:
   - {fileID: 1770006155}
   hitSoundNormal: {fileID: 8300000, guid: 77c40d9a343f32440859b6692ae38c90, type: 3}
   hitSoundPoison: {fileID: 8300000, guid: fb8d84c75cf51d64dac326125948ee09, type: 3}
+  hitCompactorSound1: {fileID: 8300000, guid: fe654ceee341ff046b50dd1996098dbb, type: 3}
+  hitCompactorSound2: {fileID: 8300000, guid: f6f0b641c14e37c41aa3134cb7913b51, type: 3}
   goal: {fileID: 361184180}
   goalMaxHealth: 100
   goalCurrentHealth: 100

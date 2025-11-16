@@ -10,6 +10,7 @@ public class BulletInfo : MonoBehaviour
     private int pierce;
     private int type;
     public float bulletDuration;
+    public GameObject goop;
 
     public void Start()
     {
@@ -70,6 +71,7 @@ public class BulletInfo : MonoBehaviour
                 else if (type == 2) // AOE bullet logic
                 {
                     Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2f);
+                    Instantiate(goop, transform.position, Quaternion.Euler(90f, 0f, 0f));
                     foreach (var hitCollider in hitColliders)
                     {
                         EnemyInfo nearbyEnemy = hitCollider.GetComponent<EnemyInfo>();
