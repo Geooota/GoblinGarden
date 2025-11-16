@@ -14,7 +14,6 @@ public class BulletInfo : MonoBehaviour
     public void Start()
     {
         StartCoroutine(DestroyBulletAfterTime(10f));
-        Destroy(gameObject, bulletDuration);
     }
 
     public void SetTarget(Transform target, float damage, int pierce, int type)
@@ -33,8 +32,13 @@ public class BulletInfo : MonoBehaviour
             return;
         }
 
+        // Move towards the target
         Vector3 direction = (target.position - transform.position).normalized;
         transform.position += direction * speed * Time.deltaTime;
+
+        // rotate in the direction of movement
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(90f, 0f, angle - 10f);
 
         if (Vector3.Distance(transform.position, target.position) < 0.1f)
         {
@@ -43,7 +47,7 @@ public class BulletInfo : MonoBehaviour
             {
                 if (type == 0) // Basic bullet logic
                 {
-                    enemyInfo.health -= damage;
+                    enemyInfo.TakeDamage(damage);
                     pierce--;
 
                     if (pierce <= 0)
@@ -53,7 +57,7 @@ public class BulletInfo : MonoBehaviour
                 }
                 else if (type == 1) // Piercing arking bullet logic
                 {
-                    enemyInfo.health -= damage;
+                    enemyInfo.TakeDamage(damage);
                     pierce--;
 
                     if (pierce <= 0)
