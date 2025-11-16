@@ -12,11 +12,6 @@ public class PlantAttack : MonoBehaviour
     public GameObject bulletPrefab;
     private EnemyInfo enemy;
 
-    void Start()
-    {
-        StartCoroutine(AttackRoutine());
-    }
-
     private EnemyInfo FindClosestEnemy()
     {
         EnemyInfo[] enemies = FindObjectsOfType<EnemyInfo>();

@@ -105,12 +105,13 @@ public class EnemyInfo : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            EnemyInfo[] enemies = FindObjectsOfType<EnemyInfo>();
+            if (enemies.Length == 1)
+                TowerDefenseManager.Instance.Win();
             Destroy(gameObject);
         }
 
-        EnemyInfo[] enemies = FindObjectsOfType<EnemyInfo>();
-        if (enemies.Length == 0)
-            TowerDefenseManager.Instance.Win();
+
     }
 
 }

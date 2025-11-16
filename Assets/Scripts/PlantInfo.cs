@@ -47,7 +47,9 @@ public class PlantInfo : MonoBehaviour
 
     public void BeginGrowing()
     {
+        Debug.Log("Test for # of times Begin Growing is run");
         growRoutine = StartCoroutine(GrowRoutine(growthTime));
+        StartCoroutine(GetComponentInParent<PlantAttack>().AttackRoutine());
         UIPopUp.SetActive(false);
     }
 

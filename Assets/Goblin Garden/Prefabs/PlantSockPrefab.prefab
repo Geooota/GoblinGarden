@@ -310,6 +310,7 @@ GameObject:
   - component: {fileID: 3847712095983771150}
   - component: {fileID: 8736073975074482925}
   - component: {fileID: 7502344836680014098}
+  - component: {fileID: -5587634717388870672}
   m_Layer: 0
   m_Name: PlantSockPrefab
   m_TagString: Untagged
@@ -491,6 +492,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-5587634717388870672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7081037210608545945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b14f65bd494ce459ef00157613ada9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlantAttack
+  attackDamage: 100
+  attackDelay: 1
+  attackRange: 100
+  bulletpierce: 1
+  bulletType: 0
+  bulletPrefab: {fileID: 1588674008800072699, guid: 2b4031cb6cc5fd94bb516cd9c2090368, type: 3}
 --- !u!1 &7167072392750975302
 GameObject:
   m_ObjectHideFlags: 0
