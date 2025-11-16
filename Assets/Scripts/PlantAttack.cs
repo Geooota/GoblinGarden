@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-
 public class PlantAttack : MonoBehaviour
 {
     [Header("Attack")]
@@ -51,6 +50,7 @@ public class PlantAttack : MonoBehaviour
 
             yield return new WaitForSeconds(attackDelay);
         }
+
         yield return null;
         StartCoroutine(AttackRoutine());
     }
