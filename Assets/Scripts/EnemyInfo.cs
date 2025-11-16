@@ -87,8 +87,6 @@ public class EnemyInfo : MonoBehaviour
                 }
 
                 TowerDefenseManager.Instance.DamageTrash(attackDamage);
-                if (TowerDefenseManager.Instance.goalCurrentHealth < 0)
-                    TowerDefenseManager.Instance.Lose();
 
                 yield return attackDelay;
             }
