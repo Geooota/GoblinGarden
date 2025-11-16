@@ -120,6 +120,12 @@ public class TowerDefenseManager : MonoBehaviour
     public void DamageTrash(int damage)
     {
         goalCurrentHealth -= damage;
+
+        if (goalCurrentHealth < 0)
+        {
+            Lose();
+        }
+
         Debug.Log(damage);
     }
 
