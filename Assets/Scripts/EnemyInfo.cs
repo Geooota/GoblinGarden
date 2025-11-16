@@ -92,12 +92,21 @@ public class EnemyInfo : MonoBehaviour
 
                 yield return attackDelay;
             }
-            
+
         }
         spriteRenderer.sprite = idleSprite;
 
         // tiny buffer between jobs
         yield return new WaitForSeconds(0.05f);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

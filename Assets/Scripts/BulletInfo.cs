@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using System.Collections;
 
 public class BulletInfo : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class BulletInfo : MonoBehaviour
 
     public void Start()
     {
-        // Optionally, you can add a self-destruct timer to prevent bullets from existing indefinitely
+        StartCoroutine(DestroyBulletAfterTime(10f));
         Destroy(gameObject, bulletDuration);
     }
 
@@ -26,6 +27,12 @@ public class BulletInfo : MonoBehaviour
 
     private void Update()
     {
+        if (target == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Vector3 direction = (target.position - transform.position).normalized;
         transform.position += direction * speed * Time.deltaTime;
 
@@ -70,5 +77,11 @@ public class BulletInfo : MonoBehaviour
                 }
             }
         }
+    }
+
+    private IEnumerator DestroyBulletAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
     }
 }
