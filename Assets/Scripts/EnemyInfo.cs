@@ -12,7 +12,7 @@ public class EnemyInfo : MonoBehaviour
     public float initialMoveSpeed;
     public float attackDelay;
     public float maxHealth;
-    public float attackDamage;
+    public int attackDamage;
 
     public int PoisonTimer = 5;
     public SpriteRenderer spriteRenderer;
@@ -27,6 +27,7 @@ public class EnemyInfo : MonoBehaviour
     public void Start()
     {
         moveSpeed = initialMoveSpeed;
+        compactorTransform = TilemapClicker.Instance.trashCompactor.transform;
         StartCoroutine(Attack());
     }
 
@@ -85,7 +86,7 @@ public class EnemyInfo : MonoBehaviour
                     yield return new WaitForSeconds(frameDuration);
                 }
 
-                TowerDefenseManager.Instance.goalCurrentHealth -= attackDamage;
+                TowerDefenseManager.Instance.DamageTrash(attackDamage);
                 if (TowerDefenseManager.Instance.goalCurrentHealth < 0)
                     TowerDefenseManager.Instance.Lose();
 

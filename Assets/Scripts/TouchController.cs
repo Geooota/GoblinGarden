@@ -652,6 +652,9 @@ public class TilemapClicker : MonoBehaviour
     {
         currentMode = GameMode.Normal;
 
+        // Begin Timer Before next wave
+
+
         //Enable UI
         UItoDisable.SetActive(true);
     }
