@@ -424,6 +424,9 @@ MonoBehaviour:
   bulletpierce: 1
   bulletType: 0
   bulletPrefab: {fileID: 1588674008800072699, guid: 2b4031cb6cc5fd94bb516cd9c2090368, type: 3}
+  showAttackRangeGizmo: 1
+  attackRangeColor: {r: 1, g: 0, b: 0, a: 1}
+  drawGizmoWhenNotSelected: 1
 --- !u!65 &8736073975074482925
 BoxCollider:
   m_ObjectHideFlags: 0

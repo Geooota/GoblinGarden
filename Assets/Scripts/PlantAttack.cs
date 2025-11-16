@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-
 public class PlantAttack : MonoBehaviour
 {
     [Header("Attack")]
@@ -13,13 +12,9 @@ public class PlantAttack : MonoBehaviour
     public GameObject bulletPrefab;
     private EnemyInfo enemy;
 
-    void Update()
+    void Start()
     {
-        enemy = FindClosestEnemy();
-        if (enemy != null && Vector3.Distance(transform.position, enemy.transform.position) <= attackRange)
-        {
-            StartCoroutine(AttackRoutine());
-        }
+        StartCoroutine(AttackRoutine());
     }
 
     private EnemyInfo FindClosestEnemy()
@@ -43,15 +38,20 @@ public class PlantAttack : MonoBehaviour
 
     public IEnumerator AttackRoutine()
     {
-        while (enemy != null && Vector3.Distance(transform.position, enemy.transform.position) <= attackRange)
+        enemy = FindClosestEnemy();
+
+        if (enemy != null && Vector3.Distance(transform.position, enemy.transform.position) <= attackRange)
         {
             // Instantiate bullet and set its target
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            GameObject bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), Quaternion.identity);
 
             BulletInfo bulletInfo = bullet.GetComponent<BulletInfo>();
             bulletInfo.SetTarget(enemy.transform, attackDamage, bulletpierce, bulletType);
 
             yield return new WaitForSeconds(attackDelay);
         }
+
+        yield return null;
+        StartCoroutine(AttackRoutine());
     }
 }
