@@ -107,6 +107,10 @@ public class EnemyInfo : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        EnemyInfo[] enemies = FindObjectsOfType<EnemyInfo>();
+        if (enemies.Length == 0)
+            TowerDefenseManager.Instance.Win();
     }
 
 }
