@@ -52,8 +52,6 @@ public class TowerDefenseManager : MonoBehaviour
         }
     }
 
-
-
     public void Wave()
     {
         switch (waveNumber)
@@ -142,5 +140,4 @@ public class TowerDefenseManager : MonoBehaviour
         Debug.Log("You lose...");
         TilemapClicker.Instance.ExitDefenseMode();
     }
-
 }

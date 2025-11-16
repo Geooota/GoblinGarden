@@ -348,8 +348,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlantInfo
   plantName: Trash Bag
   cost: 50
-  growthTime: 30
-  growthCycleTime: 50
+  growthTime: 1
+  growthCycleTime: 1
   yieldAmount: 30
   collectable: 0
   dry: 0

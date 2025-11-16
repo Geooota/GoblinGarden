@@ -643,7 +643,7 @@ public class TilemapClicker : MonoBehaviour
         JohnController.Instance.EnqueueJob(goingHome);
 
         //Disable UI
-        UItoDisable.SetActive(false);
+        //UItoDisable.SetActive(false);
 
         TowerDefenseManager.Instance.Wave();
     }
