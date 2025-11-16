@@ -13,7 +13,7 @@ public class BulletInfo : MonoBehaviour
 
     public void Start()
     {
-        StartCoroutine(DestroyBulletAfterTime(10f));
+        StartCoroutine(DestroyBulletAfterTime(bulletDuration));
     }
 
     public void SetTarget(Transform target, float damage, int pierce, int type)
@@ -49,16 +49,18 @@ public class BulletInfo : MonoBehaviour
                 {
                     enemyInfo.TakeDamage(damage);
                     pierce--;
+                    TowerDefenseManager.Instance.EnemyHitNormal();
 
                     if (pierce <= 0)
                     {
-                        Destroy(gameObject);
+                        Destroy(gameObject, 10f);
                     }
                 }
-                else if (type == 1) // Piercing arking bullet logic
+                else if (type == 1)
                 {
                     enemyInfo.TakeDamage(damage);
                     pierce--;
+                    TowerDefenseManager.Instance.EnemyHitNormal();
 
                     if (pierce <= 0)
                     {
@@ -77,6 +79,7 @@ public class BulletInfo : MonoBehaviour
                             nearbyEnemy.Poison();
                         }
                     }
+                    TowerDefenseManager.Instance.EnemyHitPoison();
                     Destroy(gameObject);
                 }
             }

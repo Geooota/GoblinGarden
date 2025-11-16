@@ -418,15 +418,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b14f65bd494ce459ef00157613ada9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantAttack
-  attackDamage: 100
-  attackDelay: 1
-  attackRange: 100
-  bulletpierce: 1
+  attackDamage: 10
+  attackDelay: 3
+  attackRange: 20
+  bulletpierce: 2
   bulletType: 0
   bulletPrefab: {fileID: 1588674008800072699, guid: 2b4031cb6cc5fd94bb516cd9c2090368, type: 3}
-  showAttackRangeGizmo: 1
-  attackRangeColor: {r: 1, g: 0, b: 0, a: 1}
-  drawGizmoWhenNotSelected: 1
 --- !u!65 &8736073975074482925
 BoxCollider:
   m_ObjectHideFlags: 0

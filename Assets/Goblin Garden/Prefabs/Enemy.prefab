@@ -81,11 +81,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5703db3cbff79dd4197c7c6ea54de252, type: 3}
   - {fileID: 21300000, guid: e66f0c9abe9f84143824337ee7cf5b08, type: 3}
   attackSprites:
-  - {fileID: 21300000, guid: 4f6b9785e144fee4c9f7d30560cdca43, type: 3}
-  - {fileID: 21300000, guid: e4111d66680b80644a446b724ae7774c, type: 3}
+  - {fileID: 21300000, guid: 0b2c10d5a7eadc4479e478b09cc05208, type: 3}
+  - {fileID: 21300000, guid: 117969a2b8b18644594439869935ad62, type: 3}
   idleSprite: {fileID: 21300000, guid: e4111d66680b80644a446b724ae7774c, type: 3}
   stoppingDistance: 1
   compactorTransform: {fileID: 0}
+  hitSoundNormal: {fileID: 8300000, guid: 77c40d9a343f32440859b6692ae38c90, type: 3}
+  hitSoundPoison: {fileID: 8300000, guid: fb8d84c75cf51d64dac326125948ee09, type: 3}
 --- !u!1 &1811849819646621526
 GameObject:
   m_ObjectHideFlags: 0

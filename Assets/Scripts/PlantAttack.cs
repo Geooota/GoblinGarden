@@ -38,7 +38,7 @@ public class PlantAttack : MonoBehaviour
         if (enemy != null && Vector3.Distance(transform.position, enemy.transform.position) <= attackRange)
         {
             // Instantiate bullet and set its target
-            GameObject bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), Quaternion.identity);
+            GameObject bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity);
 
             BulletInfo bulletInfo = bullet.GetComponent<BulletInfo>();
             bulletInfo.SetTarget(enemy.transform, attackDamage, bulletpierce, bulletType);

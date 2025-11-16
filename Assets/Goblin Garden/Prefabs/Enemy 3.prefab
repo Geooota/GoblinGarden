@@ -76,6 +76,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 6580458861689929347}
   walkingSprite:
   - {fileID: 21300000, guid: b1a1a74dbfb3e744bbdb3ed316045096, type: 3}
+  - {fileID: 21300000, guid: 78c95167a496d814ca25365611b0d0e6, type: 3}
   attackSprites:
   - {fileID: 21300000, guid: b1a1a74dbfb3e744bbdb3ed316045096, type: 3}
   idleSprite: {fileID: 21300000, guid: b1a1a74dbfb3e744bbdb3ed316045096, type: 3}

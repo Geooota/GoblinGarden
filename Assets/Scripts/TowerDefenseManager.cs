@@ -20,6 +20,11 @@ public class TowerDefenseManager : MonoBehaviour
     public int waveNumber = 1;
     public int enemyTypes;
     public List<Transform> spawnPoints;
+    public AudioClip hitSoundNormal;
+    public AudioClip hitSoundPoison;
+    public AudioClip hitCompactorSound1;
+    public AudioClip hitCompactorSound2;
+    private AudioSource audioSource;
 
     [Header("Compactor")]
     public GameObject goal;
@@ -40,6 +45,7 @@ public class TowerDefenseManager : MonoBehaviour
 
     public void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(TilemapClicker.Instance.TimerTillNextWave());
     }
 
@@ -121,6 +127,9 @@ public class TowerDefenseManager : MonoBehaviour
     {
         goalCurrentHealth -= damage;
 
+        AudioClip soundToPlay = Random.value > 0.5f ? hitCompactorSound1 : hitCompactorSound2;
+        audioSource.PlayOneShot(soundToPlay);
+
         if (goalCurrentHealth < 0)
         {
             Lose();
@@ -134,6 +143,7 @@ public class TowerDefenseManager : MonoBehaviour
         waveNumber++;
         TilemapClicker.Instance.GetGoldOrTrash(true, (waveNumber ^ 2 + 10));
         Debug.Log("You win!");
+        goalCurrentHealth = goalMaxHealth;
         TilemapClicker.Instance.ExitDefenseMode();
     }
 
@@ -145,6 +155,17 @@ public class TowerDefenseManager : MonoBehaviour
             Destroy(enemy.gameObject);
         }
         Debug.Log("You lose...");
+        goalCurrentHealth = goalMaxHealth;
         TilemapClicker.Instance.ExitDefenseMode();
+    }
+
+    public void EnemyHitNormal()
+    {
+        audioSource.PlayOneShot(hitSoundNormal);
+    }
+
+    public void EnemyHitPoison()
+    {
+        audioSource.PlayOneShot(hitSoundPoison);
     }
 }

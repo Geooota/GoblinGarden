@@ -372,7 +372,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3a747efabb81c6a4db1323820ae546f7, type: 3}
   - {fileID: 8300000, guid: 5e3a865694f9a4e45b64adc122e41151, type: 3}
   - {fileID: 8300000, guid: a0dc1b700a874a5469be19364cacb571, type: 3}
-  switchInterval: 30
+  switchInterval: 1
   spriteRenderer: {fileID: 3919092081848615776}
 --- !u!65 &8736073975074482925
 BoxCollider:
@@ -504,12 +504,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b14f65bd494ce459ef00157613ada9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantAttack
-  attackDamage: 100
-  attackDelay: 1
-  attackRange: 100
+  attackDamage: 0
+  attackDelay: 5
+  attackRange: 7.5
   bulletpierce: 1
-  bulletType: 0
-  bulletPrefab: {fileID: 1588674008800072699, guid: 2b4031cb6cc5fd94bb516cd9c2090368, type: 3}
+  bulletType: 2
+  bulletPrefab: {fileID: 8595654336642670966, guid: c7d19a5953d65894587b2b49e0a57d1f, type: 3}
 --- !u!1 &7167072392750975302
 GameObject:
   m_ObjectHideFlags: 0
