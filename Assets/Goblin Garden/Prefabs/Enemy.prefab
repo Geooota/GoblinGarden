@@ -68,12 +68,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e39483cab33344dba575fb15619d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyInfo
-  health: 3
   initialMoveSpeed: 1.5
   attackDelay: 2
   maxHealth: 3
   attackDamage: 2
-  fillImage: {fileID: 2207378742114408229, guid: dacf342668c41f7478349eb8ee81cc13, type: 3}
+  fillImage: {fileID: 6443534826919587362}
   PoisonTimer: 5
   spriteRenderer: {fileID: 6580458861689929347}
   walkingSprite:
