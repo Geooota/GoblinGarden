@@ -95,7 +95,7 @@ public class TowerDefenseManager : MonoBehaviour
             yield return null;
         else
         {
-            float randomWait = Random.Range(0, waveDuration/3);
+            float randomWait = Random.Range(0, waveDuration/10);
 
             int random = Random.Range(0, enemyTypes);
             Object prefabToSpawn = null;
