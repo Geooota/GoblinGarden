@@ -70,15 +70,16 @@ public class BulletInfo : MonoBehaviour
                 }
                 else if (type == 2) // AOE bullet logic
                 {
-                    Collider[] hitColliders = Physics.OverlapSphere(transform.position, 5f);
-                    Instantiate(goop, transform.position, Quaternion.Euler(90f, 0f, 0f));
+                    Collider[] hitColliders = Physics.OverlapSphere(transform.position, 10f);
+                    //Instantiate(goop, transform.position, Quaternion.Euler(90f, 0f, 0f));
                     foreach (var hitCollider in hitColliders)
                     {
                         EnemyInfo nearbyEnemy = hitCollider.GetComponent<EnemyInfo>();
                         if (nearbyEnemy != null)
                         {
                             nearbyEnemy.PoisonTimer = 5;
-                            nearbyEnemy.Poison();
+                            StartCoroutine(nearbyEnemy.Poison());
+                            Debug.Log("enemy poisoned");
                         }
                     }
                     TowerDefenseManager.Instance.EnemyHitPoison();
