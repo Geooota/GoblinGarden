@@ -418,7 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b14f65bd494ce459ef00157613ada9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantAttack
-  attackDamage: 10
+  attackDamage: 5
   attackDelay: 3
   attackRange: 20
   bulletpierce: 1

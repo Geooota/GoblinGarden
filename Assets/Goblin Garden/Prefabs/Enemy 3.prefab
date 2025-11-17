@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyInfo
   health: 25
-  initialMoveSpeed: 0.5
+  initialMoveSpeed: 1
   attackDelay: 4
   maxHealth: 25
   attackDamage: 25

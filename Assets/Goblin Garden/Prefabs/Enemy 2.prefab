@@ -68,10 +68,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e39483cab33344dba575fb15619d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyInfo
-  health: 12
-  initialMoveSpeed: 1
+  health: 15
+  initialMoveSpeed: 1.25
   attackDelay: 3
-  maxHealth: 12
+  maxHealth: 15
   attackDamage: 15
   fillImage: {fileID: 4600805138253977951}
   PoisonTimer: 5
