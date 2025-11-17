@@ -150,8 +150,8 @@ public class TowerDefenseManager : MonoBehaviour
 
     public void Win()
     {
-        waveNumber++;
         TilemapClicker.Instance.GetGoldOrTrash(true, waveNumber * 10);
+        waveNumber++;
         Debug.Log("You win!");
         goalCurrentHealth = goalMaxHealth;
         winScreenUI.SetActive(true);
