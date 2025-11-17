@@ -84,7 +84,7 @@ public class TowerDefenseManager : MonoBehaviour
                 enemyTypes = 4;
                 break;
         }
-        waveDuration = waveNumber * 10;
+        waveDuration = (waveNumber * 4) + 11;
         spawningCredits = Mathf.RoundToInt(Mathf.Pow(waveNumber, 2f)) + 10;
         StartCoroutine(SpawnEnemy());
     }
@@ -95,7 +95,7 @@ public class TowerDefenseManager : MonoBehaviour
             yield return null;
         else
         {
-            float randomWait = Random.Range(0, waveDuration);
+            float randomWait = Random.Range(0, waveDuration/3);
 
             int random = Random.Range(0, enemyTypes);
             Object prefabToSpawn = null;

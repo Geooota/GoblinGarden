@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class EnemyInfo : MonoBehaviour
 {
     [Header("Enemy Stats")]
-    public float health;
+    private float health;
     private float moveSpeed;
     public float initialMoveSpeed;
     public float attackDelay;
@@ -31,6 +31,8 @@ public class EnemyInfo : MonoBehaviour
     public void Start()
     {
         moveSpeed = initialMoveSpeed;
+        health = maxHealth;
+        fillImage.fillAmount = health / maxHealth;
         compactorTransform = TilemapClicker.Instance.trashCompactor.transform;
         StartCoroutine(Attack());
     }
