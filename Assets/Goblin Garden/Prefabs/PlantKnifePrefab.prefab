@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantAttack
   attackDamage: 5
-  attackDelay: 3
+  attackDelay: 4
   attackRange: 20
   bulletpierce: 1
   bulletType: 0
