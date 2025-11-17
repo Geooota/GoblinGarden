@@ -47,6 +47,7 @@ public class EnemyInfo : MonoBehaviour
         while (PoisonTimer > 0)
         {
             PoisonTimer--;
+            TakeDamage(health * 0.1f);
             yield return new WaitForSeconds(1f);
         }
         moveSpeed = initialMoveSpeed;

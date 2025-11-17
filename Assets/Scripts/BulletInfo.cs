@@ -70,7 +70,7 @@ public class BulletInfo : MonoBehaviour
                 }
                 else if (type == 2) // AOE bullet logic
                 {
-                    Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2f);
+                    Collider[] hitColliders = Physics.OverlapSphere(transform.position, 5f);
                     Instantiate(goop, transform.position, Quaternion.Euler(90f, 0f, 0f));
                     foreach (var hitCollider in hitColliders)
                     {
@@ -91,6 +91,22 @@ public class BulletInfo : MonoBehaviour
     private IEnumerator DestroyBulletAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
+        if (type == 2)
+        {
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 20f);
+            Instantiate(goop, transform.position, Quaternion.Euler(90f, 0f, 0f));
+            foreach (var hitCollider in hitColliders)
+            {
+                EnemyInfo nearbyEnemy = hitCollider.GetComponent<EnemyInfo>();
+                if (nearbyEnemy != null)
+                {
+                    Debug.LogWarning("poisoned enemy");
+                    nearbyEnemy.PoisonTimer = 5;
+                    nearbyEnemy.Poison();
+                }
+            }
+            TowerDefenseManager.Instance.EnemyHitPoison();
+        }
         Destroy(gameObject);
     }
 }
