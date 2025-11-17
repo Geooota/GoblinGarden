@@ -79,8 +79,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4d4b79a5d8ce68d478ac342aab1d1bd7, type: 3}
   - {fileID: 21300000, guid: a81d4c07ad6129e46ae18e785ad23bd2, type: 3}
   attackSprites:
-  - {fileID: 21300000, guid: de178548eab86174da198f60df41364f, type: 3}
-  - {fileID: 21300000, guid: 4d4b79a5d8ce68d478ac342aab1d1bd7, type: 3}
+  - {fileID: 21300000, guid: c915db2688f909c4dae1aff4056f8c0e, type: 3}
+  - {fileID: 21300000, guid: f1dc7bf89c9eb00459730adafb6a69fe, type: 3}
   idleSprite: {fileID: 21300000, guid: de178548eab86174da198f60df41364f, type: 3}
   stoppingDistance: 1
   compactorTransform: {fileID: 0}
