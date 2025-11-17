@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TowerDefenseManager : MonoBehaviour
@@ -10,6 +11,9 @@ public class TowerDefenseManager : MonoBehaviour
 
     public float waveTimer;
     public float waveDuration;
+
+    public GameObject winScreenUI;
+    public GameObject loseScreenUI;
 
     [Header("Enemies")]
     public Object kingPrefab;
@@ -144,7 +148,7 @@ public class TowerDefenseManager : MonoBehaviour
         TilemapClicker.Instance.GetGoldOrTrash(true, (waveNumber ^ 2 + 10));
         Debug.Log("You win!");
         goalCurrentHealth = goalMaxHealth;
-        TilemapClicker.Instance.ExitDefenseMode();
+        winScreenUI.SetActive(true);
     }
 
     public void Lose()
@@ -156,7 +160,7 @@ public class TowerDefenseManager : MonoBehaviour
         }
         Debug.Log("You lose...");
         goalCurrentHealth = goalMaxHealth;
-        TilemapClicker.Instance.ExitDefenseMode();
+        loseScreenUI.SetActive(true);
     }
 
     public void EnemyHitNormal()

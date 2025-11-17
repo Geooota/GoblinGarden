@@ -421,7 +421,7 @@ MonoBehaviour:
   attackDamage: 10
   attackDelay: 3
   attackRange: 20
-  bulletpierce: 2
+  bulletpierce: 1
   bulletType: 0
   bulletPrefab: {fileID: 1588674008800072699, guid: 2b4031cb6cc5fd94bb516cd9c2090368, type: 3}
 --- !u!65 &8736073975074482925
