@@ -54,7 +54,7 @@ public class BulletInfo : MonoBehaviour
 
                     if (pierce <= 0)
                     {
-                        Destroy(gameObject, 10f);
+                        Destroy(gameObject);
                     }
                 }
                 else if (type == 1)
