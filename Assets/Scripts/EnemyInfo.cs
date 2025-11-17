@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyInfo : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class EnemyInfo : MonoBehaviour
     public float attackDelay;
     public float maxHealth;
     public int attackDamage;
+    public Image fillImage;
 
     public int PoisonTimer = 5;
     public SpriteRenderer spriteRenderer;
@@ -23,6 +25,8 @@ public class EnemyInfo : MonoBehaviour
     private Coroutine walking;
     public float stoppingDistance = 1f;
     public Transform compactorTransform;
+
+    
 
     public void Start()
     {
@@ -48,8 +52,10 @@ public class EnemyInfo : MonoBehaviour
         {
             PoisonTimer--;
             TakeDamage(health * 0.1f);
+            Debug.Log("Poison Tick");
             yield return new WaitForSeconds(1f);
         }
+        yield return null;
         moveSpeed = initialMoveSpeed;
     }
 
@@ -109,7 +115,9 @@ public class EnemyInfo : MonoBehaviour
                 TowerDefenseManager.Instance.Win();
             Destroy(gameObject);
         }
-
+        Debug.Log("took damage " +  damage);
+        Debug.Log("health left " + health / maxHealth);
+        fillImage.fillAmount = health / maxHealth;
 
     }
 

@@ -4,6 +4,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerDefenseManager : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class TowerDefenseManager : MonoBehaviour
     public AudioClip hitCompactorSound1;
     public AudioClip hitCompactorSound2;
     private AudioSource audioSource;
+    public Image trashHP;
 
     [Header("Compactor")]
     public GameObject goal;
@@ -59,6 +61,10 @@ public class TowerDefenseManager : MonoBehaviour
         {
             waveTimer -= Time.deltaTime;
             Debug.Log(waveTimer.ToString());
+        }
+        if (trashHP != null)
+        {
+            trashHP.fillAmount = goalCurrentHealth / goalMaxHealth;
         }
     }
 
@@ -148,6 +154,7 @@ public class TowerDefenseManager : MonoBehaviour
         TilemapClicker.Instance.GetGoldOrTrash(true, (waveNumber ^ 2 + 10));
         Debug.Log("You win!");
         goalCurrentHealth = goalMaxHealth;
+        TilemapClicker.Instance.ExitDefenseMode();
         winScreenUI.SetActive(true);
     }
 
@@ -160,6 +167,7 @@ public class TowerDefenseManager : MonoBehaviour
         }
         Debug.Log("You lose...");
         goalCurrentHealth = goalMaxHealth;
+        TilemapClicker.Instance.ExitDefenseMode();
         loseScreenUI.SetActive(true);
     }
 
