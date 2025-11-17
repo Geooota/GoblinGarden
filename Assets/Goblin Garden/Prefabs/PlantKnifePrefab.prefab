@@ -420,7 +420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlantAttack
   attackDamage: 5
   attackDelay: 4
-  attackRange: 20
+  attackRange: 15
   bulletpierce: 1
   bulletType: 0
   bulletPrefab: {fileID: 1588674008800072699, guid: 2b4031cb6cc5fd94bb516cd9c2090368, type: 3}
