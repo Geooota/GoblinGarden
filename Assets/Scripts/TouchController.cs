@@ -85,6 +85,7 @@ public class TilemapClicker : MonoBehaviour
     public GameObject UItoDisable;
     public GameObject HouseRef;
     public TMPro.TextMeshProUGUI uiTimer;
+    public GameObject CompactorHPBar;
 
 
     public GameObject deconstructOnButton;
@@ -634,6 +635,7 @@ public class TilemapClicker : MonoBehaviour
         currentMode = GameMode.Defending;
         ExitBuildMode();
         ExitDeconstructMode();
+        CompactorHPBar.SetActive(true);
 
         var goingHome = new Job(
         HouseRef,
@@ -656,6 +658,8 @@ public class TilemapClicker : MonoBehaviour
 
         // Begin Timer Before next wave
         StartCoroutine(TimerTillNextWave());
+
+        CompactorHPBar.SetActive(false);
 
         //Enable UI
         UItoDisable.SetActive(true);
@@ -883,8 +887,6 @@ public class TilemapClicker : MonoBehaviour
     public IEnumerator TimerTillNextWave()
     {
         float remaining = 30f;
-
-        Debug.Log("did run timer");
 
         while (remaining > 0f)
         {
