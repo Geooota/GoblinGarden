@@ -95,7 +95,7 @@ public class TowerDefenseManager : MonoBehaviour
             yield return null;
         else
         {
-            float randomWait = Random.Range(0, waveDuration/3);
+            float randomWait = Random.Range(0, waveDuration/10);
 
             int random = Random.Range(0, enemyTypes);
             Object prefabToSpawn = null;
@@ -150,8 +150,8 @@ public class TowerDefenseManager : MonoBehaviour
 
     public void Win()
     {
-        waveNumber++;
         TilemapClicker.Instance.GetGoldOrTrash(true, waveNumber * 10);
+        waveNumber++;
         Debug.Log("You win!");
         goalCurrentHealth = goalMaxHealth;
         winScreenUI.SetActive(true);

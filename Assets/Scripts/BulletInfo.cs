@@ -71,7 +71,7 @@ public class BulletInfo : MonoBehaviour
                 else if (type == 2) // AOE bullet logic
                 {
                     Collider[] hitColliders = Physics.OverlapSphere(transform.position, 10f);
-                    //Instantiate(goop, transform.position, Quaternion.Euler(90f, 0f, 0f));
+                    Instantiate(goop, transform.position, Quaternion.Euler(90f, 0f, 0f));
                     foreach (var hitCollider in hitColliders)
                     {
                         EnemyInfo nearbyEnemy = hitCollider.GetComponent<EnemyInfo>();
