@@ -6663,6 +6663,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 407364711}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &775001480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11878,6 +11890,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefenseManager
   waveTimer: 0
   waveDuration: 0
+  winScreenUI: {fileID: 407364711}
+  loseScreenUI: {fileID: 51697376}
   kingPrefab: {fileID: 1281569195687454261, guid: 7f1d4cf8cd74cc342b9521aba4a4debd, type: 3}
   knightPrefab: {fileID: 1281569195687454261, guid: 3239af1c2da914b4289491eb182a36c6, type: 3}
   roguePrefab: {fileID: 1281569195687454261, guid: dacf342668c41f7478349eb8ee81cc13, type: 3}
@@ -13780,6 +13794,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: TilemapClicker, Assembly-CSharp
         m_MethodName: ExitDefenseMode
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 51697376}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
