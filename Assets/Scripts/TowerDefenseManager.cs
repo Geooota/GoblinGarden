@@ -85,7 +85,7 @@ public class TowerDefenseManager : MonoBehaviour
                 break;
         }
         waveDuration = waveNumber * 10;
-        spawningCredits = (waveNumber ^ 2) + 10;
+        spawningCredits = Mathf.RoundToInt(Mathf.Pow(waveNumber, 2f)) + 10;
         StartCoroutine(SpawnEnemy());
     }
 
@@ -151,7 +151,7 @@ public class TowerDefenseManager : MonoBehaviour
     public void Win()
     {
         waveNumber++;
-        TilemapClicker.Instance.GetGoldOrTrash(true, (waveNumber ^ 2 + 10));
+        TilemapClicker.Instance.GetGoldOrTrash(true, waveNumber * 10);
         Debug.Log("You win!");
         goalCurrentHealth = goalMaxHealth;
         winScreenUI.SetActive(true);
