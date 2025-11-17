@@ -98,6 +98,7 @@ public class TilemapClicker : MonoBehaviour
     private bool isDraggingPlant = false;
     public TMPro.TextMeshProUGUI trashText;
     public TMPro.TextMeshProUGUI goldText;
+    public TMPro.TextMeshProUGUI winText;
 
     // Panning state
     private bool isPressing = false;
@@ -814,6 +815,7 @@ public class TilemapClicker : MonoBehaviour
         {
             goldAmount += amount;
             goldText.text = goldAmount.ToString();
+            winText.text = amount.ToString() + " Gold!";
         }
         else
         {

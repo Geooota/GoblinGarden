@@ -154,7 +154,6 @@ public class TowerDefenseManager : MonoBehaviour
         TilemapClicker.Instance.GetGoldOrTrash(true, (waveNumber ^ 2 + 10));
         Debug.Log("You win!");
         goalCurrentHealth = goalMaxHealth;
-        TilemapClicker.Instance.ExitDefenseMode();
         winScreenUI.SetActive(true);
     }
 
@@ -167,7 +166,6 @@ public class TowerDefenseManager : MonoBehaviour
         }
         Debug.Log("You lose...");
         goalCurrentHealth = goalMaxHealth;
-        TilemapClicker.Instance.ExitDefenseMode();
         loseScreenUI.SetActive(true);
     }
 

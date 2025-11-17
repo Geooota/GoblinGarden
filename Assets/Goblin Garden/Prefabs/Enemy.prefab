@@ -73,6 +73,7 @@ MonoBehaviour:
   attackDelay: 2
   maxHealth: 3
   attackDamage: 4
+  fillImage: {fileID: 2207378742114408229, guid: dacf342668c41f7478349eb8ee81cc13, type: 3}
   PoisonTimer: 5
   spriteRenderer: {fileID: 6580458861689929347}
   walkingSprite:
