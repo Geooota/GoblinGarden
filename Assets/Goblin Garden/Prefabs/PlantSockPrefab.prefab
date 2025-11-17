@@ -349,7 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlantInfo
   plantName: Knife Block
   cost: 30
-  growthTime: 50
+  growthTime: 20
   growthCycleTime: 20
   yieldAmount: 20
   collectable: 0
@@ -372,7 +372,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3a747efabb81c6a4db1323820ae546f7, type: 3}
   - {fileID: 8300000, guid: 5e3a865694f9a4e45b64adc122e41151, type: 3}
   - {fileID: 8300000, guid: a0dc1b700a874a5469be19364cacb571, type: 3}
-  switchInterval: 1
+  switchInterval: 4
   spriteRenderer: {fileID: 3919092081848615776}
 --- !u!65 &8736073975074482925
 BoxCollider:
@@ -504,7 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b14f65bd494ce459ef00157613ada9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantAttack
-  attackDamage: 2
+  attackDamage: 1
   attackDelay: 1
   attackRange: 15
   bulletpierce: 1
