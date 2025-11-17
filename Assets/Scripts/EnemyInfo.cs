@@ -26,7 +26,7 @@ public class EnemyInfo : MonoBehaviour
     public float stoppingDistance = 1f;
     public Transform compactorTransform;
 
-    
+
 
     public void Start()
     {
@@ -95,7 +95,7 @@ public class EnemyInfo : MonoBehaviour
 
                 TowerDefenseManager.Instance.DamageTrash(attackDamage);
 
-                yield return attackDelay;
+                yield return new WaitForSeconds(attackDelay);
             }
 
         }
@@ -115,7 +115,7 @@ public class EnemyInfo : MonoBehaviour
                 TowerDefenseManager.Instance.Win();
             Destroy(gameObject);
         }
-        Debug.Log("took damage " +  damage);
+        Debug.Log("took damage " + damage);
         Debug.Log("health left " + health / maxHealth);
         fillImage.fillAmount = health / maxHealth;
 

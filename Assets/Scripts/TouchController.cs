@@ -904,7 +904,7 @@ public class TilemapClicker : MonoBehaviour
 
     public void UpdateUITimer(float i)
     {
-        uiTimer.SetText(i.ToString());
+        uiTimer.SetText(i.ToString("F1"));
     }
 
 }

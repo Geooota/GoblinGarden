@@ -140,7 +140,7 @@ public class TowerDefenseManager : MonoBehaviour
         AudioClip soundToPlay = Random.value > 0.5f ? hitCompactorSound1 : hitCompactorSound2;
         audioSource.PlayOneShot(soundToPlay);
 
-        if (goalCurrentHealth < 0)
+        if (goalCurrentHealth <= 0)
         {
             Lose();
         }
