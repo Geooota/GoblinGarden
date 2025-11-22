@@ -68,10 +68,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e39483cab33344dba575fb15619d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyInfo
-  health: 12
-  initialMoveSpeed: 1
+  health: 15
+  initialMoveSpeed: 1.25
   attackDelay: 3
-  maxHealth: 12
+  maxHealth: 15
   attackDamage: 15
   fillImage: {fileID: 4600805138253977951}
   PoisonTimer: 5
@@ -291,7 +291,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.42660013, y: 0.33944437, z: -0.17670354, w: 0.8194912}
   m_LocalPosition: {x: 0, y: 1.22707, z: 0}
-  m_LocalScale: {x: 0.46878678, y: 0.46878672, z: 0.46878672}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3778924730319254160}
@@ -348,7 +348,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 7.64, y: 10.19}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

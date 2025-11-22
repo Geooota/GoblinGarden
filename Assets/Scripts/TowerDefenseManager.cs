@@ -84,8 +84,8 @@ public class TowerDefenseManager : MonoBehaviour
                 enemyTypes = 4;
                 break;
         }
-        waveDuration = waveNumber * 10;
-        spawningCredits = (waveNumber ^ 2) + 10;
+        waveDuration = (waveNumber * 4) + 11;
+        spawningCredits = Mathf.RoundToInt(Mathf.Pow(waveNumber, 2f)) + 10;
         StartCoroutine(SpawnEnemy());
     }
 
@@ -95,7 +95,7 @@ public class TowerDefenseManager : MonoBehaviour
             yield return null;
         else
         {
-            float randomWait = Random.Range(0, waveDuration);
+            float randomWait = Random.Range(0, waveDuration/5);
 
             int random = Random.Range(0, enemyTypes);
             Object prefabToSpawn = null;
@@ -140,7 +140,7 @@ public class TowerDefenseManager : MonoBehaviour
         AudioClip soundToPlay = Random.value > 0.5f ? hitCompactorSound1 : hitCompactorSound2;
         audioSource.PlayOneShot(soundToPlay);
 
-        if (goalCurrentHealth < 0)
+        if (goalCurrentHealth <= 0)
         {
             Lose();
         }
@@ -150,8 +150,8 @@ public class TowerDefenseManager : MonoBehaviour
 
     public void Win()
     {
+        TilemapClicker.Instance.GetGoldOrTrash(true, waveNumber * 10);
         waveNumber++;
-        TilemapClicker.Instance.GetGoldOrTrash(true, (waveNumber ^ 2 + 10));
         Debug.Log("You win!");
         goalCurrentHealth = goalMaxHealth;
         winScreenUI.SetActive(true);

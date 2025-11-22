@@ -552,7 +552,36 @@ public class TilemapClicker : MonoBehaviour
     public void EnterBuildMode(GameObject prefab)
     {
         ExitBuildMode(); // cleanup first
+        ExitDeconstructMode();
         plantPrefab = prefab;
+        // check if you can afford to build the plant/plot
+        if (prefab.GetComponent<PlotInfo>() != null)
+            {
+            heldCost = 100;
+            if (goldAmount < heldCost)
+            {
+                Debug.Log("Not enough gold to build this plot!");
+                return;
+            }
+        }
+        else if (prefab.GetComponent<PlantInfo>() != null)
+        {
+            heldCost = prefab.GetComponent<PlantInfo>().cost;
+            if (trashAmount < heldCost)
+            {
+                Debug.Log("Not enough trash to plant this!");
+                return;
+            }
+        }
+        else if (prefab.GetComponent<DecorativeScript>() != null)
+        {
+            heldCost = prefab.GetComponent<DecorativeScript>().cost;
+            if (goldAmount < heldCost)
+            {
+                Debug.Log("Not enough gold to place this decoration!");
+                return;
+            }
+        }
 
         // If no ghost yet, spawn one at screen center
         if (heldPlant == null)
@@ -904,7 +933,7 @@ public class TilemapClicker : MonoBehaviour
 
     public void UpdateUITimer(float i)
     {
-        uiTimer.SetText(i.ToString());
+        uiTimer.SetText(i.ToString("F1"));
     }
 
 }

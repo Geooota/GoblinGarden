@@ -7,7 +7,6 @@ public class PlantInfo : MonoBehaviour
     public string plantName;
     public int cost;
     public float growthTime; // in seconds
-    public float growthCycleTime; // in seconds
     public int yieldAmount;
     public bool collectable;
     public bool dry;
