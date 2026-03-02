@@ -77,8 +77,8 @@ public class BulletInfo : MonoBehaviour
                         EnemyInfo nearbyEnemy = hitCollider.GetComponent<EnemyInfo>();
                         if (nearbyEnemy != null)
                         {
-                            nearbyEnemy.PoisonTimer = 5;
-                            StartCoroutine(nearbyEnemy.Poison());
+                            // nearbyEnemy.PoisonTimer = 5;
+                            // StartCoroutine(nearbyEnemy.Poison());
                             Debug.Log("enemy poisoned");
                         }
                     }
@@ -94,9 +94,9 @@ public class BulletInfo : MonoBehaviour
         yield return new WaitForSeconds(time);
         if (type == 2)
         {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 20f);
+//            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 20f);
             Instantiate(goop, transform.position, Quaternion.Euler(90f, 0f, 0f));
-            foreach (var hitCollider in hitColliders)
+/*            foreach (var hitCollider in hitColliders)
             {
                 EnemyInfo nearbyEnemy = hitCollider.GetComponent<EnemyInfo>();
                 if (nearbyEnemy != null)
@@ -105,8 +105,7 @@ public class BulletInfo : MonoBehaviour
                     nearbyEnemy.PoisonTimer = 5;
                     nearbyEnemy.Poison();
                 }
-            }
-            TowerDefenseManager.Instance.EnemyHitPoison();
+            }*/
         }
         Destroy(gameObject);
     }

@@ -68,7 +68,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e39483cab33344dba575fb15619d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyInfo
-  health: 4
   initialMoveSpeed: 2
   attackDelay: 1
   maxHealth: 4

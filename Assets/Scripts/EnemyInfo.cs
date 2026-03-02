@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class EnemyInfo : MonoBehaviour
@@ -26,6 +27,9 @@ public class EnemyInfo : MonoBehaviour
     public float stoppingDistance = 1f;
     public Transform compactorTransform;
 
+    // Tracks goop colliders currently slowing this enemy.
+    // Each overlapping goop multiplies speed by 0.7.
+    private readonly HashSet<Collider> overlappingGoops = new HashSet<Collider>();
 
 
     public void Start()
@@ -45,20 +49,6 @@ public class EnemyInfo : MonoBehaviour
             index = (index + 1) % walkingSprite.Count;
             yield return new WaitForSeconds(0.2f);
         }
-    }
-
-    public IEnumerator Poison()
-    {
-        moveSpeed *= 0.6f;
-        while (PoisonTimer > 0)
-        {
-            PoisonTimer--;
-            TakeDamage(health * 0.1f);
-            Debug.Log("Poison Tick");
-            yield return new WaitForSeconds(1f);
-        }
-        yield return null;
-        moveSpeed = initialMoveSpeed;
     }
 
     private IEnumerator Attack()
@@ -120,7 +110,39 @@ public class EnemyInfo : MonoBehaviour
         Debug.Log("took damage " + damage);
         Debug.Log("health left " + health / maxHealth);
         fillImage.fillAmount = health / maxHealth;
-
     }
 
+    // Called when entering trigger colliders (requires this GameObject/Rigidbody2D + collider setup).
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other == null) return;
+        // detect goop by component (keeps coupling low)
+        if (other.GetComponent<DestroyGoop>() != null)
+        {
+            if (overlappingGoops.Add(other))
+            {
+                RecalculateMoveSpeed();
+            }
+        }
+    }
+
+    // Called when leaving trigger colliders.
+    private void OnTriggerExit(Collider other)
+    {
+        if (other == null) return;
+        if (other.GetComponent<DestroyGoop>() != null)
+        {
+            if (overlappingGoops.Remove(other))
+            {
+                RecalculateMoveSpeed();
+            }
+        }
+    }
+
+    private void RecalculateMoveSpeed()
+    {
+        // Each goop multiplies speed by 0.7
+        int count = overlappingGoops.Count;
+        moveSpeed = initialMoveSpeed * Mathf.Pow(0.7f, count);
+    }
 }
