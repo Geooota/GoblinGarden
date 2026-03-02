@@ -83,8 +83,6 @@ public class PlotInfo : MonoBehaviour
             return;
         }
 
-        StartCoroutine(DryOut());
-
         mats = dirtObject.materials;
 
         TilemapClicker.Instance.BuildPlot(this, region);

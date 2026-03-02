@@ -169,15 +169,8 @@ public class TilemapClicker : MonoBehaviour
 
                 if (plant != null)
                 {
-                    // this is how we queue work for John now
-                    var job = new Job(
-                    plant.gameObject,
-                    onComplete: () => CollectCrop(plant),
-                    harvestingSprites
-                    );
+                    CollectCrop(plant);
 
-                    JohnController.Instance.EnqueueJob(job);
-                    // End how to enqueue jobs
                     isPressing = false; // prevent panning etc.
                     return;
                 }
@@ -186,17 +179,9 @@ public class TilemapClicker : MonoBehaviour
                 {
                     isPressing = false; // prevent panning etc.
                     isHolding = true;
-                    if (Vector3.Distance(JohnController.Instance.gameObject.transform.position, trashTarget.transform.position) > 1)
-                    {
-                        Debug.Log(Vector3.Distance(JohnController.Instance.gameObject.transform.position, trashTarget.transform.position));
-                        var takeOutTrash = new Job(trashTarget);
-                        JohnController.Instance.EnqueueJob(takeOutTrash);
-                    }
-                    else
-                    {
-                        Debug.Log(Vector3.Distance(JohnController.Instance.gameObject.transform.position, trashTarget.transform.position));
-                        StartCoroutine(compactTrash());
-                    }
+
+                    StartCoroutine(compactTrash());
+
                     return;
                 }
                 else
@@ -216,17 +201,8 @@ public class TilemapClicker : MonoBehaviour
 
                         if (clickedPlot.dry)
                         {
-                            var watering = new Job(
-                                clickedPlot.gameObject,
-                                onComplete: () =>
-                                {
-                                    if (clickedPlot != null)
-                                        clickedPlot.Wet();
-                                },
-                                wateringSprites
-                            );
+                            clickedPlot.Wet();
 
-                            JohnController.Instance.EnqueueJob(watering);
                         }
                         else
                         {
@@ -667,14 +643,6 @@ public class TilemapClicker : MonoBehaviour
         ExitDeconstructMode();
         CompactorHPBar.SetActive(true);
 
-        var goingHome = new Job(
-        HouseRef,
-        onComplete: () =>
-        {
-        }
-        );
-
-        JohnController.Instance.EnqueueJob(goingHome);
 
         //Disable UI
         UItoDisable.SetActive(false);
